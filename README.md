@@ -1,6 +1,6 @@
 # inflateR
 
-Convert historical monetary values into their present-day equivalents using bundled CPI data. Supports GBP, AUD, USD, EUR, CAD, JPY, and CNY.
+Convert historical monetary values into their present-day equivalents using bundled CPI data. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
 
 Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The UK's ONS, Australia's ABS, the US Bureau of Labor Statistics, Eurostat, and others all publish excellent data — but pulling from seven different APIs, each with different authentication requirements, rate limits, and response formats, would make this package brittle and difficult to maintain.
 
@@ -26,7 +26,7 @@ adjust_inflation(amount, from_year, currency, to_year = NULL)
 |---|---|
 | `amount` | Numeric. The original monetary amount |
 | `from_year` | Integer. The year the amount is from |
-| `currency` | Character. One of `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"` |
+| `currency` | Character. One of `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"` |
 | `to_year` | Integer. Target year (defaults to latest available year) |
 
 ## Examples
@@ -68,6 +68,7 @@ adjust_inflation(12, 1963, "USD")  #> 122.94
 adjust_inflation(12, 1963, "EUR")  #>  60.62
 adjust_inflation(12, 1963, "CAD")  #> 119.73
 adjust_inflation(12, 1963, "JPY")  #>  60.24
+adjust_inflation(12, 1963, "CHF")  #>  47.93
 ```
 
 ### Chinese yuan (data available from 1986)
@@ -98,6 +99,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 | `cad_cpi` | CAD | 1960–2024 | World Bank (Canada) |
 | `jpy_cpi` | JPY | 1960–2024 | World Bank (Japan) |
 | `cny_cpi` | CNY | 1986–2024 | World Bank (China) |
+| `chf_cpi` | CHF | 1960–2024 | World Bank (Switzerland) |
 
 ---
 
@@ -169,6 +171,16 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 **Limitations:**
 - **Data only available from 1986** — the earliest year in the World Bank series for China
 - China experienced significant inflation spikes in 1988–1989 and 1993–1995; comparisons spanning these periods will show large adjustments
+
+---
+
+### `chf_cpi` — Switzerland
+
+**Source:** [World Bank — FP.CPI.TOTL (Switzerland)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CH)
+
+**Limitations:**
+- Data available from 1960 onwards
+- Switzerland has historically had one of the lowest inflation rates of any major economy, so adjustments will be smaller than most other currencies
 
 ---
 
