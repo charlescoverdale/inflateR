@@ -26,7 +26,7 @@ adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
 
   currency <- toupper(currency)
 
-  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY")
+  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF")
   if (!currency %in% valid) {
     stop(paste0("currency must be one of: ", paste(valid, collapse = ", ")))
   }
@@ -38,7 +38,8 @@ adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
     EUR = eur_cpi,
     CAD = cad_cpi,
     JPY = jpy_cpi,
-    CNY = cny_cpi
+    CNY = cny_cpi,
+    CHF = chf_cpi
   )
 
   min_year <- min(cpi_data$year)

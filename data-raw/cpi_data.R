@@ -21,7 +21,8 @@ country_codes <- c(
   DE = "EUR",
   CA = "CAD",
   JP = "JPY",
-  CN = "CNY"
+  CN = "CNY",
+  CH = "CHF"
 )
 
 message("Fetching CPI data from World Bank WDI...")
@@ -64,6 +65,7 @@ eur_cpi <- process_country("DE", "EUR")
 cad_cpi <- process_country("CA", "CAD")
 jpy_cpi <- process_country("JP", "JPY")
 cny_cpi <- process_country("CN", "CNY")
+chf_cpi <- process_country("CH", "CHF")
 
 # Save
 save(uk_cpi,  file = "data/uk_cpi.rda")
@@ -73,5 +75,6 @@ save(eur_cpi, file = "data/eur_cpi.rda")
 save(cad_cpi, file = "data/cad_cpi.rda")
 save(jpy_cpi, file = "data/jpy_cpi.rda")
 save(cny_cpi, file = "data/cny_cpi.rda")
+save(chf_cpi, file = "data/chf_cpi.rda")
 
 message("Done. CPI data saved to data/")

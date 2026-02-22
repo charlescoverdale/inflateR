@@ -99,3 +99,17 @@
 #' }
 #' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
 "cny_cpi"
+
+#' Swiss CPI Data (1960-2024)
+#'
+#' Annual Consumer Price Index for Switzerland, sourced from the
+#' World Bank Development Indicators (indicator: FP.CPI.TOTL).
+#' Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{CPI index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+"chf_cpi"
