@@ -1,7 +1,8 @@
 #' Adjust a historical monetary value for inflation
 #'
 #' Converts an amount from a historical year into its equivalent value in a
-#' target year, using bundled CPI data for GBP or AUD.
+#' target year, using bundled CPI data sourced from the World Bank Development
+#' Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
 #'
 #' @param amount Numeric. The original monetary amount.
 #' @param from_year Integer. The year the amount is from.

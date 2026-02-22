@@ -24,7 +24,8 @@ A numeric value representing the inflation-adjusted amount.
 }
 \description{
 Converts an amount from a historical year into its equivalent value in a
-target year, using bundled CPI data for GBP or AUD.
+target year, using bundled CPI data sourced from the World Bank Development
+Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
 }
 \examples{
 # What is £12 from 1963 worth today?
