@@ -194,8 +194,3 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 
 ---
 
-### General Limitations
-
-- **Data is static** — CPI values are bundled at the time the package was built and are not updated automatically. The data runs to 2024. To refresh, run `data-raw/cpi_data.R`.
-- **Annual figures** — monthly price fluctuations are smoothed into a single annual figure, which may differ from point-in-time comparisons.
-- **Not for legal or financial use** — for precise financial, legal, or actuarial calculations, source data directly from the [World Bank](https://data.worldbank.org/indicator/FP.CPI.TOTL) or the relevant national statistics agency.
