@@ -11,12 +11,20 @@ A data frame with 65 rows and 2 columns:
 \item{index}{CPI index value (numeric, base 2020 = 100)}
 }
 }
+\source{
+World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+}
 \usage{
 eur_cpi
 }
 \description{
-Annual average Harmonised Index of Consumer Prices (HICP) for the Euro area.
-Pre-1999 values are a GDP-weighted composite proxy of major Eurozone economies.
-Index base: 2020 = 100. Source: Eurostat.
+Annual Consumer Price Index for Germany, used as a proxy for the Euro (EUR).
+Sourced from the World Bank Development Indicators (indicator: FP.CPI.TOTL).
+Rescaled so that 2020 = 100.
+}
+\details{
+Note: The Euro area aggregate is not available in WDI. Germany is used as
+a proxy as it is the largest Eurozone economy and was the monetary anchor
+(Deutsche Mark) prior to the Euro's introduction in 1999.
 }
 \keyword{datasets}

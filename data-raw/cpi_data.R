@@ -1,162 +1,71 @@
-# Run this script once to generate the bundled CPI data files in data/
-# Sources: Bank of England (UK), ABS (AUD), BLS (USD), Eurostat (EUR),
-#          Statistics Canada (CAD), Statistics Bureau of Japan (JPY),
-#          National Bureau of Statistics of China (CNY)
-# Index base: 2020 = 100 (approximate annual averages)
+# Fetch official CPI data from the World Bank WDI API and save as bundled .rda files
+#
+# Indicator: FP.CPI.TOTL — Consumer Price Index (World Bank, base 2010 = 100)
+# Source: World Bank Open Data — https://data.worldbank.org/indicator/FP.CPI.TOTL
+#
+# Run this script to refresh the bundled data:
+#   Rscript data-raw/cpi_data.R
+#
+# Requires the WDI package: install.packages("WDI")
 
-uk_cpi <- data.frame(
-  year = 1948:2024,
-  index = c(
-    # 1948-1959
-    3.0, 3.2, 3.3, 3.6, 3.9, 4.0, 4.1, 4.3, 4.5, 4.7, 4.7, 4.8,
-    # 1960-1969
-    4.9, 5.1, 5.3, 5.4, 5.6, 5.9, 6.1, 6.3, 6.6, 6.9,
-    # 1970-1979
-    7.4, 8.1, 8.7, 9.5, 11.0, 13.7, 16.0, 18.6, 20.2, 23.0,
-    # 1980-1989
-    27.2, 30.4, 33.0, 34.5, 36.2, 38.4, 39.9, 41.4, 43.4, 46.8,
-    # 1990-1999
-    51.2, 54.0, 56.2, 57.1, 58.5, 60.1, 61.6, 63.4, 65.3, 66.8,
-    # 2000-2009
-    68.0, 69.9, 71.5, 73.4, 75.6, 77.8, 80.1, 82.6, 85.4, 83.5,
-    # 2010-2019
-    86.5, 91.0, 93.5, 95.7, 97.4, 99.2, 100.8, 102.9, 105.0, 107.4,
-    # 2020-2024
-    100.0, 102.5, 111.6, 126.6, 133.2
-  )
+library(WDI)
+
+# Country codes
+# Note: Euro area aggregate (XC) has no CPI data in WDI.
+# Germany (DE) is used as the EUR proxy — it is the largest Eurozone economy
+# and was the monetary anchor (Deutsche Mark) prior to the Euro.
+country_codes <- c(
+  GB = "GBP",
+  AU = "AUD",
+  US = "USD",
+  DE = "EUR",
+  CA = "CAD",
+  JP = "JPY",
+  CN = "CNY"
 )
 
-aud_cpi <- data.frame(
-  year = 1948:2024,
-  index = c(
-    # 1948-1959
-    2.0, 2.1, 2.3, 2.7, 3.0, 3.2, 3.3, 3.5, 3.6, 3.7, 3.8, 3.9,
-    # 1960-1969
-    4.0, 4.0, 4.1, 4.2, 4.3, 4.4, 4.6, 4.8, 5.0, 5.3,
-    # 1970-1979
-    5.6, 6.0, 6.5, 7.5, 9.0, 11.1, 12.8, 14.6, 15.9, 17.7,
-    # 1980-1989
-    20.1, 23.2, 26.0, 28.2, 30.3, 32.3, 35.0, 37.4, 40.2, 43.8,
-    # 1990-1999
-    47.8, 49.3, 50.0, 50.7, 51.7, 52.9, 54.0, 55.1, 56.1, 57.3,
-    # 2000-2009
-    59.6, 62.4, 64.2, 66.2, 68.5, 70.9, 73.5, 76.5, 79.8, 80.0,
-    # 2010-2019
-    83.0, 85.8, 88.1, 90.1, 91.9, 93.3, 94.7, 96.2, 97.8, 98.9,
-    # 2020-2024
-    100.0, 103.5, 108.8, 116.5, 123.0
-  )
+message("Fetching CPI data from World Bank WDI...")
+
+raw <- WDI(
+  country   = names(country_codes),
+  indicator = "FP.CPI.TOTL",
+  start     = 1960,
+  end       = 2024
 )
 
-usd_cpi <- data.frame(
-  year = 1948:2024,
-  index = c(
-    # 1948-1959
-    5.3, 5.5, 5.5, 5.9, 6.2, 6.3, 6.4, 6.5, 6.5, 6.8, 7.0, 7.1,
-    # 1960-1969
-    7.3, 7.4, 7.5, 7.6, 7.8, 8.0, 8.3, 8.6, 9.0, 9.5,
-    # 1970-1979
-    10.0, 10.5, 11.0, 11.9, 13.1, 14.3, 15.2, 16.2, 17.5, 19.5,
-    # 1980-1989
-    22.1, 24.4, 25.9, 26.7, 27.9, 28.9, 29.4, 30.5, 31.7, 33.2,
-    # 1990-1999
-    35.1, 36.6, 37.7, 38.8, 39.9, 41.1, 42.3, 43.3, 44.0, 44.9,
-    # 2000-2009
-    46.4, 47.8, 48.6, 49.7, 51.2, 53.0, 54.7, 56.5, 58.7, 58.5,
-    # 2010-2019
-    59.5, 61.1, 62.3, 63.2, 64.2, 64.8, 65.7, 67.1, 68.6, 70.0,
-    # 2020-2024
-    100.0, 104.7, 112.4, 119.8, 125.2
-  )
-)
+# Rename columns for clarity
+names(raw)[names(raw) == "FP.CPI.TOTL"] <- "index_2010"
+names(raw)[names(raw) == "iso2c"]        <- "iso2c"
 
-# EUR: Euro area HICP composite (1960-2024)
-# Pre-1999 values are a GDP-weighted proxy of major Eurozone economies
-eur_cpi <- data.frame(
-  year = 1960:2024,
-  index = c(
-    # 1960-1969
-    3.2, 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6, 4.8, 5.1,
-    # 1970-1979
-    5.5, 6.0, 6.5, 7.5, 9.0, 10.0, 12.0, 13.0, 15.0, 18.0,
-    # 1980-1989
-    21.0, 24.0, 27.0, 29.0, 31.0, 33.0, 34.0, 35.0, 36.0, 39.0,
-    # 1990-1999
-    42.0, 45.0, 48.0, 50.0, 52.0, 54.0, 56.0, 58.0, 60.0, 61.0,
-    # 2000-2009
-    63.0, 65.0, 67.0, 69.0, 71.0, 73.0, 76.0, 78.0, 82.0, 82.0,
-    # 2010-2019
-    84.0, 87.0, 89.0, 91.0, 92.0, 93.0, 93.0, 94.0, 96.0, 98.0,
-    # 2020-2024
-    100.0, 103.0, 109.0, 117.0, 122.0
-  )
-)
+# Helper: process one country into a clean data frame rescaled to 2020 = 100
+process_country <- function(iso, currency) {
+  df <- raw[raw$iso2c == iso, c("year", "index_2010")]
+  df <- df[!is.na(df$index_2010), ]
+  df <- df[order(df$year), ]
 
-# CAD: Statistics Canada CPI, all-items (1948-2024)
-cad_cpi <- data.frame(
-  year = 1948:2024,
-  index = c(
-    # 1948-1959
-    3.3, 3.5, 3.6, 4.0, 4.3, 4.4, 4.4, 4.5, 4.6, 4.8, 4.9, 5.0,
-    # 1960-1969
-    5.1, 5.2, 5.3, 5.4, 5.5, 5.7, 5.9, 6.1, 6.3, 6.6,
-    # 1970-1979
-    7.0, 7.3, 7.8, 8.5, 10.0, 12.0, 13.0, 14.0, 16.0, 18.0,
-    # 1980-1989
-    21.0, 25.0, 28.0, 30.0, 32.0, 34.0, 35.0, 36.0, 38.0, 41.0,
-    # 1990-1999
-    44.0, 47.0, 49.0, 50.0, 51.0, 53.0, 54.0, 55.0, 56.0, 57.0,
-    # 2000-2009
-    59.0, 61.0, 63.0, 65.0, 67.0, 69.0, 71.0, 74.0, 77.0, 77.0,
-    # 2010-2019
-    79.0, 83.0, 85.0, 87.0, 89.0, 90.0, 91.0, 93.0, 95.0, 97.0,
-    # 2020-2024
-    100.0, 105.0, 113.0, 118.0, 123.0
-  )
-)
+  # Rescale: 2020 = 100
+  base_2020 <- df$index_2010[df$year == 2020]
+  if (length(base_2020) == 0 || is.na(base_2020)) {
+    stop(paste("No 2020 data available for", currency))
+  }
+  df$index <- round((df$index_2010 / base_2020) * 100, 2)
+  df$index_2010 <- NULL
 
-# JPY: Statistics Bureau of Japan CPI, all-items (1948-2024)
-# Note: Japan experienced near-deflation from the mid-1990s to 2020
-jpy_cpi <- data.frame(
-  year = 1948:2024,
-  index = c(
-    # 1948-1959
-    4.5, 5.5, 6.2, 6.8, 7.0, 7.2, 7.3, 7.5, 7.8, 8.2, 8.3, 8.5,
-    # 1960-1969
-    9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 14.0,
-    # 1970-1979
-    15.0, 16.0, 17.0, 22.0, 30.0, 38.0, 43.0, 46.0, 50.0, 56.0,
-    # 1980-1989
-    66.0, 72.0, 76.0, 78.0, 80.0, 82.0, 82.0, 81.0, 82.0, 84.0,
-    # 1990-1999
-    87.0, 89.0, 93.0, 94.0, 95.0, 96.0, 96.0, 97.0, 98.0, 97.0,
-    # 2000-2009
-    97.0, 96.0, 95.0, 95.0, 94.0, 94.0, 94.0, 95.0, 97.0, 96.0,
-    # 2010-2019
-    96.0, 96.0, 96.0, 97.0, 99.0, 99.0, 98.0, 98.0, 99.0, 100.0,
-    # 2020-2024
-    100.0, 100.0, 102.0, 105.0, 108.0
-  )
-)
+  message(sprintf("  %s (%s): %d years of data (%d - %d)",
+                  currency, iso, nrow(df), min(df$year), max(df$year)))
+  df
+}
 
-# CNY: National Bureau of Statistics of China CPI (1978-2024)
-# Reliable data begins with China's reform and opening-up period
-cny_cpi <- data.frame(
-  year = 1978:2024,
-  index = c(
-    # 1978-1987
-    9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 13.0, 14.0, 15.0, 16.0,
-    # 1988-1997 (note: high inflation spike 1988-1989 and again 1993-1995)
-    19.0, 24.0, 26.0, 28.0, 31.0, 38.0, 47.0, 58.0, 65.0, 69.0,
-    # 1998-2007
-    70.0, 70.0, 71.0, 70.0, 70.0, 73.0, 76.0, 77.0, 79.0, 84.0,
-    # 2008-2017
-    88.0, 86.0, 89.0, 92.0, 94.0, 96.0, 97.0, 97.0, 98.0, 99.0,
-    # 2018-2024
-    100.0, 102.0, 100.0, 101.0, 102.0, 100.0, 102.0
-  )
-)
+# Process each currency
+uk_cpi  <- process_country("GB", "GBP")
+aud_cpi <- process_country("AU", "AUD")
+usd_cpi <- process_country("US", "USD")
+eur_cpi <- process_country("DE", "EUR")
+cad_cpi <- process_country("CA", "CAD")
+jpy_cpi <- process_country("JP", "JPY")
+cny_cpi <- process_country("CN", "CNY")
 
+# Save
 save(uk_cpi,  file = "data/uk_cpi.rda")
 save(aud_cpi, file = "data/aud_cpi.rda")
 save(usd_cpi, file = "data/usd_cpi.rda")
@@ -165,4 +74,4 @@ save(cad_cpi, file = "data/cad_cpi.rda")
 save(jpy_cpi, file = "data/jpy_cpi.rda")
 save(cny_cpi, file = "data/cny_cpi.rda")
 
-message("CPI data saved to data/")
+message("Done. CPI data saved to data/")

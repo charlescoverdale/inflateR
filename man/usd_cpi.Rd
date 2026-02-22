@@ -3,19 +3,23 @@
 \docType{data}
 \name{usd_cpi}
 \alias{usd_cpi}
-\title{US CPI Data (1948-2024)}
+\title{US CPI Data (1960-2024)}
 \format{
-A data frame with 77 rows and 2 columns:
+A data frame with 65 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{CPI index value (numeric, base 2020 = 100)}
 }
 }
+\source{
+World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+}
 \usage{
 usd_cpi
 }
 \description{
-Annual average Consumer Price Index for the United States (CPI-U).
-Index base: 2020 = 100. Source: Bureau of Labor Statistics (BLS).
+Annual Consumer Price Index for the United States, sourced from the
+World Bank Development Indicators (indicator: FP.CPI.TOTL).
+Rescaled so that 2020 = 100.
 }
 \keyword{datasets}

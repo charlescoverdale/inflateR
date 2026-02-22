@@ -3,20 +3,23 @@
 \docType{data}
 \name{cny_cpi}
 \alias{cny_cpi}
-\title{Chinese CPI Data (1978-2024)}
+\title{Chinese CPI Data (1986-2024)}
 \format{
-A data frame with 47 rows and 2 columns:
+A data frame with 39 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{CPI index value (numeric, base 2020 = 100)}
 }
 }
+\source{
+World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+}
 \usage{
 cny_cpi
 }
 \description{
-Annual average Consumer Price Index for China.
-Data begins in 1978 with China's reform and opening-up period.
-Index base: 2020 = 100. Source: National Bureau of Statistics of China.
+Annual Consumer Price Index for China, sourced from the
+World Bank Development Indicators (indicator: FP.CPI.TOTL).
+Rescaled so that 2020 = 100. Data availability begins in 1986.
 }
 \keyword{datasets}

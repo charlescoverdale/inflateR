@@ -3,19 +3,23 @@
 \docType{data}
 \name{uk_cpi}
 \alias{uk_cpi}
-\title{UK CPI Data (1948-2024)}
+\title{UK CPI Data (1960-2024)}
 \format{
-A data frame with 77 rows and 2 columns:
+A data frame with 65 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{CPI index value (numeric, base 2020 = 100)}
 }
 }
+\source{
+World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+}
 \usage{
 uk_cpi
 }
 \description{
-Annual average Consumer Price Index for the United Kingdom.
-Index base: 2020 = 100. Source: Bank of England historical data.
+Annual Consumer Price Index for the United Kingdom, sourced from the
+World Bank Development Indicators (indicator: FP.CPI.TOTL).
+Rescaled so that 2020 = 100.
 }
 \keyword{datasets}

@@ -3,19 +3,23 @@
 \docType{data}
 \name{aud_cpi}
 \alias{aud_cpi}
-\title{Australian CPI Data (1948-2024)}
+\title{Australian CPI Data (1960-2024)}
 \format{
-A data frame with 77 rows and 2 columns:
+A data frame with 65 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{CPI index value (numeric, base 2020 = 100)}
 }
 }
+\source{
+World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+}
 \usage{
 aud_cpi
 }
 \description{
-Annual average Consumer Price Index for Australia.
-Index base: 2020 = 100. Source: Australian Bureau of Statistics (ABS).
+Annual Consumer Price Index for Australia, sourced from the
+World Bank Development Indicators (indicator: FP.CPI.TOTL).
+Rescaled so that 2020 = 100.
 }
 \keyword{datasets}
