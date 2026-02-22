@@ -1,13 +1,14 @@
 Package: inflateR
 Title: Inflation Adjustment for Historical Currency Values
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "you@example.com", role = c("aut", "cre"))
+Authors@R: person("Charles", "Coverdale", email = "charlescoverdale@gmail.com", role = c("aut", "cre"))
 Description: Convert historical monetary values into their present-day equivalents
-    using bundled CPI (Consumer Price Index) data. Supports British pounds (GBP)
-    and Australian dollars (AUD).
+    using bundled CPI (Consumer Price Index) data. Supports British pounds (GBP),
+    Australian dollars (AUD), US dollars (USD), Euro (EUR), Canadian dollars (CAD),
+    Japanese yen (JPY), and Chinese yuan (CNY).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.2.3
 LazyData: true
 Depends: R (>= 3.5.0)
