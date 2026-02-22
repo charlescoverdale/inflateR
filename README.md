@@ -26,7 +26,7 @@ adjust_inflation(amount, from_year, currency, to_year = NULL)
 |---|---|
 | `amount` | Numeric. The original monetary amount |
 | `from_year` | Integer. The year the amount is from |
-| `currency` | Character. One of `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"` |
+| `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive |
 | `to_year` | Integer. Target year (defaults to latest available year) |
 
 ## Examples
@@ -71,6 +71,19 @@ adjust_inflation(12, 1963, "JPY")  #>  60.24
 adjust_inflation(12, 1963, "CHF")  #>  47.93
 ```
 
+
+### Country names work too (case-insensitive)
+
+```r
+adjust_inflation(12, 1963, "Australia")
+#> [1] 212.02
+
+adjust_inflation(12, 1963, "United States")
+#> [1] 122.94
+
+adjust_inflation(12, 1963, "switzerland")
+#> [1] 47.93
+```
 
 ## Data
 
