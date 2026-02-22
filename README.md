@@ -75,6 +75,20 @@ adjust_inflation(100, 1990, "CNY")
 
 ## Data
 
+### Why the World Bank?
+
+Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The UK's ONS, Australia's ABS, the US Bureau of Labor Statistics, Eurostat, and others all publish excellent data — but pulling from seven different APIs, each with different authentication requirements, rate limits, and response formats, would make this package brittle and difficult to maintain.
+
+The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating CPI data from national sources into a single, consistently formatted dataset. The `FP.CPI.TOTL` indicator provides annual CPI values (base 2010 = 100) for most countries back to 1960, with the World Bank handling source reconciliation. We then rescale all series to 2020 = 100 for consistency across currencies.
+
+**There are still limitations worth knowing about:**
+
+- **Tax shocks** — Australia (GST, 2000) and Canada (GST, 1991) both saw one-time price level jumps that appear in the data as inflation but are really structural tax changes. Comparisons that span these years will reflect the tax shift, not just underlying inflation.
+- **Japan's deflation** — Japan had near-zero or negative inflation from roughly 1995 to 2020. Adjustments within this window will be very small, and in some years prices actually fell.
+- **China's coverage** — World Bank data for China begins in 1986, and the early years of the series span significant structural change in the economy. The data is internationally comparable but may not reflect the full experience of price changes during China's reform era.
+- **Euro proxy** — the World Bank does not publish an aggregated Euro area CPI series. Germany is used as a proxy, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
+- **Annual figures only** — all values are annual averages. Month-to-month volatility is smoothed out, which may matter for precise historical comparisons.
+
 CPI data is sourced from the [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) (indicator: `FP.CPI.TOTL`) and bundled inside the package. All indices are rescaled so that 2020 = 100.
 
 | Dataset | Currency | Coverage | Source |
