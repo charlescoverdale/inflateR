@@ -108,7 +108,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 **Source:** [World Bank — FP.CPI.TOTL (United Kingdom)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=GB)
 
 **Limitations:**
-- Data available from 1960 onwards
+- Data available from 1960 to 2024
 - For years before 1960, no data is available in this package
 
 ---
@@ -118,7 +118,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 **Source:** [World Bank — FP.CPI.TOTL (Australia)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=AU)
 
 **Limitations:**
-- Data available from 1960 onwards
+- Data available from 1960 to 2024
 - The introduction of the **Goods and Services Tax (GST)** in July 2000 caused a one-time step increase in the price level of approximately 2.5–3%, visible in the data
 
 ---
@@ -128,7 +128,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 **Source:** [World Bank — FP.CPI.TOTL (United States)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=US)
 
 **Limitations:**
-- Data available from 1960 onwards
+- Data available from 1960 to 2024
 
 ---
 
@@ -139,8 +139,8 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 The Euro area aggregate is not available in the World Bank WDI. Germany is used as a proxy as it is the largest Eurozone economy and was the monetary anchor (Deutsche Mark) prior to the Euro's introduction in 1999.
 
 **Limitations:**
+- Data available from 1960 to 2024
 - Reflects German CPI, not a Euro area composite — southern European countries (Italy, Spain, Portugal) had significantly higher inflation in the 1970s–80s
-- Data available from 1960 onwards
 
 ---
 
@@ -149,7 +149,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 **Source:** [World Bank — FP.CPI.TOTL (Canada)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CA)
 
 **Limitations:**
-- Data available from 1960 onwards
+- Data available from 1960 to 2024
 - The introduction of the **Goods and Services Tax (GST)** in January 1991 caused a one-time step increase in measured prices
 
 ---
@@ -159,7 +159,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 **Source:** [World Bank — FP.CPI.TOTL (Japan)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=JP)
 
 **Limitations:**
-- Data available from 1960 onwards
+- Data available from 1960 to 2024
 - Japan experienced prolonged **deflation and near-zero inflation from approximately 1995 to 2020**, so adjustments within this period will be very small
 
 ---
@@ -169,7 +169,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 **Source:** [World Bank — FP.CPI.TOTL (China)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CN)
 
 **Limitations:**
-- **Data only available from 1986** — the earliest year in the World Bank series for China
+- Data available from 1986 to 2024 — the earliest year in the World Bank series for China
 - China experienced significant inflation spikes in 1988–1989 and 1993–1995; comparisons spanning these periods will show large adjustments
 
 ---
@@ -179,7 +179,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 **Source:** [World Bank — FP.CPI.TOTL (Switzerland)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CH)
 
 **Limitations:**
-- Data available from 1960 onwards
+- Data available from 1960 to 2024
 - Switzerland has historically had one of the lowest inflation rates of any major economy, so adjustments will be smaller than most other currencies
 
 ---
