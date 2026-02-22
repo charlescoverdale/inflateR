@@ -5,10 +5,10 @@
 #'
 #' @param amount Numeric. The original monetary amount.
 #' @param from_year Integer. The year the amount is from.
-#' @param currency Character. One of `"GBP"` (British pounds), `"AUD"`
-#'   (Australian dollars), `"USD"` (US dollars), `"EUR"` (Euro, from 1960),
-#'   `"CAD"` (Canadian dollars), `"JPY"` (Japanese yen), or `"CNY"`
-#'   (Chinese yuan, from 1978).
+#' @param currency Character. A currency code or country name. Accepted codes:
+#'   `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`.
+#'   Country names are also accepted, e.g. `"Australia"`, `"United States"`,
+#'   `"Japan"`, `"Switzerland"` (case-insensitive).
 #' @param to_year Integer. The target year to adjust to. Defaults to the
 #'   current year.
 #'
@@ -24,11 +24,30 @@
 #' @export
 adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
 
+  # Map country names to currency codes (case-insensitive)
+  country_lookup <- c(
+    "united kingdom" = "GBP", "uk"          = "GBP", "britain"      = "GBP",
+    "great britain"  = "GBP", "england"     = "GBP",
+    "australia"      = "AUD",
+    "united states"  = "USD", "usa"         = "USD", "us"           = "USD",
+    "america"        = "USD",
+    "europe"         = "EUR", "euro area"   = "EUR", "eurozone"     = "EUR",
+    "germany"        = "EUR",
+    "canada"         = "CAD",
+    "japan"          = "JPY",
+    "china"          = "CNY",
+    "switzerland"    = "CHF", "swiss"       = "CHF"
+  )
+
+  lookup <- country_lookup[tolower(trimws(currency))]
+  if (!is.na(lookup)) currency <- lookup
+
   currency <- toupper(currency)
 
   valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF")
   if (!currency %in% valid) {
-    stop(paste0("currency must be one of: ", paste(valid, collapse = ", ")))
+    stop(paste0("currency must be one of: ", paste(valid, collapse = ", "),
+                "\nOr use a country name e.g. \"Australia\", \"United States\"."))
   }
 
   cpi_data <- switch(currency,

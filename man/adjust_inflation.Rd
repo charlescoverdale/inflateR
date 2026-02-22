@@ -11,10 +11,10 @@ adjust_inflation(amount, from_year, currency, to_year = NULL)
 
 \item{from_year}{Integer. The year the amount is from.}
 
-\item{currency}{Character. One of \code{"GBP"} (British pounds), \code{"AUD"}
-(Australian dollars), \code{"USD"} (US dollars), \code{"EUR"} (Euro, from 1960),
-\code{"CAD"} (Canadian dollars), \code{"JPY"} (Japanese yen), or \code{"CNY"}
-(Chinese yuan, from 1978).}
+\item{currency}{Character. A currency code or country name. Accepted codes:
+\code{"GBP"}, \code{"AUD"}, \code{"USD"}, \code{"EUR"}, \code{"CAD"}, \code{"JPY"}, \code{"CNY"}, \code{"CHF"}.
+Country names are also accepted, e.g. \code{"Australia"}, \code{"United States"},
+\code{"Japan"}, \code{"Switzerland"} (case-insensitive).}
 
 \item{to_year}{Integer. The target year to adjust to. Defaults to the
 current year.}
