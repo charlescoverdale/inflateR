@@ -6,7 +6,9 @@
 #' @param amount Numeric. The original monetary amount.
 #' @param from_year Integer. The year the amount is from.
 #' @param currency Character. One of `"GBP"` (British pounds), `"AUD"`
-#'   (Australian dollars), or `"USD"` (US dollars).
+#'   (Australian dollars), `"USD"` (US dollars), `"EUR"` (Euro, from 1960),
+#'   `"CAD"` (Canadian dollars), `"JPY"` (Japanese yen), or `"CNY"`
+#'   (Chinese yuan, from 1978).
 #' @param to_year Integer. The target year to adjust to. Defaults to the
 #'   current year.
 #'
@@ -24,14 +26,19 @@ adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
 
   currency <- toupper(currency)
 
-  if (!currency %in% c("GBP", "AUD", "USD")) {
-    stop("currency must be 'GBP', 'AUD', or 'USD'")
+  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY")
+  if (!currency %in% valid) {
+    stop(paste0("currency must be one of: ", paste(valid, collapse = ", ")))
   }
 
   cpi_data <- switch(currency,
     GBP = uk_cpi,
     AUD = aud_cpi,
-    USD = usd_cpi
+    USD = usd_cpi,
+    EUR = eur_cpi,
+    CAD = cad_cpi,
+    JPY = jpy_cpi,
+    CNY = cny_cpi
   )
 
   min_year <- min(cpi_data$year)

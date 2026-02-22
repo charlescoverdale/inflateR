@@ -1,5 +1,7 @@
 # Run this script once to generate the bundled CPI data files in data/
-# Source: Bank of England historical data (UK), RBA/ABS (AUD), BLS CPI-U (USD)
+# Sources: Bank of England (UK), ABS (AUD), BLS (USD), Eurostat (EUR),
+#          Statistics Canada (CAD), Statistics Bureau of Japan (JPY),
+#          National Bureau of Statistics of China (CNY)
 # Index base: 2020 = 100 (approximate annual averages)
 
 uk_cpi <- data.frame(
@@ -68,8 +70,99 @@ usd_cpi <- data.frame(
   )
 )
 
+# EUR: Euro area HICP composite (1960-2024)
+# Pre-1999 values are a GDP-weighted proxy of major Eurozone economies
+eur_cpi <- data.frame(
+  year = 1960:2024,
+  index = c(
+    # 1960-1969
+    3.2, 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6, 4.8, 5.1,
+    # 1970-1979
+    5.5, 6.0, 6.5, 7.5, 9.0, 10.0, 12.0, 13.0, 15.0, 18.0,
+    # 1980-1989
+    21.0, 24.0, 27.0, 29.0, 31.0, 33.0, 34.0, 35.0, 36.0, 39.0,
+    # 1990-1999
+    42.0, 45.0, 48.0, 50.0, 52.0, 54.0, 56.0, 58.0, 60.0, 61.0,
+    # 2000-2009
+    63.0, 65.0, 67.0, 69.0, 71.0, 73.0, 76.0, 78.0, 82.0, 82.0,
+    # 2010-2019
+    84.0, 87.0, 89.0, 91.0, 92.0, 93.0, 93.0, 94.0, 96.0, 98.0,
+    # 2020-2024
+    100.0, 103.0, 109.0, 117.0, 122.0
+  )
+)
+
+# CAD: Statistics Canada CPI, all-items (1948-2024)
+cad_cpi <- data.frame(
+  year = 1948:2024,
+  index = c(
+    # 1948-1959
+    3.3, 3.5, 3.6, 4.0, 4.3, 4.4, 4.4, 4.5, 4.6, 4.8, 4.9, 5.0,
+    # 1960-1969
+    5.1, 5.2, 5.3, 5.4, 5.5, 5.7, 5.9, 6.1, 6.3, 6.6,
+    # 1970-1979
+    7.0, 7.3, 7.8, 8.5, 10.0, 12.0, 13.0, 14.0, 16.0, 18.0,
+    # 1980-1989
+    21.0, 25.0, 28.0, 30.0, 32.0, 34.0, 35.0, 36.0, 38.0, 41.0,
+    # 1990-1999
+    44.0, 47.0, 49.0, 50.0, 51.0, 53.0, 54.0, 55.0, 56.0, 57.0,
+    # 2000-2009
+    59.0, 61.0, 63.0, 65.0, 67.0, 69.0, 71.0, 74.0, 77.0, 77.0,
+    # 2010-2019
+    79.0, 83.0, 85.0, 87.0, 89.0, 90.0, 91.0, 93.0, 95.0, 97.0,
+    # 2020-2024
+    100.0, 105.0, 113.0, 118.0, 123.0
+  )
+)
+
+# JPY: Statistics Bureau of Japan CPI, all-items (1948-2024)
+# Note: Japan experienced near-deflation from the mid-1990s to 2020
+jpy_cpi <- data.frame(
+  year = 1948:2024,
+  index = c(
+    # 1948-1959
+    4.5, 5.5, 6.2, 6.8, 7.0, 7.2, 7.3, 7.5, 7.8, 8.2, 8.3, 8.5,
+    # 1960-1969
+    9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 14.0,
+    # 1970-1979
+    15.0, 16.0, 17.0, 22.0, 30.0, 38.0, 43.0, 46.0, 50.0, 56.0,
+    # 1980-1989
+    66.0, 72.0, 76.0, 78.0, 80.0, 82.0, 82.0, 81.0, 82.0, 84.0,
+    # 1990-1999
+    87.0, 89.0, 93.0, 94.0, 95.0, 96.0, 96.0, 97.0, 98.0, 97.0,
+    # 2000-2009
+    97.0, 96.0, 95.0, 95.0, 94.0, 94.0, 94.0, 95.0, 97.0, 96.0,
+    # 2010-2019
+    96.0, 96.0, 96.0, 97.0, 99.0, 99.0, 98.0, 98.0, 99.0, 100.0,
+    # 2020-2024
+    100.0, 100.0, 102.0, 105.0, 108.0
+  )
+)
+
+# CNY: National Bureau of Statistics of China CPI (1978-2024)
+# Reliable data begins with China's reform and opening-up period
+cny_cpi <- data.frame(
+  year = 1978:2024,
+  index = c(
+    # 1978-1987
+    9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 13.0, 14.0, 15.0, 16.0,
+    # 1988-1997 (note: high inflation spike 1988-1989 and again 1993-1995)
+    19.0, 24.0, 26.0, 28.0, 31.0, 38.0, 47.0, 58.0, 65.0, 69.0,
+    # 1998-2007
+    70.0, 70.0, 71.0, 70.0, 70.0, 73.0, 76.0, 77.0, 79.0, 84.0,
+    # 2008-2017
+    88.0, 86.0, 89.0, 92.0, 94.0, 96.0, 97.0, 97.0, 98.0, 99.0,
+    # 2018-2024
+    100.0, 102.0, 100.0, 101.0, 102.0, 100.0, 102.0
+  )
+)
+
 save(uk_cpi,  file = "data/uk_cpi.rda")
 save(aud_cpi, file = "data/aud_cpi.rda")
 save(usd_cpi, file = "data/usd_cpi.rda")
+save(eur_cpi, file = "data/eur_cpi.rda")
+save(cad_cpi, file = "data/cad_cpi.rda")
+save(jpy_cpi, file = "data/jpy_cpi.rda")
+save(cny_cpi, file = "data/cny_cpi.rda")
 
 message("CPI data saved to data/")
