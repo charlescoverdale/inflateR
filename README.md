@@ -12,6 +12,8 @@ The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.
 devtools::install_github("charlescoverdale/inflateR")
 ```
 
+inflateR has no runtime dependencies and requires no API key or internet connection. All CPI data is bundled directly inside the package, so it works in offline, restricted, or reproducible environments where live API calls are not possible.
+
 ## Usage
 
 The package provides two functions:
