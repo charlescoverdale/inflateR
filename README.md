@@ -1,6 +1,6 @@
 # inflateR
 
-Convert historical monetary values into their present-day equivalents using bundled CPI data. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
+Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
 
 Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The UK's ONS, Australia's ABS, the US Bureau of Labor Statistics, Eurostat, and others all publish excellent data — but pulling from seven different APIs, each with different authentication requirements, rate limits, and response formats, would make this package brittle and difficult to maintain.
 
@@ -14,13 +14,21 @@ devtools::install_github("charlescoverdale/inflateR")
 
 ## Usage
 
+The package provides two functions:
+
 ```r
 library(inflateR)
 
+# Convert a historical value to today's money
 adjust_inflation(amount, from_year, currency, to_year = NULL)
+
+# Convert a modern value back to what it was worth in a historical year
+historical_value(amount, to_year, currency, from_year = NULL)
 ```
 
-### Arguments
+The two functions are exact inverses of each other.
+
+### `adjust_inflation()` arguments
 
 | Argument | Description |
 |---|---|
@@ -29,9 +37,18 @@ adjust_inflation(amount, from_year, currency, to_year = NULL)
 | `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive |
 | `to_year` | Integer. Target year (defaults to latest available year) |
 
+### `historical_value()` arguments
+
+| Argument | Description |
+|---|---|
+| `amount` | Numeric. The monetary amount in the reference year |
+| `to_year` | Integer. The historical year to convert back to |
+| `currency` | Character. Currency code or country name — case-insensitive |
+| `from_year` | Integer. The year the amount is from (defaults to latest available year) |
+
 ## Examples
 
-### What is £12 from 1963 worth today?
+### Adjust historical values to today's money
 
 ```r
 adjust_inflation(12, 1963, "GBP")
@@ -71,6 +88,22 @@ adjust_inflation(12, 1963, "JPY")  #>  60.24
 adjust_inflation(12, 1963, "CHF")  #>  47.93
 ```
 
+
+### Convert a modern value back to historical terms
+
+```r
+# What would £100 today have been worth in 1963?
+historical_value(100, 1963, "GBP")
+#> [1] 4.68
+
+# What would AUD 500 today have been worth in 1980?
+historical_value(500, 1980, "Australia")
+#> [1] 95.03
+
+# What would USD 1000 in 2020 have been worth in 1990?
+historical_value(1000, 1990, "USD", from_year = 2020)
+#> [1] 504.80
+```
 
 ### Country names work too (case-insensitive)
 
