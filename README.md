@@ -71,22 +71,19 @@ adjust_inflation(12, 1963, "JPY")  #>  60.24
 adjust_inflation(12, 1963, "CHF")  #>  47.93
 ```
 
-### Chinese yuan (data available from 1986)
-
-```r
-adjust_inflation(100, 1990, "CNY")
-#> [1] 327.65
-```
 
 ## Data
 
-**Limitations worth knowing about:**
+**Macroeconomic quirks:**
 
 - **Tax shocks** — Australia (GST, 2000) and Canada (GST, 1991) both saw one-time price level jumps that appear in the data as inflation but are really structural tax changes. Comparisons that span these years will reflect the tax shift, not just underlying inflation.
 - **Japan's deflation** — Japan had near-zero or negative inflation from roughly 1995 to 2020. Adjustments within this window will be very small, and in some years prices actually fell.
 - **China's coverage** — World Bank data for China begins in 1986, and the early years of the series span significant structural change in the economy. The data is internationally comparable but may not reflect the full experience of price changes during China's reform era.
-- **Euro proxy** — the World Bank does not publish an aggregated Euro area CPI series. Germany is used as a proxy, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
-- **Annual figures only** — all values are annual averages. Month-to-month volatility is smoothed out, which may matter for precise historical comparisons.
+- **Euro proxy** — The World Bank does not publish an aggregated Euro area CPI series. Germany is used as a proxy, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
+- **Annual figures only** — All values are annual averages. Any month-to-month volatility is smoothed out.
+
+
+**Indicator list:**
 
 CPI data is sourced from the [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) (indicator: `FP.CPI.TOTL`) and bundled inside the package. All indices are rescaled so that 2020 = 100.
 
