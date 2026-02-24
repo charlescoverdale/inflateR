@@ -150,7 +150,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 
 ### `uk_cpi` — United Kingdom
 
-**Source:** [World Bank — FP.CPI.TOTL (United Kingdom)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=GB)
+**Source:** [World Bank — FP.CPI.TOTL (United Kingdom)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1960 to 2024
@@ -160,7 +160,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 
 ### `aud_cpi` — Australia
 
-**Source:** [World Bank — FP.CPI.TOTL (Australia)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=AU)
+**Source:** [World Bank — FP.CPI.TOTL (Australia)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1960 to 2024
@@ -170,7 +170,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 
 ### `usd_cpi` — United States
 
-**Source:** [World Bank — FP.CPI.TOTL (United States)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=US)
+**Source:** [World Bank — FP.CPI.TOTL (United States)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1960 to 2024
@@ -179,7 +179,7 @@ CPI data is sourced from the [World Bank Development Indicators](https://data.wo
 
 ### `eur_cpi` — Euro
 
-**Source:** [World Bank — FP.CPI.TOTL (Germany)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=DE)
+**Source:** [World Bank — FP.CPI.TOTL (Germany)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 The Euro area aggregate is not available in the World Bank WDI. Germany is used as a proxy as it is the largest Eurozone economy and was the monetary anchor (Deutsche Mark) prior to the Euro's introduction in 1999.
 
@@ -191,7 +191,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 
 ### `cad_cpi` — Canada
 
-**Source:** [World Bank — FP.CPI.TOTL (Canada)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CA)
+**Source:** [World Bank — FP.CPI.TOTL (Canada)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1960 to 2024
@@ -201,7 +201,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 
 ### `jpy_cpi` — Japan
 
-**Source:** [World Bank — FP.CPI.TOTL (Japan)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=JP)
+**Source:** [World Bank — FP.CPI.TOTL (Japan)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1960 to 2024
@@ -211,7 +211,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 
 ### `cny_cpi` — China
 
-**Source:** [World Bank — FP.CPI.TOTL (China)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CN)
+**Source:** [World Bank — FP.CPI.TOTL (China)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1986 to 2024 — the earliest year in the World Bank series for China
@@ -221,7 +221,7 @@ The Euro area aggregate is not available in the World Bank WDI. Germany is used 
 
 ### `chf_cpi` — Switzerland
 
-**Source:** [World Bank — FP.CPI.TOTL (Switzerland)](https://data.worldbank.org/indicator/FP.CPI.TOTL?locations=CH)
+**Source:** [World Bank — FP.CPI.TOTL (Switzerland)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
 
 **Limitations:**
 - Data available from 1960 to 2024
