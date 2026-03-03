@@ -1,0 +1,7 @@
+.Rproj.user
+*.Rproj
+.Rhistory
+.RData
+*.Rcheck/
+*.tar.gz
+CRAN-SUBMISSION
