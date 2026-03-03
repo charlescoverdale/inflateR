@@ -4,9 +4,7 @@
 
 Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
 
-Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The UK's ONS, Australia's ABS, the US Bureau of Labor Statistics, Eurostat, and others all publish excellent data — but pulling from seven different APIs, each with different authentication requirements, rate limits, and response formats, would make this package brittle and difficult to maintain.
-
-The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating CPI data from national sources into a single, consistently formatted dataset. The `FP.CPI.TOTL` indicator provides annual CPI values for most countries back to 1960, with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
+Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating data from national sources into a single, consistently formatted dataset — with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
 
 ## Installation
 
@@ -20,220 +18,159 @@ Or install the development version from GitHub:
 devtools::install_github("charlescoverdale/inflateR")
 ```
 
-inflateR has no runtime dependencies and requires no API key or internet connection. All CPI data is bundled directly inside the package, so it works in offline, restricted, or reproducible environments where live API calls are not possible.
+inflateR has no runtime dependencies and requires no API key or internet connection. All data is bundled directly inside the package.
 
-## Usage
+## CPI vs GDP deflator — which should I use?
 
-The package provides two functions:
+inflateR provides two methods for adjusting monetary values across time. Choosing between them depends on what you're adjusting.
+
+**Use CPI (`adjust_inflation`, `historical_value`) for:**
+- Wages and salaries — *"What would a £30,000 salary in 1990 be worth today?"*
+- Everyday prices — *"What is £12 from 1963 worth in today's money?"*
+- Household budgets and cost of living comparisons
+- Retail prices, rents, consumer spending
+
+CPI tracks the price of a fixed basket of goods and services that a typical household buys. It's the most intuitive measure for anything a person earns or spends.
+
+**Use GDP deflator (`adjust_real`, `historical_real`) for:**
+- GDP figures — *"How does UK GDP in 1980 compare to today in real terms?"*
+- Government expenditure — *"What would the 2000 defence budget be worth today?"*
+- Business investment and capital expenditure
+- Any macroeconomic aggregate you want to compare across time
+
+The GDP deflator covers all goods and services produced in the economy — not just the consumer basket. It updates automatically (no fixed basket) and excludes imported goods, making it more appropriate for economy-wide comparisons.
+
+**When in doubt:** if you're talking about something a person earns, buys, or pays for — use CPI. If you're talking about a number from a national accounts table — use the GDP deflator.
+
+## Functions
+
+inflateR provides four functions in two symmetric pairs:
+
+| Direction | CPI | GDP deflator |
+|---|---|---|
+| Historical → present | `adjust_inflation()` | `adjust_real()` |
+| Present → historical | `historical_value()` | `historical_real()` |
 
 ```r
 library(inflateR)
 
-# Convert a historical value to today's money
+# CPI: adjust a historical value to today's money
 adjust_inflation(amount, from_year, currency, to_year = NULL)
 
-# Convert a modern value back to what it was worth in a historical year
+# CPI: convert a present value back to a historical year
 historical_value(amount, to_year, currency, from_year = NULL)
+
+# GDP deflator: adjust a historical value to today's money
+adjust_real(amount, from_year, currency, to_year = NULL)
+
+# GDP deflator: convert a present value back to a historical year
+historical_real(amount, to_year, currency, from_year = NULL)
 ```
 
-The two functions are exact inverses of each other.
+All four functions accept the same currency codes and country names and are exact inverses within each pair.
 
-### `adjust_inflation()` arguments
+### Arguments
 
 | Argument | Description |
 |---|---|
-| `amount` | Numeric. The original monetary amount |
+| `amount` | Numeric. The monetary amount to convert |
 | `from_year` | Integer. The year the amount is from |
+| `to_year` | Integer. The target year (forward functions default to latest available; inverse functions require this) |
 | `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive |
-| `to_year` | Integer. Target year (defaults to latest available year) |
-
-### `historical_value()` arguments
-
-| Argument | Description |
-|---|---|
-| `amount` | Numeric. The monetary amount in the reference year |
-| `to_year` | Integer. The historical year to convert back to |
-| `currency` | Character. Currency code or country name — case-insensitive |
-| `from_year` | Integer. The year the amount is from (defaults to latest available year) |
+| `from_year` | Integer. For inverse functions: the year the amount is from (defaults to latest available) |
 
 ## Examples
 
-### Adjust historical values to today's money
+### CPI: adjusting everyday values
 
 ```r
+# What is £12 from 1963 worth today?
 adjust_inflation(12, 1963, "GBP")
 #> [1] 256.43
-```
 
-### What is $50 USD from 1980 worth today?
-
-```r
+# What is $50 USD from 1980 worth today?
 adjust_inflation(50, 1980, "USD")
 #> [1] 190.33
-```
 
-### What is AUD 100 from 1990 worth today?
-
-```r
+# What is AUD 100 from 1990 worth today?
 adjust_inflation(100, 1990, "AUD")
 #> [1] 241.39
-```
 
-### Adjust to a specific year (not just today)
-
-```r
+# Adjust to a specific year rather than today
 adjust_inflation(100, 1970, "GBP", to_year = 2000)
 #> [1] 872.45
-```
 
-### Compare the same amount across currencies
-
-```r
-adjust_inflation(12, 1963, "GBP")  #> 256.43
-adjust_inflation(12, 1963, "AUD")  #> 212.02
-adjust_inflation(12, 1963, "USD")  #> 122.94
-adjust_inflation(12, 1963, "EUR")  #>  60.62
-adjust_inflation(12, 1963, "CAD")  #> 119.73
-adjust_inflation(12, 1963, "JPY")  #>  60.24
-adjust_inflation(12, 1963, "CHF")  #>  47.93
-```
-
-
-### Convert a modern value back to historical terms
-
-```r
 # What would £100 today have been worth in 1963?
 historical_value(100, 1963, "GBP")
 #> [1] 4.68
-
-# What would AUD 500 today have been worth in 1980?
-historical_value(500, 1980, "Australia")
-#> [1] 95.03
 
 # What would USD 1000 in 2020 have been worth in 1990?
 historical_value(1000, 1990, "USD", from_year = 2020)
 #> [1] 504.80
 ```
 
+### GDP deflator: adjusting macroeconomic values
+
+```r
+# UK GDP was roughly £500bn in 1990 — what is that in today's terms?
+adjust_real(500e9, 1990, "GBP")
+#> [1] 1214415929203
+
+# What would $1 trillion of US government spending in 2000 be worth in 2020?
+adjust_real(1e12, 2000, "USD", to_year = 2020)
+#> [1] 1428890000000
+
+# Reverse: what would today's UK GDP of £2.5 trillion have been in 1990 terms?
+historical_real(2.5e12, 1990, "GBP")
+#> [1] 1028928849648
+```
+
 ### Country names work too (case-insensitive)
 
 ```r
-adjust_inflation(12, 1963, "Australia")
-#> [1] 212.02
-
-adjust_inflation(12, 1963, "United States")
-#> [1] 122.94
-
-adjust_inflation(12, 1963, "switzerland")
-#> [1] 47.93
+adjust_inflation(12, 1963, "Australia")   #> 212.02
+adjust_inflation(12, 1963, "switzerland") #> 47.93
+adjust_real(500e9, 1990, "United Kingdom") #> 1214415929203
 ```
 
 ## Data
 
-**Macroeconomic quirks:**
+All data is sourced from the [World Bank Development Indicators](https://data.worldbank.org/) and bundled inside the package. All indices are rescaled so that 2020 = 100.
 
-- **Tax shocks** — Australia (GST, 2000) and Canada (GST, 1991) both saw one-time price level jumps that appear in the data as inflation but are really structural tax changes. Comparisons that span these years will reflect the tax shift, not just underlying inflation.
+### CPI datasets (indicator: `FP.CPI.TOTL`)
+
+| Dataset | Currency | Coverage |
+|---|---|---|
+| `uk_cpi` | GBP | 1960–2024 |
+| `aud_cpi` | AUD | 1960–2024 |
+| `usd_cpi` | USD | 1960–2024 |
+| `eur_cpi` | EUR | 1960–2024 (Germany proxy) |
+| `cad_cpi` | CAD | 1960–2024 |
+| `jpy_cpi` | JPY | 1960–2024 |
+| `cny_cpi` | CNY | 1986–2024 |
+| `chf_cpi` | CHF | 1960–2024 |
+
+### GDP deflator datasets (indicator: `NY.GDP.DEFL.ZS`)
+
+| Dataset | Currency | Coverage |
+|---|---|---|
+| `uk_gdp_def` | GBP | 1960–2024 |
+| `aud_gdp_def` | AUD | 1960–2024 |
+| `usd_gdp_def` | USD | 1960–2024 |
+| `eur_gdp_def` | EUR | 1960–2024 (Germany proxy) |
+| `cad_gdp_def` | CAD | 1960–2024 |
+| `jpy_gdp_def` | JPY | 1960–2024 |
+| `cny_gdp_def` | CNY | 1960–2024 |
+| `chf_gdp_def` | CHF | 1960–2024 |
+
+### Macroeconomic quirks
+
+- **Tax shocks** — Australia (GST, 2000) and Canada (GST, 1991) both saw one-time price level jumps that appear in the CPI data but are really structural tax changes. Comparisons spanning these years will reflect the tax shift, not just underlying inflation.
 - **Japan's deflation** — Japan had near-zero or negative inflation from roughly 1995 to 2020. Adjustments within this window will be very small, and in some years prices actually fell.
-- **China's coverage** — World Bank data for China begins in 1986, and the early years of the series span significant structural change in the economy. The data is internationally comparable but may not reflect the full experience of price changes during China's reform era.
-- **Euro proxy** — The World Bank does not publish an aggregated Euro area CPI series. Germany is used as a proxy, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
-- **Annual figures only** — All values are annual averages. Any month-to-month volatility is smoothed out.
+- **China's CPI coverage** — World Bank CPI data for China begins in 1986. The GDP deflator series begins in 1960 but the early years span significant structural change. Both series are internationally comparable but may not capture the full experience of price changes during China's reform era.
+- **Euro proxy** — The World Bank does not publish an aggregated Euro area series for either CPI or GDP deflator. Germany is used as a proxy for both, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
+- **Annual figures only** — All values are annual averages. Month-to-month volatility is smoothed out.
 
+## Issues
 
-**Indicator list:**
-
-CPI data is sourced from the [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) (indicator: `FP.CPI.TOTL`) and bundled inside the package. All indices are rescaled so that 2020 = 100.
-
-| Dataset | Currency | Coverage | Source |
-|---|---|---|---|
-| `uk_cpi` | GBP | 1960–2024 | World Bank (United Kingdom) |
-| `aud_cpi` | AUD | 1960–2024 | World Bank (Australia) |
-| `usd_cpi` | USD | 1960–2024 | World Bank (United States) |
-| `eur_cpi` | EUR | 1960–2024 | World Bank (Germany, proxy for EUR) |
-| `cad_cpi` | CAD | 1960–2024 | World Bank (Canada) |
-| `jpy_cpi` | JPY | 1960–2024 | World Bank (Japan) |
-| `cny_cpi` | CNY | 1986–2024 | World Bank (China) |
-| `chf_cpi` | CHF | 1960–2024 | World Bank (Switzerland) |
-
----
-
-### `uk_cpi` — United Kingdom
-
-**Source:** [World Bank — FP.CPI.TOTL (United Kingdom)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1960 to 2024
-- For years before 1960, no data is available in this package
-
----
-
-### `aud_cpi` — Australia
-
-**Source:** [World Bank — FP.CPI.TOTL (Australia)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1960 to 2024
-- The introduction of the **Goods and Services Tax (GST)** in July 2000 caused a one-time step increase in the price level of approximately 2.5–3%, visible in the data
-
----
-
-### `usd_cpi` — United States
-
-**Source:** [World Bank — FP.CPI.TOTL (United States)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1960 to 2024
-
----
-
-### `eur_cpi` — Euro
-
-**Source:** [World Bank — FP.CPI.TOTL (Germany)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-The Euro area aggregate is not available in the World Bank WDI. Germany is used as a proxy as it is the largest Eurozone economy and was the monetary anchor (Deutsche Mark) prior to the Euro's introduction in 1999.
-
-**Limitations:**
-- Data available from 1960 to 2024
-- Reflects German CPI, not a Euro area composite — southern European countries (Italy, Spain, Portugal) had significantly higher inflation in the 1970s–80s
-
----
-
-### `cad_cpi` — Canada
-
-**Source:** [World Bank — FP.CPI.TOTL (Canada)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1960 to 2024
-- The introduction of the **Goods and Services Tax (GST)** in January 1991 caused a one-time step increase in measured prices
-
----
-
-### `jpy_cpi` — Japan
-
-**Source:** [World Bank — FP.CPI.TOTL (Japan)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1960 to 2024
-- Japan experienced prolonged **deflation and near-zero inflation from approximately 1995 to 2020**, so adjustments within this period will be very small
-
----
-
-### `cny_cpi` — China
-
-**Source:** [World Bank — FP.CPI.TOTL (China)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1986 to 2024 — the earliest year in the World Bank series for China
-- China experienced significant inflation spikes in 1988–1989 and 1993–1995; comparisons spanning these periods will show large adjustments
-
----
-
-### `chf_cpi` — Switzerland
-
-**Source:** [World Bank — FP.CPI.TOTL (Switzerland)](https://data.worldbank.org/indicator/FP.CPI.TOTL)
-
-**Limitations:**
-- Data available from 1960 to 2024
-- Switzerland has historically had one of the lowest inflation rates of any major economy, so adjustments will be smaller than most other currencies
-
----
-
+Please report bugs or requests at <https://github.com/charlescoverdale/inflateR/issues>.
