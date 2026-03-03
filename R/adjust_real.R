@@ -52,7 +52,12 @@ adjust_real <- function(amount, from_year, currency, to_year = NULL) {
     "canada"         = "CAD",
     "japan"          = "JPY",
     "china"          = "CNY",
-    "switzerland"    = "CHF", "swiss"       = "CHF"
+    "switzerland"    = "CHF", "swiss"       = "CHF",
+    "new zealand"    = "NZD", "nz"          = "NZD",
+    "india"          = "INR",
+    "south korea"    = "KRW", "korea"       = "KRW",
+    "brazil"         = "BRL",
+    "norway"         = "NOK", "norwegian"   = "NOK"
   )
 
   lookup <- country_lookup[tolower(trimws(currency))]
@@ -60,7 +65,8 @@ adjust_real <- function(amount, from_year, currency, to_year = NULL) {
 
   currency <- toupper(currency)
 
-  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF")
+  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF",
+             "NZD", "INR", "KRW", "BRL", "NOK")
   if (!currency %in% valid) {
     stop(paste0("currency must be one of: ", paste(valid, collapse = ", "),
                 "\nOr use a country name e.g. \"Australia\", \"United States\"."))
@@ -74,7 +80,12 @@ adjust_real <- function(amount, from_year, currency, to_year = NULL) {
     CAD = cad_gdp_def,
     JPY = jpy_gdp_def,
     CNY = cny_gdp_def,
-    CHF = chf_gdp_def
+    CHF = chf_gdp_def,
+    NZD = nzd_gdp_def,
+    INR = inr_gdp_def,
+    KRW = krw_gdp_def,
+    BRL = brl_gdp_def,
+    NOK = nok_gdp_def
   )
 
   min_year <- min(deflator_data$year)

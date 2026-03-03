@@ -222,3 +222,148 @@
 #' }
 #' @source World Bank Open Data \url{https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS}
 "chf_gdp_def"
+
+# New Zealand -----------------------------------------------------------------
+
+#' New Zealand CPI Data (1960-2024)
+#'
+#' Annual Consumer Price Index for New Zealand, sourced from the
+#' World Bank Development Indicators (indicator: FP.CPI.TOTL).
+#' Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{CPI index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+"nzd_cpi"
+
+#' New Zealand GDP Deflator Data (1960-2024)
+#'
+#' Annual GDP deflator for New Zealand, sourced from the World Bank
+#' Development Indicators (indicator: NY.GDP.DEFL.ZS). Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{GDP deflator index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS}
+"nzd_gdp_def"
+
+# India -----------------------------------------------------------------------
+
+#' Indian CPI Data (1960-2024)
+#'
+#' Annual Consumer Price Index for India, sourced from the
+#' World Bank Development Indicators (indicator: FP.CPI.TOTL).
+#' Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{CPI index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+"inr_cpi"
+
+#' Indian GDP Deflator Data (1960-2024)
+#'
+#' Annual GDP deflator for India, sourced from the World Bank
+#' Development Indicators (indicator: NY.GDP.DEFL.ZS). Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{GDP deflator index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS}
+"inr_gdp_def"
+
+# South Korea -----------------------------------------------------------------
+
+#' South Korean CPI Data (1960-2024)
+#'
+#' Annual Consumer Price Index for South Korea, sourced from the
+#' World Bank Development Indicators (indicator: FP.CPI.TOTL).
+#' Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{CPI index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+"krw_cpi"
+
+#' South Korean GDP Deflator Data (1960-2024)
+#'
+#' Annual GDP deflator for South Korea, sourced from the World Bank
+#' Development Indicators (indicator: NY.GDP.DEFL.ZS). Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{GDP deflator index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS}
+"krw_gdp_def"
+
+# Brazil ----------------------------------------------------------------------
+
+#' Brazilian CPI Data (1980-2024)
+#'
+#' Annual Consumer Price Index for Brazil, sourced from the
+#' World Bank Development Indicators (indicator: FP.CPI.TOTL).
+#' Rescaled so that 2020 = 100. Data availability begins in 1980.
+#'
+#' @format A data frame with 45 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{CPI index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+"brl_cpi"
+
+#' Brazilian GDP Deflator Data (1960-2024)
+#'
+#' Annual GDP deflator for Brazil, sourced from the World Bank
+#' Development Indicators (indicator: NY.GDP.DEFL.ZS). Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{GDP deflator index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS}
+"brl_gdp_def"
+
+# Norway ----------------------------------------------------------------------
+
+#' Norwegian CPI Data (1960-2024)
+#'
+#' Annual Consumer Price Index for Norway, sourced from the
+#' World Bank Development Indicators (indicator: FP.CPI.TOTL).
+#' Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{CPI index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/FP.CPI.TOTL}
+"nok_cpi"
+
+#' Norwegian GDP Deflator Data (1960-2024)
+#'
+#' Annual GDP deflator for Norway, sourced from the World Bank
+#' Development Indicators (indicator: NY.GDP.DEFL.ZS). Rescaled so that 2020 = 100.
+#'
+#' @format A data frame with 65 rows and 2 columns:
+#' \describe{
+#'   \item{year}{Calendar year (integer)}
+#'   \item{index}{GDP deflator index value (numeric, base 2020 = 100)}
+#' }
+#' @source World Bank Open Data \url{https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS}
+"nok_gdp_def"

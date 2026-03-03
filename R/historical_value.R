@@ -37,7 +37,12 @@ historical_value <- function(amount, to_year, currency, from_year = NULL) {
     "canada"         = "CAD",
     "japan"          = "JPY",
     "china"          = "CNY",
-    "switzerland"    = "CHF", "swiss"       = "CHF"
+    "switzerland"    = "CHF", "swiss"       = "CHF",
+    "new zealand"    = "NZD", "nz"          = "NZD",
+    "india"          = "INR",
+    "south korea"    = "KRW", "korea"       = "KRW",
+    "brazil"         = "BRL",
+    "norway"         = "NOK", "norwegian"   = "NOK"
   )
 
   lookup <- country_lookup[tolower(trimws(currency))]
@@ -45,7 +50,8 @@ historical_value <- function(amount, to_year, currency, from_year = NULL) {
 
   currency <- toupper(currency)
 
-  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF")
+  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF",
+             "NZD", "INR", "KRW", "BRL", "NOK")
   if (!currency %in% valid) {
     stop(paste0("currency must be one of: ", paste(valid, collapse = ", "),
                 "\nOr use a country name e.g. \"Australia\", \"United States\"."))
@@ -59,7 +65,12 @@ historical_value <- function(amount, to_year, currency, from_year = NULL) {
     CAD = cad_cpi,
     JPY = jpy_cpi,
     CNY = cny_cpi,
-    CHF = chf_cpi
+    CHF = chf_cpi,
+    NZD = nzd_cpi,
+    INR = inr_cpi,
+    KRW = krw_cpi,
+    BRL = brl_cpi,
+    NOK = nok_cpi
   )
 
   min_year <- min(cpi_data$year)

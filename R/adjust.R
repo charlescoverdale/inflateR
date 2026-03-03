@@ -2,14 +2,15 @@
 #'
 #' Converts an amount from a historical year into its equivalent value in a
 #' target year, using bundled CPI data sourced from the World Bank Development
-#' Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
+#' Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR,
+#' KRW, BRL, and NOK.
 #'
 #' @param amount Numeric. The original monetary amount.
 #' @param from_year Integer. The year the amount is from.
 #' @param currency Character. A currency code or country name. Accepted codes:
 #'   `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`.
 #'   Country names are also accepted, e.g. `"Australia"`, `"United States"`,
-#'   `"Japan"`, `"Switzerland"` (case-insensitive).
+#'   `"Japan"`, `"New Zealand"`, `"India"`, `"Norway"` (case-insensitive).
 #' @param to_year Integer. The target year to adjust to. Defaults to the
 #'   current year.
 #'
@@ -37,7 +38,12 @@ adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
     "canada"         = "CAD",
     "japan"          = "JPY",
     "china"          = "CNY",
-    "switzerland"    = "CHF", "swiss"       = "CHF"
+    "switzerland"    = "CHF", "swiss"       = "CHF",
+    "new zealand"    = "NZD", "nz"          = "NZD",
+    "india"          = "INR",
+    "south korea"    = "KRW", "korea"       = "KRW",
+    "brazil"         = "BRL",
+    "norway"         = "NOK", "norwegian"   = "NOK"
   )
 
   lookup <- country_lookup[tolower(trimws(currency))]
@@ -45,7 +51,8 @@ adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
 
   currency <- toupper(currency)
 
-  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF")
+  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF",
+             "NZD", "INR", "KRW", "BRL", "NOK")
   if (!currency %in% valid) {
     stop(paste0("currency must be one of: ", paste(valid, collapse = ", "),
                 "\nOr use a country name e.g. \"Australia\", \"United States\"."))
@@ -59,7 +66,12 @@ adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
     CAD = cad_cpi,
     JPY = jpy_cpi,
     CNY = cny_cpi,
-    CHF = chf_cpi
+    CHF = chf_cpi,
+    NZD = nzd_cpi,
+    INR = inr_cpi,
+    KRW = krw_cpi,
+    BRL = brl_cpi,
+    NOK = nok_cpi
   )
 
   min_year <- min(cpi_data$year)

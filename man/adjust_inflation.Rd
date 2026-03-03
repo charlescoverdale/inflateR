@@ -14,7 +14,7 @@ adjust_inflation(amount, from_year, currency, to_year = NULL)
 \item{currency}{Character. A currency code or country name. Accepted codes:
 \code{"GBP"}, \code{"AUD"}, \code{"USD"}, \code{"EUR"}, \code{"CAD"}, \code{"JPY"}, \code{"CNY"}, \code{"CHF"}.
 Country names are also accepted, e.g. \code{"Australia"}, \code{"United States"},
-\code{"Japan"}, \code{"Switzerland"} (case-insensitive).}
+\code{"Japan"}, \code{"New Zealand"}, \code{"India"}, \code{"Norway"} (case-insensitive).}
 
 \item{to_year}{Integer. The target year to adjust to. Defaults to the
 current year.}
@@ -25,7 +25,8 @@ A numeric value representing the inflation-adjusted amount.
 \description{
 Converts an amount from a historical year into its equivalent value in a
 target year, using bundled CPI data sourced from the World Bank Development
-Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
+Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR,
+KRW, BRL, and NOK.
 }
 \examples{
 # What is £12 from 1963 worth today?

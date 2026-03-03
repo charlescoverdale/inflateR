@@ -1,3 +1,9 @@
+# inflateR 0.1.3
+
+* Added 5 new currencies: NZD (New Zealand), INR (India), KRW (South Korea), BRL (Brazil), NOK (Norway)
+* Bundled CPI and GDP deflator data for all new currencies (World Bank series)
+* BRL CPI coverage begins 1980; all other new series cover 1960–2024
+
 # inflateR 0.1.2
 
 * Added `adjust_real()` for GDP deflator-based adjustment (World Bank NY.GDP.DEFL.ZS)

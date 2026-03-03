@@ -2,7 +2,7 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR)
 
-Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
+Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
 
 Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating data from national sources into a single, consistently formatted dataset — with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
 
@@ -76,7 +76,7 @@ All four functions accept the same currency codes and country names and are exac
 | `amount` | Numeric. The monetary amount to convert |
 | `from_year` | Integer. The year the amount is from |
 | `to_year` | Integer. The target year (forward functions default to latest available; inverse functions require this) |
-| `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive |
+| `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, `"New Zealand"`, `"India"`, `"Norway"`, etc.) — case-insensitive |
 | `from_year` | Integer. For inverse functions: the year the amount is from (defaults to latest available) |
 
 ## Examples
@@ -149,6 +149,11 @@ All data is sourced from the [World Bank Development Indicators](https://data.wo
 | `jpy_cpi` | JPY | 1960–2024 |
 | `cny_cpi` | CNY | 1986–2024 |
 | `chf_cpi` | CHF | 1960–2024 |
+| `nzd_cpi` | NZD | 1960–2024 |
+| `inr_cpi` | INR | 1960–2024 |
+| `krw_cpi` | KRW | 1960–2024 |
+| `brl_cpi` | BRL | 1980–2024 |
+| `nok_cpi` | NOK | 1960–2024 |
 
 ### GDP deflator datasets (indicator: `NY.GDP.DEFL.ZS`)
 
@@ -162,6 +167,11 @@ All data is sourced from the [World Bank Development Indicators](https://data.wo
 | `jpy_gdp_def` | JPY | 1960–2024 |
 | `cny_gdp_def` | CNY | 1960–2024 |
 | `chf_gdp_def` | CHF | 1960–2024 |
+| `nzd_gdp_def` | NZD | 1960–2024 |
+| `inr_gdp_def` | INR | 1960–2024 |
+| `krw_gdp_def` | KRW | 1960–2024 |
+| `brl_gdp_def` | BRL | 1960–2024 |
+| `nok_gdp_def` | NOK | 1960–2024 |
 
 ### Macroeconomic quirks
 
