@@ -1,9 +1,3 @@
-# inflateR 0.1.2
-
-* Added `adjust_real()` for GDP deflator-based adjustment (World Bank NY.GDP.DEFL.ZS)
-* Bundled GDP deflator data (1960–2024) for all 8 supported currencies
-* `adjust_real()` accepts the same currency codes and country names as `adjust_inflation()`
-
 # inflateR 0.1.0
 
 * Initial release

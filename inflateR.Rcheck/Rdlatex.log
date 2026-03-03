@@ -1,0 +1,110 @@
+Hmm ... looks like a package
+Converting parsed Rd's to LaTeX .
+Creating pdf output from LaTeX ...
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  Running 'texi2dvi' on 'Rd2.tex' failed.
+Messages:
+/usr/local/bin/texi2dvi: makeindex failed
+Output:
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+
+(./Rd2.tex
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty `inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex))))) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty)) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/makeidx.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file Rd2.aux.
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd)
+No file Rd2.toc.
+
+[1{/Users/charlescoverdale/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+Overfull \hbox (14.42981pt too wide) in paragraph at lines 62--66
+\T1/ptm/m/n/10 e.g. []\T1/zi4/m/n/10 "Australia"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "United States"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "Japan"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "Switzerland" []\T1/ptm/m/n/10 (case-insensitive). 
+
+[2]
+[3]
+[4]
+Overfull \hbox (16.0992pt too wide) in paragraph at lines 264--267
+[]\T1/zi4/m/n/10 "CHF"[]\T1/ptm/m/n/10 ) or coun-try name ([]\T1/zi4/m/n/10 "Australia"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "United States"[]\T1/ptm/m/n/10 , etc.) ^^V case-insensitive. 
+
+[5]
+[6]
+No file Rd2.ind.
+
+[7] (/private/var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T/RtmpilO4W3/Rd2pdfb52847bd471f/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (7 pages, 91869 bytes).
+Transcript written on Rd2.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+
+(./Rd2.tex
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/Users/charles
+
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+
+(./Rd2.tex
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty `inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex))))) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty)) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/makeidx.sty) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def) (/private/var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T/RtmpilO4W3/Rd2pdfb52847bd471f/Rd2.aux) (/private/var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T/RtmpilO4W3/Rd2pdfb52847bd471f/Rd2.out) (/private/var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T/RtmpilO4W3/Rd2pdfb52847bd471f/Rd2.out) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd) (/Users/charlescoverdale/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd) (/private/var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T/RtmpilO4W3/Rd2pdfb52847bd471f/Rd2.toc)
+[1{/Users/charlescoverdale/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+Overfull \hbox (14.42981pt too wide) in paragraph at lines 62--66
+\T1/ptm/m/n/10 e.g. []\T1/zi4/m/n/10 "Australia"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "United States"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "Japan"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "Switzerland" []\T1/ptm/m/n/10 (case-insensitive). 
+
+[2]
+[3]
+[4]
+Overfull \hbox (16.0992pt too wide) in paragraph at lines 264--267
+[]\T1/zi4/m/n/10 "CHF"[]\T1/ptm/m/n/10 ) or coun-try name ([]\T1/zi4/m/n/10 "Australia"[]\T1/ptm/m/n/10 , []\T1/zi4/m/n/10 "United States"[]\T1/ptm/m/n/10 , etc.) ^^V case-insensitive. 
+
+[5]
+[6]
+No file Rd2.ind.
+
+[7] (/private/var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T/RtmpilO4W3/Rd2pdfb52847bd471f/Rd2.aux) )
+(see the transcript file for additional information)</Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/charlescoverdale/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (7 pages, 93020 bytes).
+Transcript written on Rd2.log.
+Saving output to ‘inflateR-manual.pdf’ ...
+Done
+You may want to clean up by 'rm -Rf /var/folders/7y/79pmk2p569376172ghz4p6zh0000gn/T//RtmpilO4W3/Rd2pdfb52847bd471f'
