@@ -1,5 +1,7 @@
 # inflateR
 
+[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR)
+
 Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, and CHF.
 
 Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The UK's ONS, Australia's ABS, the US Bureau of Labor Statistics, Eurostat, and others all publish excellent data — but pulling from seven different APIs, each with different authentication requirements, rate limits, and response formats, would make this package brittle and difficult to maintain.
@@ -7,6 +9,12 @@ Getting consistent, comparable inflation data across multiple countries and many
 The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating CPI data from national sources into a single, consistently formatted dataset. The `FP.CPI.TOTL` indicator provides annual CPI values for most countries back to 1960, with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
 
 ## Installation
+
+```r
+install.packages("inflateR")
+```
+
+Or install the development version from GitHub:
 
 ```r
 devtools::install_github("charlescoverdale/inflateR")
