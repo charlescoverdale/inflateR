@@ -1,6 +1,6 @@
 # inflateR
 
-[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR)
+[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
 
