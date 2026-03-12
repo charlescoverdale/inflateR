@@ -2,9 +2,9 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Convert historical monetary values into their present-day equivalents — or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
+Convert historical monetary values into their present-day equivalents - or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
 
-Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating data from national sources into a single, consistently formatted dataset — with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
+Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating data from national sources into a single, consistently formatted dataset - with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
 
 ## Installation
 
@@ -18,27 +18,27 @@ devtools::install_github("charlescoverdale/inflateR")
 
 inflateR has no runtime dependencies and requires no API key or internet connection. All data is bundled directly inside the package.
 
-## CPI vs GDP deflator — which should I use?
+## CPI vs GDP deflator - which should I use?
 
 inflateR provides two methods for adjusting monetary values across time. Choosing between them depends on what you're adjusting.
 
 **Use CPI (`adjust_inflation`, `historical_value`) for:**
-- Wages and salaries — *"What would a £30,000 salary in 1990 be worth today?"*
-- Everyday prices — *"What is £12 from 1963 worth in today's money?"*
+- Wages and salaries - *"What would a £30,000 salary in 1990 be worth today?"*
+- Everyday prices - *"What is £12 from 1963 worth in today's money?"*
 - Household budgets and cost of living comparisons
 - Retail prices, rents, consumer spending
 
 CPI tracks the price of a fixed basket of goods and services that a typical household buys. It's the most intuitive measure for anything a person earns or spends.
 
 **Use GDP deflator (`adjust_real`, `historical_real`) for:**
-- GDP figures — *"How does UK GDP in 1980 compare to today in real terms?"*
-- Government expenditure — *"What would the 2000 defence budget be worth today?"*
+- GDP figures - *"How does UK GDP in 1980 compare to today in real terms?"*
+- Government expenditure - *"What would the 2000 defence budget be worth today?"*
 - Business investment and capital expenditure
 - Any macroeconomic aggregate you want to compare across time
 
-The GDP deflator covers all goods and services produced in the economy — not just the consumer basket. It updates automatically (no fixed basket) and excludes imported goods, making it more appropriate for economy-wide comparisons.
+The GDP deflator covers all goods and services produced in the economy - not just the consumer basket. It updates automatically (no fixed basket) and excludes imported goods, making it more appropriate for economy-wide comparisons.
 
-**When in doubt:** if you're talking about something a person earns, buys, or pays for — use CPI. If you're talking about a number from a national accounts table — use the GDP deflator.
+**When in doubt:** if you're talking about something a person earns, buys, or pays for - use CPI. If you're talking about a number from a national accounts table - use the GDP deflator.
 
 ## Functions
 
@@ -74,7 +74,7 @@ All four functions accept the same currency codes and country names and are exac
 | `amount` | Numeric. The monetary amount to convert |
 | `from_year` | Integer. The year the amount is from |
 | `to_year` | Integer. The target year (forward functions default to latest available; inverse functions require this) |
-| `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, `"New Zealand"`, `"India"`, `"Norway"`, etc.) — case-insensitive |
+| `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, `"New Zealand"`, `"India"`, `"Norway"`, etc.) - case-insensitive |
 | `from_year` | Integer. For inverse functions: the year the amount is from (defaults to latest available) |
 
 ## Examples
@@ -110,7 +110,7 @@ historical_value(1000, 1990, "USD", from_year = 2020)
 ### GDP deflator: adjusting macroeconomic values
 
 ```r
-# UK GDP was roughly £500bn in 1990 — what is that in today's terms?
+# UK GDP was roughly £500bn in 1990 - what is that in today's terms?
 adjust_real(500e9, 1990, "GBP")
 #> [1] 1214415929203
 
@@ -173,11 +173,11 @@ All data is sourced from the [World Bank Development Indicators](https://data.wo
 
 ### Macroeconomic quirks
 
-- **Tax shocks** — Australia (GST, 2000) and Canada (GST, 1991) both saw one-time price level jumps that appear in the CPI data but are really structural tax changes. Comparisons spanning these years will reflect the tax shift, not just underlying inflation.
-- **Japan's deflation** — Japan had near-zero or negative inflation from roughly 1995 to 2020. Adjustments within this window will be very small, and in some years prices actually fell.
-- **China's CPI coverage** — World Bank CPI data for China begins in 1986. The GDP deflator series begins in 1960 but the early years span significant structural change. Both series are internationally comparable but may not capture the full experience of price changes during China's reform era.
-- **Euro proxy** — The World Bank does not publish an aggregated Euro area series for either CPI or GDP deflator. Germany is used as a proxy for both, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
-- **Annual figures only** — All values are annual averages. Month-to-month volatility is smoothed out.
+- **Tax shocks** - Australia (GST, 2000) and Canada (GST, 1991) both saw one-time price level jumps that appear in the CPI data but are really structural tax changes. Comparisons spanning these years will reflect the tax shift, not just underlying inflation.
+- **Japan's deflation** - Japan had near-zero or negative inflation from roughly 1995 to 2020. Adjustments within this window will be very small, and in some years prices actually fell.
+- **China's CPI coverage** - World Bank CPI data for China begins in 1986. The GDP deflator series begins in 1960 but the early years span significant structural change. Both series are internationally comparable but may not capture the full experience of price changes during China's reform era.
+- **Euro proxy** - The World Bank does not publish an aggregated Euro area series for either CPI or GDP deflator. Germany is used as a proxy for both, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
+- **Annual figures only** - All values are annual averages. Month-to-month volatility is smoothed out.
 
 ## Issues
 
