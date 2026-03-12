@@ -10,11 +10,9 @@ Getting consistent, comparable inflation data across multiple countries and many
 
 ```r
 install.packages("inflateR")
-```
 
-Or install the development version from GitHub:
-
-```r
+# Or install the development version from GitHub
+# install.packages("devtools")
 devtools::install_github("charlescoverdale/inflateR")
 ```
 
