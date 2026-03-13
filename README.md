@@ -1,6 +1,6 @@
 # inflateR
 
-[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![R-CMD-check](https://github.com/charlescoverdale/inflateR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/charlescoverdale/inflateR/actions/workflows/R-CMD-check.yaml) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Convert historical monetary values into their present-day equivalents - or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
 
