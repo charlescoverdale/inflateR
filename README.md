@@ -1,6 +1,6 @@
 # inflateR
 
-[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Convert historical monetary values into their present-day equivalents - or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
 
@@ -178,6 +178,20 @@ All data is sourced from the [World Bank Development Indicators](https://data.wo
 - **China's CPI coverage** - World Bank CPI data for China begins in 1986. The GDP deflator series begins in 1960 but the early years span significant structural change. Both series are internationally comparable but may not capture the full experience of price changes during China's reform era.
 - **Euro proxy** - The World Bank does not publish an aggregated Euro area series for either CPI or GDP deflator. Germany is used as a proxy for both, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
 - **Annual figures only** - All values are annual averages. Month-to-month volatility is smoothed out.
+
+## Related packages
+
+The **inflateR** package is part of a suite of R packages for economic and financial data:
+
+| Package | What it covers |
+|---|---|
+| [`ons`](https://github.com/charlescoverdale/ons) | ONS data (GDP, inflation, unemployment, wages, trade, house prices, population) |
+| [`boe`](https://github.com/charlescoverdale/boe) | Bank of England data (Bank Rate, SONIA, gilt yields, exchange rates, mortgage rates) |
+| [`hmrc`](https://github.com/charlescoverdale/hmrc) | HMRC tax receipts, corporation tax, stamp duty, R&D credits, and tax gap data |
+| [`obr`](https://github.com/charlescoverdale/obr) | OBR fiscal forecasts and the Public Finances Databank |
+| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank data (policy rates, HICP, exchange rates, yield curves) |
+| [`readoecd`](https://github.com/charlescoverdale/readoecd) | OECD data (GDP, unemployment, inflation, trade across 38 member countries) |
+| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) data (800,000+ economic time series) |
 
 ## Issues
 
