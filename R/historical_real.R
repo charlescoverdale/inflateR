@@ -8,15 +8,20 @@
 #' For converting consumer or personal values, use
 #' \code{\link{historical_value}} which uses CPI instead.
 #'
-#' @param amount Numeric. The monetary amount in the reference year.
+#' @param amount Numeric (scalar or vector). The monetary amount(s) in the
+#'   reference year.
 #' @param to_year Integer. The historical year to convert back to.
 #' @param currency Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`,
-#'   `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`) or country name
+#'   `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`,
+#'   `"BRL"`, `"NOK"`) or country name
 #'   (`"Australia"`, `"United States"`, etc.) — case-insensitive.
 #' @param from_year Integer. The year the amount is from. Defaults to the
 #'   latest year available in the deflator series.
+#' @param round Integer or `NULL`. Number of decimal places to round to
+#'   (default 2). Use `NULL` for full precision.
 #'
-#' @return A numeric value representing the historical equivalent amount.
+#' @return A numeric value (or vector) representing the historical equivalent
+#'   amount.
 #'
 #' @examples
 #' # What would UK GDP of £2 trillion today have been in 1990 terms?
@@ -27,76 +32,12 @@
 #'
 #' @family GDP deflator adjustment
 #' @export
-historical_real <- function(amount, to_year, currency, from_year = NULL) {
-
-  country_lookup <- c(
-    "united kingdom" = "GBP", "uk"          = "GBP", "britain"      = "GBP",
-    "great britain"  = "GBP", "england"     = "GBP",
-    "australia"      = "AUD",
-    "united states"  = "USD", "usa"         = "USD", "us"           = "USD",
-    "america"        = "USD",
-    "europe"         = "EUR", "euro area"   = "EUR", "eurozone"     = "EUR",
-    "germany"        = "EUR",
-    "canada"         = "CAD",
-    "japan"          = "JPY",
-    "china"          = "CNY",
-    "switzerland"    = "CHF", "swiss"       = "CHF",
-    "new zealand"    = "NZD", "nz"          = "NZD",
-    "india"          = "INR",
-    "south korea"    = "KRW", "korea"       = "KRW",
-    "brazil"         = "BRL",
-    "norway"         = "NOK", "norwegian"   = "NOK"
-  )
-
-  lookup <- country_lookup[tolower(trimws(currency))]
-  if (!is.na(lookup)) currency <- lookup
-
-  currency <- toupper(currency)
-
-  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF",
-             "NZD", "INR", "KRW", "BRL", "NOK")
-  if (!currency %in% valid) {
-    stop(paste0("currency must be one of: ", paste(valid, collapse = ", "),
-                "\nOr use a country name e.g. \"Australia\", \"United States\"."))
-  }
-
-  deflator_data <- switch(currency,
-    GBP = uk_gdp_def,
-    AUD = aud_gdp_def,
-    USD = usd_gdp_def,
-    EUR = eur_gdp_def,
-    CAD = cad_gdp_def,
-    JPY = jpy_gdp_def,
-    CNY = cny_gdp_def,
-    CHF = chf_gdp_def,
-    NZD = nzd_gdp_def,
-    INR = inr_gdp_def,
-    KRW = krw_gdp_def,
-    BRL = brl_gdp_def,
-    NOK = nok_gdp_def
-  )
-
-  min_year <- min(deflator_data$year)
-  max_year <- max(deflator_data$year)
-
-  if (is.null(from_year)) {
-    from_year <- min(as.integer(format(Sys.Date(), "%Y")), max_year)
-  }
-
-  if (!from_year %in% deflator_data$year) {
-    stop(paste0("from_year must be between ", min_year, " and ", max_year,
-                " for ", currency))
-  }
-
-  if (!to_year %in% deflator_data$year) {
-    stop(paste0("to_year must be between ", min_year, " and ", max_year,
-                " for ", currency))
-  }
-
-  index_from <- deflator_data$index[deflator_data$year == from_year]
-  index_to   <- deflator_data$index[deflator_data$year == to_year]
-
-  adjusted <- amount * (index_to / index_from)
-
-  round(adjusted, 2)
+historical_real <- function(amount, to_year, currency, from_year = NULL,
+                            round = 2) {
+  currency <- resolve_currency(currency)
+  index_data <- get_index_data(currency, "deflator")
+  from_year <- resolve_default_year(from_year, index_data)
+  adjusted <- compute_adjustment(amount, index_data, from_year, to_year,
+                                 currency)
+  apply_round(adjusted, round)
 }

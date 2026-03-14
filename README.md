@@ -2,7 +2,7 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Convert historical monetary values into their present-day equivalents - or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
+Adjust monetary values for inflation across 13 currencies and 60+ years. Convert historical prices to today's money, calculate inflation rates, or reverse the calculation to find what a modern amount would have been worth in the past. Uses both CPI and GDP deflator indices from the World Bank.
 
 Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating data from national sources into a single, consistently formatted dataset - with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
 
@@ -42,7 +42,7 @@ The GDP deflator covers all goods and services produced in the economy - not jus
 
 ## Functions
 
-inflateR provides four functions in two symmetric pairs:
+inflateR provides six functions — four adjustment functions in two symmetric pairs, plus `inflation_rate()` and `list_currencies()`:
 
 | Direction | CPI | GDP deflator |
 |---|---|---|
@@ -53,29 +53,37 @@ inflateR provides four functions in two symmetric pairs:
 library(inflateR)
 
 # CPI: adjust a historical value to today's money
-adjust_inflation(amount, from_year, currency, to_year = NULL)
+adjust_inflation(amount, from_year, currency, to_year = NULL, round = 2)
 
 # CPI: convert a present value back to a historical year
-historical_value(amount, to_year, currency, from_year = NULL)
+historical_value(amount, to_year, currency, from_year = NULL, round = 2)
 
 # GDP deflator: adjust a historical value to today's money
-adjust_real(amount, from_year, currency, to_year = NULL)
+adjust_real(amount, from_year, currency, to_year = NULL, round = 2)
 
 # GDP deflator: convert a present value back to a historical year
-historical_real(amount, to_year, currency, from_year = NULL)
+historical_real(amount, to_year, currency, from_year = NULL, round = 2)
+
+# Calculate cumulative or annualised inflation rate
+inflation_rate(from_year, to_year = NULL, currency, annualise = FALSE)
+
+# See all supported currencies and data coverage
+list_currencies()
 ```
 
-All four functions accept the same currency codes and country names and are exact inverses within each pair.
+All four adjustment functions accept the same currency codes and country names and are exact inverses within each pair.
 
 ### Arguments
 
 | Argument | Description |
 |---|---|
-| `amount` | Numeric. The monetary amount to convert |
+| `amount` | Numeric (scalar or vector). The monetary amount(s) to convert |
 | `from_year` | Integer. The year the amount is from |
 | `to_year` | Integer. The target year (forward functions default to latest available; inverse functions require this) |
 | `currency` | Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, `"New Zealand"`, `"India"`, `"Norway"`, etc.) - case-insensitive |
 | `from_year` | Integer. For inverse functions: the year the amount is from (defaults to latest available) |
+| `round` | Integer or `NULL`. Decimal places (default 2). Use `NULL` for full precision |
+| `annualise` | Logical. If `TRUE`, `inflation_rate()` returns the compound annual rate |
 
 ## Examples
 
@@ -121,6 +129,41 @@ adjust_real(1e12, 2000, "USD", to_year = 2020)
 # Reverse: what would today's UK GDP of £2.5 trillion have been in 1990 terms?
 historical_real(2.5e12, 1990, "GBP")
 #> [1] 1028928849648
+```
+
+### Inflation rates
+
+```r
+# Cumulative US inflation from 2000 to 2020
+inflation_rate(2000, 2020, "USD")
+#> [1] 0.5030
+
+# Annualised UK inflation from 1990 to 2020
+inflation_rate(1990, 2020, "GBP", annualise = TRUE)
+#> [1] 0.0248
+```
+
+### Vectorised amounts
+
+```r
+# Adjust multiple amounts at once
+adjust_inflation(c(100, 500, 1000), 2000, "GBP", to_year = 2020)
+#> [1]  161.56  807.80 1615.61
+
+# Full precision (no rounding)
+adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
+#> [1] 150.303...
+```
+
+### Metadata
+
+```r
+# See all supported currencies
+list_currencies()
+#>    currency                      country cpi_start cpi_end deflator_start deflator_end
+#> 1       GBP               United Kingdom      1960    2024           1960         2024
+#> 2       AUD                    Australia      1960    2024           1960         2024
+#> ...
 ```
 
 ### Country names work too (case-insensitive)
@@ -199,4 +242,4 @@ Please report bugs or requests at <https://github.com/charlescoverdale/inflateR/
 
 ## Keywords
 
-inflation adjustment, CPI, consumer price index, purchasing power, real prices, nominal to real, price deflator, international inflation, currency adjustment, R package
+inflation adjustment, CPI, consumer price index, GDP deflator, purchasing power, real prices, nominal to real, price index, cost of living, World Bank, historical prices, inflation rate, deflation, currency adjustment, international inflation, R package, macroeconomics, economics data

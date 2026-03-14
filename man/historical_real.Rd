@@ -4,22 +4,28 @@
 \alias{historical_real}
 \title{Convert a value to its historical equivalent using a GDP deflator}
 \usage{
-historical_real(amount, to_year, currency, from_year = NULL)
+historical_real(amount, to_year, currency, from_year = NULL, round = 2)
 }
 \arguments{
-\item{amount}{Numeric. The monetary amount in the reference year.}
+\item{amount}{Numeric (scalar or vector). The monetary amount(s) in the
+reference year.}
 
 \item{to_year}{Integer. The historical year to convert back to.}
 
 \item{currency}{Character. Currency code (\code{"GBP"}, \code{"AUD"}, \code{"USD"},
-\code{"EUR"}, \code{"CAD"}, \code{"JPY"}, \code{"CNY"}, \code{"CHF"}) or country name
+\code{"EUR"}, \code{"CAD"}, \code{"JPY"}, \code{"CNY"}, \code{"CHF"}, \code{"NZD"}, \code{"INR"}, \code{"KRW"},
+\code{"BRL"}, \code{"NOK"}) or country name
 (\code{"Australia"}, \code{"United States"}, etc.) — case-insensitive.}
 
 \item{from_year}{Integer. The year the amount is from. Defaults to the
 latest year available in the deflator series.}
+
+\item{round}{Integer or \code{NULL}. Number of decimal places to round to
+(default 2). Use \code{NULL} for full precision.}
 }
 \value{
-A numeric value representing the historical equivalent amount.
+A numeric value (or vector) representing the historical equivalent
+amount.
 }
 \description{
 Takes a monetary amount from a recent year and returns what it would have

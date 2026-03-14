@@ -1,7 +1,12 @@
-# Fetch official CPI data from the World Bank WDI API and save as bundled .rda files
+# Fetch official CPI and GDP deflator data from the World Bank WDI API
+# and save as bundled .rda files
 #
-# Indicator: FP.CPI.TOTL — Consumer Price Index (World Bank, base 2010 = 100)
-# Source: World Bank Open Data — https://data.worldbank.org/indicator/FP.CPI.TOTL
+# CPI indicator: FP.CPI.TOTL — Consumer Price Index (World Bank, base 2010 = 100)
+# GDP deflator indicator: NY.GDP.DEFL.ZS — GDP Deflator (World Bank, base 2015 = 100)
+#
+# Source: World Bank Open Data
+#   https://data.worldbank.org/indicator/FP.CPI.TOTL
+#   https://data.worldbank.org/indicator/NY.GDP.DEFL.ZS
 #
 # Run this script to refresh the bundled data:
 #   Rscript data-raw/cpi_data.R
@@ -14,67 +19,71 @@ library(WDI)
 # Note: Euro area aggregate (XC) has no CPI data in WDI.
 # Germany (DE) is used as the EUR proxy — it is the largest Eurozone economy
 # and was the monetary anchor (Deutsche Mark) prior to the Euro.
-country_codes <- c(
-  GB = "GBP",
-  AU = "AUD",
-  US = "USD",
-  DE = "EUR",
-  CA = "CAD",
-  JP = "JPY",
-  CN = "CNY",
-  CH = "CHF"
+country_map <- data.frame(
+  iso2c    = c("GB", "AU", "US", "DE", "CA", "JP", "CN", "CH",
+               "NZ", "IN", "KR", "BR", "NO"),
+  currency = c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF",
+               "NZD", "INR", "KRW", "BRL", "NOK"),
+  prefix   = c("uk", "aud", "usd", "eur", "cad", "jpy", "cny", "chf",
+               "nzd", "inr", "krw", "brl", "nok"),
+  stringsAsFactors = FALSE
 )
 
+# ---- CPI data ---------------------------------------------------------------
 message("Fetching CPI data from World Bank WDI...")
 
-raw <- WDI(
-  country   = names(country_codes),
+raw_cpi <- WDI(
+  country   = country_map$iso2c,
   indicator = "FP.CPI.TOTL",
   start     = 1960,
   end       = 2024
 )
 
-# Rename columns for clarity
-names(raw)[names(raw) == "FP.CPI.TOTL"] <- "index_2010"
-names(raw)[names(raw) == "iso2c"]        <- "iso2c"
+names(raw_cpi)[names(raw_cpi) == "FP.CPI.TOTL"] <- "index_2010"
 
-# Helper: process one country into a clean data frame rescaled to 2020 = 100
-process_country <- function(iso, currency) {
-  df <- raw[raw$iso2c == iso, c("year", "index_2010")]
-  df <- df[!is.na(df$index_2010), ]
+process_country <- function(raw, iso, currency, col = "index_2010") {
+  df <- raw[raw$iso2c == iso, c("year", col)]
+  names(df)[2] <- "index_raw"
+  df <- df[!is.na(df$index_raw), ]
   df <- df[order(df$year), ]
 
-  # Rescale: 2020 = 100
-  base_2020 <- df$index_2010[df$year == 2020]
+  base_2020 <- df$index_raw[df$year == 2020]
   if (length(base_2020) == 0 || is.na(base_2020)) {
     stop(paste("No 2020 data available for", currency))
   }
-  df$index <- round((df$index_2010 / base_2020) * 100, 2)
-  df$index_2010 <- NULL
+  df$index <- round((df$index_raw / base_2020) * 100, 2)
+  df$index_raw <- NULL
 
-  message(sprintf("  %s (%s): %d years of data (%d - %d)",
+  message(sprintf("  %s (%s): %d years (%d - %d)",
                   currency, iso, nrow(df), min(df$year), max(df$year)))
   df
 }
 
-# Process each currency
-uk_cpi  <- process_country("GB", "GBP")
-aud_cpi <- process_country("AU", "AUD")
-usd_cpi <- process_country("US", "USD")
-eur_cpi <- process_country("DE", "EUR")
-cad_cpi <- process_country("CA", "CAD")
-jpy_cpi <- process_country("JP", "JPY")
-cny_cpi <- process_country("CN", "CNY")
-chf_cpi <- process_country("CH", "CHF")
+for (i in seq_len(nrow(country_map))) {
+  obj_name <- paste0(country_map$prefix[i], "_cpi")
+  df <- process_country(raw_cpi, country_map$iso2c[i], country_map$currency[i])
+  assign(obj_name, df)
+  save(list = obj_name, file = paste0("data/", obj_name, ".rda"))
+}
 
-# Save
-save(uk_cpi,  file = "data/uk_cpi.rda")
-save(aud_cpi, file = "data/aud_cpi.rda")
-save(usd_cpi, file = "data/usd_cpi.rda")
-save(eur_cpi, file = "data/eur_cpi.rda")
-save(cad_cpi, file = "data/cad_cpi.rda")
-save(jpy_cpi, file = "data/jpy_cpi.rda")
-save(cny_cpi, file = "data/cny_cpi.rda")
-save(chf_cpi, file = "data/chf_cpi.rda")
+# ---- GDP deflator data -------------------------------------------------------
+message("\nFetching GDP deflator data from World Bank WDI...")
 
-message("Done. CPI data saved to data/")
+raw_def <- WDI(
+  country   = country_map$iso2c,
+  indicator = "NY.GDP.DEFL.ZS",
+  start     = 1960,
+  end       = 2024
+)
+
+names(raw_def)[names(raw_def) == "NY.GDP.DEFL.ZS"] <- "index_2015"
+
+for (i in seq_len(nrow(country_map))) {
+  obj_name <- paste0(country_map$prefix[i], "_gdp_def")
+  df <- process_country(raw_def, country_map$iso2c[i], country_map$currency[i],
+                        col = "index_2015")
+  assign(obj_name, df)
+  save(list = obj_name, file = paste0("data/", obj_name, ".rda"))
+}
+
+message("\nDone. CPI and GDP deflator data saved to data/")

@@ -4,23 +4,27 @@
 \alias{adjust_real}
 \title{Adjust a monetary value using a GDP deflator}
 \usage{
-adjust_real(amount, from_year, currency, to_year = NULL)
+adjust_real(amount, from_year, currency, to_year = NULL, round = 2)
 }
 \arguments{
-\item{amount}{Numeric. The original monetary amount.}
+\item{amount}{Numeric (scalar or vector). The original monetary amount(s).}
 
 \item{from_year}{Integer. The year the amount is from.}
 
 \item{currency}{Character. A currency code or country name. Accepted codes:
-\code{"GBP"}, \code{"AUD"}, \code{"USD"}, \code{"EUR"}, \code{"CAD"}, \code{"JPY"}, \code{"CNY"}, \code{"CHF"}.
+\code{"GBP"}, \code{"AUD"}, \code{"USD"}, \code{"EUR"}, \code{"CAD"}, \code{"JPY"}, \code{"CNY"}, \code{"CHF"},
+\code{"NZD"}, \code{"INR"}, \code{"KRW"}, \code{"BRL"}, \code{"NOK"}.
 Country names are also accepted, e.g. \code{"Australia"}, \code{"United States"},
 \code{"Japan"}, \code{"Switzerland"} (case-insensitive).}
 
 \item{to_year}{Integer. The target year to adjust to. Defaults to the
 latest available year in the deflator series.}
+
+\item{round}{Integer or \code{NULL}. Number of decimal places to round to
+(default 2). Use \code{NULL} for full precision.}
 }
 \value{
-A numeric value representing the deflator-adjusted amount.
+A numeric value (or vector) representing the deflator-adjusted amount.
 }
 \description{
 Converts an amount between two years using GDP deflator data sourced from

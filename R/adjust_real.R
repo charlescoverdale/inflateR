@@ -6,16 +6,19 @@
 #' aggregates. For adjusting personal or consumer values (wages, prices of goods),
 #' use \code{\link{adjust_inflation}} which uses CPI instead.
 #'
-#' @param amount Numeric. The original monetary amount.
+#' @param amount Numeric (scalar or vector). The original monetary amount(s).
 #' @param from_year Integer. The year the amount is from.
 #' @param currency Character. A currency code or country name. Accepted codes:
-#'   `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`.
+#'   `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`,
+#'   `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`.
 #'   Country names are also accepted, e.g. `"Australia"`, `"United States"`,
 #'   `"Japan"`, `"Switzerland"` (case-insensitive).
 #' @param to_year Integer. The target year to adjust to. Defaults to the
 #'   latest available year in the deflator series.
+#' @param round Integer or `NULL`. Number of decimal places to round to
+#'   (default 2). Use `NULL` for full precision.
 #'
-#' @return A numeric value representing the deflator-adjusted amount.
+#' @return A numeric value (or vector) representing the deflator-adjusted amount.
 #'
 #' @details
 #' The GDP deflator measures price changes across all goods and services
@@ -40,76 +43,12 @@
 #'
 #' @family GDP deflator adjustment
 #' @export
-adjust_real <- function(amount, from_year, currency, to_year = NULL) {
-
-  country_lookup <- c(
-    "united kingdom" = "GBP", "uk"          = "GBP", "britain"      = "GBP",
-    "great britain"  = "GBP", "england"     = "GBP",
-    "australia"      = "AUD",
-    "united states"  = "USD", "usa"         = "USD", "us"           = "USD",
-    "america"        = "USD",
-    "europe"         = "EUR", "euro area"   = "EUR", "eurozone"     = "EUR",
-    "germany"        = "EUR",
-    "canada"         = "CAD",
-    "japan"          = "JPY",
-    "china"          = "CNY",
-    "switzerland"    = "CHF", "swiss"       = "CHF",
-    "new zealand"    = "NZD", "nz"          = "NZD",
-    "india"          = "INR",
-    "south korea"    = "KRW", "korea"       = "KRW",
-    "brazil"         = "BRL",
-    "norway"         = "NOK", "norwegian"   = "NOK"
-  )
-
-  lookup <- country_lookup[tolower(trimws(currency))]
-  if (!is.na(lookup)) currency <- lookup
-
-  currency <- toupper(currency)
-
-  valid <- c("GBP", "AUD", "USD", "EUR", "CAD", "JPY", "CNY", "CHF",
-             "NZD", "INR", "KRW", "BRL", "NOK")
-  if (!currency %in% valid) {
-    stop(paste0("currency must be one of: ", paste(valid, collapse = ", "),
-                "\nOr use a country name e.g. \"Australia\", \"United States\"."))
-  }
-
-  deflator_data <- switch(currency,
-    GBP = uk_gdp_def,
-    AUD = aud_gdp_def,
-    USD = usd_gdp_def,
-    EUR = eur_gdp_def,
-    CAD = cad_gdp_def,
-    JPY = jpy_gdp_def,
-    CNY = cny_gdp_def,
-    CHF = chf_gdp_def,
-    NZD = nzd_gdp_def,
-    INR = inr_gdp_def,
-    KRW = krw_gdp_def,
-    BRL = brl_gdp_def,
-    NOK = nok_gdp_def
-  )
-
-  min_year <- min(deflator_data$year)
-  max_year <- max(deflator_data$year)
-
-  if (is.null(to_year)) {
-    to_year <- min(as.integer(format(Sys.Date(), "%Y")), max_year)
-  }
-
-  if (!from_year %in% deflator_data$year) {
-    stop(paste0("from_year must be between ", min_year, " and ", max_year,
-                " for ", currency))
-  }
-
-  if (!to_year %in% deflator_data$year) {
-    stop(paste0("to_year must be between ", min_year, " and ", max_year,
-                " for ", currency))
-  }
-
-  index_from <- deflator_data$index[deflator_data$year == from_year]
-  index_to   <- deflator_data$index[deflator_data$year == to_year]
-
-  adjusted <- amount * (index_to / index_from)
-
-  round(adjusted, 2)
+adjust_real <- function(amount, from_year, currency, to_year = NULL,
+                        round = 2) {
+  currency <- resolve_currency(currency)
+  index_data <- get_index_data(currency, "deflator")
+  to_year <- resolve_default_year(to_year, index_data)
+  adjusted <- compute_adjustment(amount, index_data, from_year, to_year,
+                                 currency)
+  apply_round(adjusted, round)
 }
