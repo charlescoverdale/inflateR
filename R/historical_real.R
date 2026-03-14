@@ -25,6 +25,7 @@
 #' # What would USD 1 trillion in 2020 have been worth in 2000?
 #' historical_real(1e12, 2000, "USD", from_year = 2020)
 #'
+#' @family GDP deflator adjustment
 #' @export
 historical_real <- function(amount, to_year, currency, from_year = NULL) {
 

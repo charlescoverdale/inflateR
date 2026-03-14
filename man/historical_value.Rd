@@ -35,3 +35,8 @@ historical_value(100, 1963, "GBP")
 historical_value(500, 1980, "USD", from_year = 2020)
 
 }
+\seealso{
+Other CPI adjustment: 
+\code{\link{adjust_inflation}()}
+}
+\concept{CPI adjustment}

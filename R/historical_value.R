@@ -22,6 +22,7 @@
 #' # What would USD 500 in 2020 have been worth in 1980?
 #' historical_value(500, 1980, "USD", from_year = 2020)
 #'
+#' @family CPI adjustment
 #' @export
 historical_value <- function(amount, to_year, currency, from_year = NULL) {
 

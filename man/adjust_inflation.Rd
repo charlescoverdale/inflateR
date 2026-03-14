@@ -36,3 +36,8 @@ adjust_inflation(12, 1963, "GBP")
 adjust_inflation(50, 1980, "AUD", to_year = 2000)
 
 }
+\seealso{
+Other CPI adjustment: 
+\code{\link{historical_value}()}
+}
+\concept{CPI adjustment}

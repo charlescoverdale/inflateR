@@ -38,6 +38,7 @@
 #' # Compare US government spending in 2000 vs 2020 terms
 #' adjust_real(1000000, 2000, "USD", to_year = 2020)
 #'
+#' @family GDP deflator adjustment
 #' @export
 adjust_real <- function(amount, from_year, currency, to_year = NULL) {
 

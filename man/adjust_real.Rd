@@ -51,3 +51,8 @@ adjust_real(500000, 1990, "GBP")
 adjust_real(1000000, 2000, "USD", to_year = 2020)
 
 }
+\seealso{
+Other GDP deflator adjustment: 
+\code{\link{historical_real}()}
+}
+\concept{GDP deflator adjustment}

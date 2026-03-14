@@ -23,6 +23,7 @@
 #' # What is AUD 50 from 1980 worth in 2000?
 #' adjust_inflation(50, 1980, "AUD", to_year = 2000)
 #'
+#' @family CPI adjustment
 #' @export
 adjust_inflation <- function(amount, from_year, currency, to_year = NULL) {
 
