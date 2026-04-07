@@ -1,6 +1,6 @@
 # inflateR
 
-[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/inflateR)](https://CRAN.R-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Adjust monetary values for inflation across 13 currencies and 60+ years. Convert historical prices to today's money, calculate inflation rates, or reverse the calculation to find what a modern amount would have been worth in the past. Uses both CPI and GDP deflator indices from the World Bank.
 
