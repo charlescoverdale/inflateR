@@ -222,6 +222,10 @@ All data is sourced from the [World Bank Development Indicators](https://data.wo
 - **Euro proxy** - The World Bank does not publish an aggregated Euro area series for either CPI or GDP deflator. Germany is used as a proxy for both, which reflects the monetary anchor of the Eurozone but will understate the inflation experience of southern European countries in the 1970s and 1980s.
 - **Annual figures only** - All values are annual averages. Month-to-month volatility is smoothed out.
 
+### Why do my results differ slightly from other calculators?
+
+inflateR uses the World Bank's CPI index level (`FP.CPI.TOTL`), which is published rounded to 2 decimal places. Other tools (e.g., priceR) use the World Bank's annual percentage change series (`FP.CPI.TOTL.ZG`), which has more decimal places and is then compounded year by year. Both series come from the same underlying national CPI data, but the rounding in the index series means results can differ by a few dollars on large amounts over long periods. For example, adjusting $135,161 from 2022 to 2024 gives $144,867 with inflateR and $144,876 with priceR: a difference of $9 (0.006%). The Minneapolis Fed and Calculator.net inflation calculators use the BLS CPI-U annual average, which is the same data the World Bank aggregates for the US, so all three approaches agree to within rounding.
+
 ## Related packages
 
 The **inflateR** package is part of a suite of R packages for economic and financial data:
