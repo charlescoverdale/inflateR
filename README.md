@@ -228,8 +228,6 @@ Inflation adjustment requires converting 12 monthly CPI observations into a sing
 
 - **Annual vs monthly CPI.** inflateR (and most online calculators like the Minneapolis Fed) uses the annual average CPI: the mean of all 12 monthly values for a year. The BLS's own calculator lets you pick specific months, which can shift results by 1-2% depending on your choice. This is the biggest source of differences between calculators.
 - **Index level vs percentage change.** inflateR uses the World Bank's CPI index level (`FP.CPI.TOTL`), published rounded to 2 decimal places. Other tools may use the annual percentage change series (`FP.CPI.TOTL.ZG`), which retains more decimal places and is compounded year by year. Both come from the same underlying national CPI data. The rounding difference is tiny: $100,000 from 2020 to 2024 gives $121,200 with inflateR vs $121,204 with a compounding approach, a gap of $4 (0.003%).
-- **Same source data.** The World Bank aggregates its US CPI from the BLS CPI-U annual average, which is the same series the Minneapolis Fed and Calculator.net use. All approaches agree to within rounding.
-
 ## Related packages
 
 The **inflateR** package is part of a suite of R packages for economic and financial data:
