@@ -224,7 +224,7 @@ All data is sourced from the [World Bank Development Indicators](https://data.wo
 
 ### Why do my results differ slightly from other calculators?
 
-inflateR uses the World Bank's CPI index level (`FP.CPI.TOTL`), which is published rounded to 2 decimal places. Other tools (e.g., priceR) use the World Bank's annual percentage change series (`FP.CPI.TOTL.ZG`), which has more decimal places and is then compounded year by year. Both series come from the same underlying national CPI data, but the rounding in the index series means results can differ by a few dollars on large amounts over long periods. For example, adjusting $135,161 from 2022 to 2024 gives $144,867 with inflateR and $144,876 with priceR: a difference of $9 (0.006%). The Minneapolis Fed and Calculator.net inflation calculators use the BLS CPI-U annual average, which is the same data the World Bank aggregates for the US, so all three approaches agree to within rounding.
+inflateR uses the World Bank's CPI index level (`FP.CPI.TOTL`), which is published rounded to 2 decimal places. Other tools may use the World Bank's annual percentage change series (`FP.CPI.TOTL.ZG`), which retains more decimal places and is compounded year by year. Both series come from the same underlying national CPI data, but the rounding in the index series can produce small differences on large amounts. For example, adjusting $100,000 from 2020 to 2024 gives $121,200 with inflateR vs $121,204 with a tool that compounds the percentage change series: a difference of $4 (0.003%). The Minneapolis Fed and Calculator.net inflation calculators use the BLS CPI-U annual average, which is the same data the World Bank aggregates for the US, so all approaches agree to within rounding.
 
 ## Related packages
 
