@@ -1,0 +1,7 @@
+inflateR
+priceR
+quantmod
+WDI
+ons
+fred
+testthat
