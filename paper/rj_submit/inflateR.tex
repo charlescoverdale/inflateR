@@ -197,9 +197,9 @@ NOK & Norway & 1960 & 2024\\
 \end{tabular}
 \end{table}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,alt={A heatmap with thirteen currency rows and seven decade columns from the 1960s to the 2020s. Most cells are shaded blue, indicating coverage. Grey cells appear for CNY in the 1960s and 1970s, and for BRL in the 1960s and 1970s, showing the later start dates for those two currencies.}]{figures/fig4_coverage} 
+{\centering \includegraphics[width=1\linewidth,alt={A heatmap with thirteen currency rows and seven decade columns from the 1960s to the 2020s. Most cells are shaded blue, indicating coverage. Grey cells appear for CNY in the 1960s and 1970s, and for BRL in the 1960s and 1970s, showing the later start dates for those two currencies.},]{figures/fig4_coverage} 
 
 }
 
@@ -219,9 +219,9 @@ inflation in Japan). A reader of a 1970 GBP salary amount can
 infer from the leftmost value that it would need a roughly 15-fold
 multiplier to match 2024 purchasing power.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,alt={A line chart on a log-scale y-axis showing inflation multipliers to 2024 for GBP, USD, AUD, EUR, and JPY from 1970 to 2024. The multipliers start around ten to fifteen in 1970 and decline monotonically toward one by 2024. JPY is notably flatter than the others over the post-2000 period.}]{figures/fig1_multipliers} 
+{\centering \includegraphics[width=1\linewidth,alt={A line chart on a log-scale y-axis showing inflation multipliers to 2024 for GBP, USD, AUD, EUR, and JPY from 1970 to 2024. The multipliers start around ten to fifteen in 1970 and decline monotonically toward one by 2024. JPY is notably flatter than the others over the post-2000 period.},]{figures/fig1_multipliers} 
 
 }
 
@@ -239,9 +239,9 @@ edge of each series reflects the 2021 to 2023 global inflation
 spike and is where the choice of deflator (CPI versus GDP
 deflator) matters most.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,alt={A line chart showing rolling 10-year annualised CPI inflation rates for GBP, USD, AUD, EUR, and JPY, plotted by start year from 1970 to 2014. A dashed horizontal line sits at 2 per cent. Most lines peak in the late 1970s between 8 and 12 per cent, converge toward 2 per cent through the 1990s and 2000s, and show a small uptick at the right edge.}]{figures/fig2_rolling} 
+{\centering \includegraphics[width=1\linewidth,alt={A line chart showing rolling 10-year annualised CPI inflation rates for GBP, USD, AUD, EUR, and JPY, plotted by start year from 1970 to 2014. A dashed horizontal line sits at 2 per cent. Most lines peak in the late 1970s between 8 and 12 per cent, converge toward 2 per cent through the 1990s and 2000s, and show a small uptick at the right edge.},]{figures/fig2_rolling} 
 
 }
 
@@ -261,9 +261,9 @@ historical government expenditure or GDP, the deflator is the
 correct choice because it covers the full economy and excludes
 imported goods.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,alt={A line chart on a log-scale y-axis comparing the GBP CPI-based multiplier and the GBP GDP deflator multiplier to 2024, from 1970 onwards. Both lines fall from around fifteen in 1970 to one by 2024. The two series track each other closely but diverge visibly in the 1970s, early 1980s, and after 2020.}]{figures/fig3_cpi_gdp} 
+{\centering \includegraphics[width=1\linewidth,alt={A line chart on a log-scale y-axis comparing the GBP CPI-based multiplier and the GBP GDP deflator multiplier to 2024, from 1970 onwards. Both lines fall from around fifteen in 1970 to one by 2024. The two series track each other closely but diverge visibly in the 1970s, early 1980s, and after 2020.},]{figures/fig3_cpi_gdp} 
 
 }
 
@@ -278,9 +278,9 @@ purchasing power falls to about seven per cent by 2024, USD to
 about thirteen per cent, and JPY to about thirty per cent
 (reflecting Japan's milder inflation history over the period).
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,alt={A line chart showing the purchasing power of 1 unit of GBP, USD, and JPY in 1970 terms, plotted annually from 1970 to 2024. All three lines start at 1.0 in 1970 and decline monotonically. GBP reaches about 0.07 by 2024, USD about 0.13, and JPY about 0.30.}]{figures/fig5_power} 
+{\centering \includegraphics[width=1\linewidth,alt={A line chart showing the purchasing power of 1 unit of GBP, USD, and JPY in 1970 terms, plotted annually from 1970 to 2024. All three lines start at 1.0 in 1970 and decline monotonically. GBP reaches about 0.07 by 2024, USD about 0.13, and JPY about 0.30.},]{figures/fig5_power} 
 
 }
 
@@ -297,9 +297,9 @@ gross weekly earnings series for full-time employees,
 \code{adjust\_inflation()} being called year-by-year to express
 each nominal figure in 2024 GBP.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,alt={A line chart of UK median full-time weekly earnings from 1980 to 2024. A grey dashed line shows nominal pounds, rising steadily from under 100 pounds in 1980 to around 700 pounds in 2024. A blue solid line shows real pounds in 2024 terms, rising from about 533 pounds in 1980, peaking around 721 pounds near 2010, then declining gradually to 681 pounds by 2024.}]{figures/fig6_uk_wages} 
+{\centering \includegraphics[width=1\linewidth,alt={A line chart of UK median full-time weekly earnings from 1980 to 2024. A grey dashed line shows nominal pounds, rising steadily from under 100 pounds in 1980 to around 700 pounds in 2024. A blue solid line shows real pounds in 2024 terms, rising from about 533 pounds in 1980, peaking around 721 pounds near 2010, then declining gradually to 681 pounds by 2024.},]{figures/fig6_uk_wages} 
 
 }
 
@@ -440,7 +440,6 @@ Bank's open-data license. The author thanks the R Core Team and
 CRAN maintainers for the infrastructure that supports open-source
 statistical software.
 
-\section*{References}
 \bibliography{RJreferences.bib}
 
 \address{%
