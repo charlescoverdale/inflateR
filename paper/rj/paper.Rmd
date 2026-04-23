@@ -81,7 +81,7 @@ any macroeconomic quantity compared across time.
 classical sources of CPI bias (substitution, new-goods, outlet, and
 quality) and estimates the aggregate upward bias at about 0.8 to
 1.6 percentage points per year. @feenstra1994new formalises the
-new-goods bias. @broda2008imperfect document the substitution
+new-goods bias. @broda2010product document the new-goods and substitution
 component empirically. @moulton2018measurement revisits the Boskin
 Commission's findings two decades later and concludes that
 methodological improvements at the BLS have narrowed but not
@@ -306,7 +306,7 @@ each nominal figure in 2024 GBP.
 The real series recovers the now-famous pattern: steady real-wage
 growth through the 1980s, 1990s, and 2000s; a real-wage peak
 around 2010; and a full decade and a half of real-wage stagnation
-through 2024 [@blundell2023real; @giupponi2023wage]. The nominal
+through 2024 [@blundell2023real; @giupponi2024labour]. The nominal
 series, unadjusted, hides this phenomenon entirely: nominal wages
 grew by 12 per cent between 2010 and 2024. The package allows the
 analyst to flip between the two views with a single function call.
