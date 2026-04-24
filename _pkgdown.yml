@@ -62,3 +62,9 @@ reference:
   - title: "Package"
     contents:
       - inflateR-package
+
+  - title: "Reference Data"
+    desc: "Built-in currency and rate data"
+    contents:
+      - list_currencies
+      - inflation_rate
