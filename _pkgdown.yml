@@ -58,3 +58,7 @@ reference:
       - krw_gdp_def
       - brl_gdp_def
       - nok_gdp_def
+
+  - title: "Package"
+    contents:
+      - inflateR-package
