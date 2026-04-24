@@ -2,6 +2,8 @@
 
 > Convert historical monetary values into their present-day equivalents using bundled CPI (Consumer Price Index) and GDP deflator data sourced from the World Bank Development Indicators. Install with `install.packages("inflateR")`.
 
+Full API reference (for agents): https://raw.githubusercontent.com/charlescoverdale/inflateR/main/llms-full.txt
+
 Version: 0.2.0. License: MIT.
 
 ## Functions

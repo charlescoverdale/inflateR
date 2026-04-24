@@ -1,0 +1,221 @@
+# inflateR — full API reference
+
+> Convert historical monetary values into their present-day equivalents using bundled CPI (Consumer Price Index) and GDP deflator data sourced from the World Bank Development Indicators.
+
+- Version: 0.2.0
+- Install: `install.packages("inflateR")`
+- CRAN: https://CRAN.R-project.org/package=inflateR
+- GitHub: https://github.com/charlescoverdale/inflateR
+- Reference site: https://charlescoverdale.github.io/inflateR/
+
+This file is a self-contained reference for LLM agents: every exported
+function with its signature, arguments, return value, and example.
+
+---
+
+## `adjust_inflation()`
+
+**Adjust a historical monetary value for inflation**
+
+Converts an amount from a historical year into its equivalent value in a target year, using bundled CPI data sourced from the World Bank Development Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
+
+**Usage**
+
+```r
+adjust_inflation(amount, from_year, currency, to_year = NULL, round = 2)
+```
+
+**Arguments**
+
+- `amount` — Numeric (scalar or vector). The original monetary amount(s).
+- `from_year` — Integer. The year the amount is from.
+- `currency` — Character. A currency code or country name. Accepted codes: `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`, `"New Zealand"`, `"India"`, `"Norway"` (case-insensitive).
+- `to_year` — Integer. The target year to adjust to. Defaults to the latest available year in the data.
+- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+
+**Returns**
+
+A numeric value (or vector) representing the inflation-adjusted amount.
+
+**Example**
+
+```r
+# What is £12 from 1963 worth today?
+adjust_inflation(12, 1963, "GBP")
+
+# What is AUD 50 from 1980 worth in 2000?
+adjust_inflation(50, 1980, "AUD", to_year = 2000)
+
+# Full precision
+adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
+```
+
+---
+
+## `adjust_real()`
+
+**Adjust a monetary value using a GDP deflator**
+
+Converts an amount between two years using GDP deflator data sourced from the World Bank Development Indicators (indicator: NY.GDP.DEFL.ZS). Suitable for adjusting GDP figures, government expenditure, and other macroeconomic aggregates. For adjusting personal or consumer values (wages, prices of goods), use `adjust_inflation` which uses CPI instead.
+
+**Usage**
+
+```r
+adjust_real(amount, from_year, currency, to_year = NULL, round = 2)
+```
+
+**Arguments**
+
+- `amount` — Numeric (scalar or vector). The original monetary amount(s).
+- `from_year` — Integer. The year the amount is from.
+- `currency` — Character. A currency code or country name. Accepted codes: `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`, `"Switzerland"` (case-insensitive).
+- `to_year` — Integer. The target year to adjust to. Defaults to the latest available year in the deflator series.
+- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+
+**Returns**
+
+A numeric value (or vector) representing the deflator-adjusted amount.
+
+**Example**
+
+```r
+# Adjust UK GDP from 1990 to today using GDP deflator
+adjust_real(500000, 1990, "GBP")
+
+# Compare US government spending in 2000 vs 2020 terms
+adjust_real(1000000, 2000, "USD", to_year = 2020)
+```
+
+---
+
+## `historical_real()`
+
+**Convert a value to its historical equivalent using a GDP deflator**
+
+Takes a monetary amount from a recent year and returns what it would have been worth in a specified historical year, using GDP deflator data sourced from the World Bank Development Indicators (indicator: NY.GDP.DEFL.ZS). This is the inverse of `adjust_real`.
+
+**Usage**
+
+```r
+historical_real(amount, to_year, currency, from_year = NULL, round = 2)
+```
+
+**Arguments**
+
+- `amount` — Numeric (scalar or vector). The monetary amount(s) in the reference year.
+- `to_year` — Integer. The historical year to convert back to.
+- `currency` — Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive.
+- `from_year` — Integer. The year the amount is from. Defaults to the latest year available in the deflator series.
+- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+
+**Returns**
+
+A numeric value (or vector) representing the historical equivalent amount.
+
+**Example**
+
+```r
+# What would UK GDP of £2 trillion today have been in 1990 terms?
+historical_real(2e12, 1990, "GBP")
+
+# What would USD 1 trillion in 2020 have been worth in 2000?
+historical_real(1e12, 2000, "USD", from_year = 2020)
+```
+
+---
+
+## `historical_value()`
+
+**Convert a present-day value to its historical equivalent**
+
+Takes a monetary amount from a recent year and returns what it would have been worth in a specified historical year, using bundled CPI data sourced from the World Bank Development Indicators. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.
+
+**Usage**
+
+```r
+historical_value(amount, to_year, currency, from_year = NULL, round = 2)
+```
+
+**Arguments**
+
+- `amount` — Numeric (scalar or vector). The monetary amount(s) in the reference year.
+- `to_year` — Integer. The historical year to convert back to.
+- `currency` — Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive.
+- `from_year` — Integer. The year the amount is from. Defaults to the latest year available in the data.
+- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+
+**Returns**
+
+A numeric value (or vector) representing the historical equivalent amount.
+
+**Example**
+
+```r
+# What would £100 today have been worth in 1963?
+historical_value(100, 1963, "GBP")
+
+# What would USD 500 in 2020 have been worth in 1980?
+historical_value(500, 1980, "USD", from_year = 2020)
+```
+
+---
+
+## `inflation_rate()`
+
+**Calculate the inflation rate between two years**
+
+Returns the cumulative or annualised inflation rate between two years, using bundled CPI data sourced from the World Bank Development Indicators.
+
+**Usage**
+
+```r
+inflation_rate(from_year, to_year = NULL, currency, annualise = FALSE)
+```
+
+**Arguments**
+
+- `from_year` — Integer. The starting year.
+- `to_year` — Integer. The ending year. Defaults to the latest available year in the data.
+- `currency` — Character. A currency code or country name (case-insensitive). See `adjust_inflation` for accepted values.
+- `annualise` — Logical. If `TRUE`, returns the annualised (compound annual) rate. If `FALSE` (default), returns the cumulative rate.
+
+**Returns**
+
+A numeric value representing the inflation rate as a proportion (e.g. 0.35 means 35\%). Negative values indicate deflation.
+
+**Example**
+
+```r
+# Cumulative US inflation from 2000 to 2020
+inflation_rate(2000, 2020, "USD")
+
+# Annualised UK inflation from 1990 to 2020
+inflation_rate(1990, 2020, "GBP", annualise = TRUE)
+```
+
+---
+
+## `list_currencies()`
+
+**List supported currencies and data coverage**
+
+Returns a data frame showing all supported currencies, the country they represent, and the year range available for both CPI and GDP deflator data.
+
+**Usage**
+
+```r
+list_currencies()
+```
+
+**Returns**
+
+A data frame with columns: currencyISO currency code (character) countryCountry or area name (character) cpi_startFirst year of CPI data (integer) cpi_endLast year of CPI data (integer) deflator_startFirst year of GDP deflator data (integer) deflator_endLast year of GDP deflator data (integer)
+
+**Example**
+
+```r
+list_currencies()
+```
+
+---
+
