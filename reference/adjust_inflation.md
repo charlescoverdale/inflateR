@@ -8,14 +8,14 @@ NZD, INR, KRW, BRL, and NOK.
 ## Usage
 
 ``` r
-adjust_inflation(amount, from_year, currency, to_year = NULL)
+adjust_inflation(amount, from_year, currency, to_year = NULL, round = 2)
 ```
 
 ## Arguments
 
 - amount:
 
-  Numeric. The original monetary amount.
+  Numeric (scalar or vector). The original monetary amount(s).
 
 - from_year:
 
@@ -24,17 +24,29 @@ adjust_inflation(amount, from_year, currency, to_year = NULL)
 - currency:
 
   Character. A currency code or country name. Accepted codes: `"GBP"`,
-  `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`. Country
-  names are also accepted, e.g. `"Australia"`, `"United States"`,
-  `"Japan"`, `"New Zealand"`, `"India"`, `"Norway"` (case-insensitive).
+  `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`,
+  `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also
+  accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`,
+  `"New Zealand"`, `"India"`, `"Norway"` (case-insensitive).
 
 - to_year:
 
-  Integer. The target year to adjust to. Defaults to the current year.
+  Integer. The target year to adjust to. Defaults to the latest
+  available year in the data.
+
+- round:
+
+  Integer or `NULL`. Number of decimal places to round to (default 2).
+  Use `NULL` for full precision.
 
 ## Value
 
-A numeric value representing the inflation-adjusted amount.
+A numeric value (or vector) representing the inflation-adjusted amount.
+
+## See also
+
+Other CPI adjustment:
+[`historical_value()`](https://charlescoverdale.github.io/inflateR/reference/historical_value.md)
 
 ## Examples
 
@@ -46,4 +58,8 @@ adjust_inflation(12, 1963, "GBP")
 # What is AUD 50 from 1980 worth in 2000?
 adjust_inflation(50, 1980, "AUD", to_year = 2000)
 #> [1] 135.59
+
+# Full precision
+adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
+#> [1] 150.3081
 ```

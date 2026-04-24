@@ -13,7 +13,7 @@ KRW, BRL, and NOK."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">inflateR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@ KRW, BRL, and NOK.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="va">amount</span>, <span class="va">from_year</span>, <span class="va">currency</span>, to_year <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="va">amount</span>, <span class="va">from_year</span>, <span class="va">currency</span>, to_year <span class="op">=</span> <span class="cn">NULL</span>, round <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,7 +56,7 @@ KRW, BRL, and NOK.</p>
 
 
 <dl><dt id="arg-amount">amount<a class="anchor" aria-label="anchor" href="#arg-amount"></a></dt>
-<dd><p>Numeric. The original monetary amount.</p></dd>
+<dd><p>Numeric (scalar or vector). The original monetary amount(s).</p></dd>
 
 
 <dt id="arg-from-year">from_year<a class="anchor" aria-label="anchor" href="#arg-from-year"></a></dt>
@@ -65,19 +65,30 @@ KRW, BRL, and NOK.</p>
 
 <dt id="arg-currency">currency<a class="anchor" aria-label="anchor" href="#arg-currency"></a></dt>
 <dd><p>Character. A currency code or country name. Accepted codes:
-<code>"GBP"</code>, <code>"AUD"</code>, <code>"USD"</code>, <code>"EUR"</code>, <code>"CAD"</code>, <code>"JPY"</code>, <code>"CNY"</code>, <code>"CHF"</code>.
+<code>"GBP"</code>, <code>"AUD"</code>, <code>"USD"</code>, <code>"EUR"</code>, <code>"CAD"</code>, <code>"JPY"</code>, <code>"CNY"</code>, <code>"CHF"</code>,
+<code>"NZD"</code>, <code>"INR"</code>, <code>"KRW"</code>, <code>"BRL"</code>, <code>"NOK"</code>.
 Country names are also accepted, e.g. <code>"Australia"</code>, <code>"United States"</code>,
 <code>"Japan"</code>, <code>"New Zealand"</code>, <code>"India"</code>, <code>"Norway"</code> (case-insensitive).</p></dd>
 
 
 <dt id="arg-to-year">to_year<a class="anchor" aria-label="anchor" href="#arg-to-year"></a></dt>
 <dd><p>Integer. The target year to adjust to. Defaults to the
-current year.</p></dd>
+latest available year in the data.</p></dd>
+
+
+<dt id="arg-round">round<a class="anchor" aria-label="anchor" href="#arg-round"></a></dt>
+<dd><p>Integer or <code>NULL</code>. Number of decimal places to round to
+(default 2). Use <code>NULL</code> for full precision.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A numeric value representing the inflation-adjusted amount.</p>
+    <p>A numeric value (or vector) representing the inflation-adjusted amount.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CPI adjustment:
+<code><a href="historical_value.html">historical_value()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -89,6 +100,10 @@ current year.</p></dd>
 <span class="r-in"><span><span class="co"># What is AUD 50 from 1980 worth in 2000?</span></span></span>
 <span class="r-in"><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="fl">50</span>, <span class="fl">1980</span>, <span class="st">"AUD"</span>, to_year <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 135.59</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Full precision</span></span></span>
+<span class="r-in"><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2000</span>, <span class="st">"USD"</span>, to_year <span class="op">=</span> <span class="fl">2020</span>, round <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 150.3081</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -79,3 +79,18 @@ GDP deflator series by currency (2020 = 100)
   : Brazilian GDP Deflator Data (1960-2024)
 - [`nok_gdp_def`](https://charlescoverdale.github.io/inflateR/reference/nok_gdp_def.md)
   : Norwegian GDP Deflator Data (1960-2024)
+
+## Package
+
+- [`inflateR`](https://charlescoverdale.github.io/inflateR/reference/inflateR-package.md)
+  [`inflateR-package`](https://charlescoverdale.github.io/inflateR/reference/inflateR-package.md)
+  : inflateR: Inflation Adjustment for Historical Currency Values
+
+## Reference Data
+
+Built-in currency and rate data
+
+- [`list_currencies()`](https://charlescoverdale.github.io/inflateR/reference/list_currencies.md)
+  : List supported currencies and data coverage
+- [`inflation_rate()`](https://charlescoverdale.github.io/inflateR/reference/inflation_rate.md)
+  : Calculate the inflation rate between two years

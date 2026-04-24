@@ -11,14 +11,14 @@ which uses CPI instead.
 ## Usage
 
 ``` r
-adjust_real(amount, from_year, currency, to_year = NULL)
+adjust_real(amount, from_year, currency, to_year = NULL, round = 2)
 ```
 
 ## Arguments
 
 - amount:
 
-  Numeric. The original monetary amount.
+  Numeric (scalar or vector). The original monetary amount(s).
 
 - from_year:
 
@@ -27,18 +27,24 @@ adjust_real(amount, from_year, currency, to_year = NULL)
 - currency:
 
   Character. A currency code or country name. Accepted codes: `"GBP"`,
-  `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`. Country
-  names are also accepted, e.g. `"Australia"`, `"United States"`,
-  `"Japan"`, `"Switzerland"` (case-insensitive).
+  `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`,
+  `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also
+  accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`,
+  `"Switzerland"` (case-insensitive).
 
 - to_year:
 
   Integer. The target year to adjust to. Defaults to the latest
   available year in the deflator series.
 
+- round:
+
+  Integer or `NULL`. Number of decimal places to round to (default 2).
+  Use `NULL` for full precision.
+
 ## Value
 
-A numeric value representing the deflator-adjusted amount.
+A numeric value (or vector) representing the deflator-adjusted amount.
 
 ## Details
 
@@ -58,6 +64,11 @@ Use the GDP deflator when comparing macroeconomic aggregates (GDP,
 government spending, investment) across time. Use
 [`adjust_inflation`](https://charlescoverdale.github.io/inflateR/reference/adjust_inflation.md)
 for personal or consumer values.
+
+## See also
+
+Other GDP deflator adjustment:
+[`historical_real()`](https://charlescoverdale.github.io/inflateR/reference/historical_real.md)
 
 ## Examples
 

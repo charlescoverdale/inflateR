@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">inflateR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,8 +49,8 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="inflater">inflateR<a class="anchor" aria-label="anchor" href="#inflater"></a>
 </h1></div>
-<p><a href="https://cran.r-project.org/package=inflateR" class="external-link"><img src="https://www.r-pkg.org/badges/version/inflateR" alt="CRAN status"></a> <a href="https://github.com/charlescoverdale/inflateR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/charlescoverdale/inflateR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://cran.r-project.org/package=inflateR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/inflateR" alt="CRAN downloads"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a> <a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a></p>
-<p>Convert historical monetary values into their present-day equivalents - or reverse the calculation to find what a modern amount would have been worth in the past. Supports GBP, AUD, USD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, and NOK.</p>
+<p><a href="https://cran.r-project.org/package=inflateR" class="external-link"><img src="https://www.r-pkg.org/badges/version/inflateR" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=inflateR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/inflateR" alt="CRAN downloads"></a> <a href="https://CRAN.R-project.org/package=inflateR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/inflateR" alt="Total Downloads"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a> <a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a></p>
+<p>Adjust monetary values for inflation across 13 currencies and 60+ years. Convert historical prices to today’s money, calculate inflation rates, or reverse the calculation to find what a modern amount would have been worth in the past. Uses both CPI and GDP deflator indices from the World Bank.</p>
 <p>Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL" class="external-link">World Bank Development Indicators</a> solve this by aggregating data from national sources into a single, consistently formatted dataset - with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -76,7 +76,7 @@
 <div class="section level2">
 <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h2>
-<p>inflateR provides four functions in two symmetric pairs:</p>
+<p>inflateR provides six functions: four adjustment functions in two symmetric pairs, plus <code><a href="reference/inflation_rate.html">inflation_rate()</a></code> and <code><a href="reference/list_currencies.html">list_currencies()</a></code>:</p>
 <table class="table">
 <thead><tr class="header">
 <th>Direction</th>
@@ -100,17 +100,23 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://charlescoverdale.github.io/inflateR/">inflateR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># CPI: adjust a historical value to today's money</span></span>
-<span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">from_year</span>, <span class="va">currency</span>, to_year <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">from_year</span>, <span class="va">currency</span>, to_year <span class="op">=</span> <span class="cn">NULL</span>, round <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># CPI: convert a present value back to a historical year</span></span>
-<span><span class="fu"><a href="reference/historical_value.html">historical_value</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">to_year</span>, <span class="va">currency</span>, from_year <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/historical_value.html">historical_value</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">to_year</span>, <span class="va">currency</span>, from_year <span class="op">=</span> <span class="cn">NULL</span>, round <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># GDP deflator: adjust a historical value to today's money</span></span>
-<span><span class="fu"><a href="reference/adjust_real.html">adjust_real</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">from_year</span>, <span class="va">currency</span>, to_year <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/adjust_real.html">adjust_real</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">from_year</span>, <span class="va">currency</span>, to_year <span class="op">=</span> <span class="cn">NULL</span>, round <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># GDP deflator: convert a present value back to a historical year</span></span>
-<span><span class="fu"><a href="reference/historical_real.html">historical_real</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">to_year</span>, <span class="va">currency</span>, from_year <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
-<p>All four functions accept the same currency codes and country names and are exact inverses within each pair.</p>
+<span><span class="fu"><a href="reference/historical_real.html">historical_real</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">to_year</span>, <span class="va">currency</span>, from_year <span class="op">=</span> <span class="cn">NULL</span>, round <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate cumulative or annualised inflation rate</span></span>
+<span><span class="fu"><a href="reference/inflation_rate.html">inflation_rate</a></span><span class="op">(</span><span class="va">from_year</span>, to_year <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">currency</span>, annualise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># See all supported currencies and data coverage</span></span>
+<span><span class="fu"><a href="reference/list_currencies.html">list_currencies</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>All four adjustment functions accept the same currency codes and country names and are exact inverses within each pair.</p>
 <div class="section level3">
 <h3 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a>
 </h3>
@@ -126,7 +132,7 @@
 <tbody>
 <tr class="odd">
 <td><code>amount</code></td>
-<td>Numeric. The monetary amount to convert</td>
+<td>Numeric (scalar or vector). The monetary amount(s) to convert</td>
 </tr>
 <tr class="even">
 <td><code>from_year</code></td>
@@ -143,6 +149,14 @@
 <tr class="odd">
 <td><code>from_year</code></td>
 <td>Integer. For inverse functions: the year the amount is from (defaults to latest available)</td>
+</tr>
+<tr class="even">
+<td><code>round</code></td>
+<td>Integer or <code>NULL</code>. Decimal places (default 2). Use <code>NULL</code> for full precision</td>
+</tr>
+<tr class="odd">
+<td><code>annualise</code></td>
+<td>Logical. If <code>TRUE</code>, <code><a href="reference/inflation_rate.html">inflation_rate()</a></code> returns the compound annual rate</td>
 </tr>
 </tbody>
 </table>
@@ -196,9 +210,44 @@
 <span><span class="co">#&gt; [1] 1028928849648</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="country-names-work-too-case-insensitive">Country names work too (case-insensitive)<a class="anchor" aria-label="anchor" href="#country-names-work-too-case-insensitive"></a>
+<h3 id="inflation-rates">Inflation rates<a class="anchor" aria-label="anchor" href="#inflation-rates"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Cumulative US inflation from 2000 to 2020</span></span>
+<span><span class="fu"><a href="reference/inflation_rate.html">inflation_rate</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2020</span>, <span class="st">"USD"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.5030</span></span>
+<span></span>
+<span><span class="co"># Annualised UK inflation from 1990 to 2020</span></span>
+<span><span class="fu"><a href="reference/inflation_rate.html">inflation_rate</a></span><span class="op">(</span><span class="fl">1990</span>, <span class="fl">2020</span>, <span class="st">"GBP"</span>, annualise <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.0248</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="vectorised-amounts">Vectorised amounts<a class="anchor" aria-label="anchor" href="#vectorised-amounts"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Adjust multiple amounts at once</span></span>
+<span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span>, <span class="fl">1000</span><span class="op">)</span>, <span class="fl">2000</span>, <span class="st">"GBP"</span>, to_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  161.56  807.80 1615.61</span></span>
+<span></span>
+<span><span class="co"># Full precision (no rounding)</span></span>
+<span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2000</span>, <span class="st">"USD"</span>, to_year <span class="op">=</span> <span class="fl">2020</span>, round <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 150.303...</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See all supported currencies</span></span>
+<span><span class="fu"><a href="reference/list_currencies.html">list_currencies</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    currency                      country cpi_start cpi_end deflator_start deflator_end</span></span>
+<span><span class="co">#&gt; 1       GBP               United Kingdom      1960    2024           1960         2024</span></span>
+<span><span class="co">#&gt; 2       AUD                    Australia      1960    2024           1960         2024</span></span>
+<span><span class="co">#&gt; ...</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="country-names-work-too-case-insensitive">Country names work too (case-insensitive)<a class="anchor" aria-label="anchor" href="#country-names-work-too-case-insensitive"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"Australia"</span><span class="op">)</span>   <span class="co">#&gt; 212.02</span></span>
 <span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"switzerland"</span><span class="op">)</span> <span class="co">#&gt; 47.93</span></span>
 <span><span class="fu"><a href="reference/adjust_real.html">adjust_real</a></span><span class="op">(</span><span class="fl">500e9</span>, <span class="fl">1990</span>, <span class="st">"United Kingdom"</span><span class="op">)</span> <span class="co">#&gt; 1214415929203</span></span></code></pre></div>
@@ -380,11 +429,18 @@
 <strong>Annual figures only</strong> - All values are annual averages. Month-to-month volatility is smoothed out.</li>
 </ul>
 </div>
-</div>
-<div class="section level2">
-<h2 id="related-packages">Related packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>
-</h2>
-<p>The <strong>inflateR</strong> package is part of a suite of R packages for economic and financial data:</p>
+<div class="section level3">
+<h3 id="why-do-my-results-differ-slightly-from-other-calculators">Why do my results differ slightly from other calculators?<a class="anchor" aria-label="anchor" href="#why-do-my-results-differ-slightly-from-other-calculators"></a>
+</h3>
+<p>Inflation adjustment requires converting 12 monthly CPI observations into a single yearly figure. The CPI in January vs December of the same year can differ by 1-2%, so how that conversion is done matters more than which tool you use.</p>
+<ul>
+<li>
+<strong>Annual vs monthly CPI.</strong> inflateR (and most online calculators like the Minneapolis Fed) uses the annual average CPI: the mean of all 12 monthly values for a year. The BLS’s own calculator lets you pick specific months, which can shift results by 1-2% depending on your choice. This is the biggest source of differences between calculators.</li>
+<li>
+<strong>Index level vs percentage change.</strong> inflateR uses the World Bank’s CPI index level (<code>FP.CPI.TOTL</code>), published rounded to 2 decimal places. Other tools may use the annual percentage change series (<code>FP.CPI.TOTL.ZG</code>), which retains more decimal places and is compounded year by year. Both come from the same underlying national CPI data. The rounding difference is tiny: $100,000 from 2020 to 2024 gives $121,200 with inflateR vs $121,204 with a compounding approach, a gap of $4 (0.003%). ## Related packages</li>
+</ul>
+<p>The <strong>inflateR</strong> package is part of a suite of R packages for economic, financial, and policy data. They share a consistent interface (named functions, tidy data frames, local caching) and are designed to work together.</p>
+<p><strong>Data access:</strong></p>
 <table class="table">
 <colgroup>
 <col width="50%">
@@ -392,39 +448,101 @@
 </colgroup>
 <thead><tr class="header">
 <th>Package</th>
-<th>What it covers</th>
+<th>Source</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td><a href="https://github.com/charlescoverdale/ons" class="external-link"><code>ons</code></a></td>
-<td>ONS data (GDP, inflation, unemployment, wages, trade, house prices, population)</td>
+<td>UK Office for National Statistics</td>
 </tr>
 <tr class="even">
 <td><a href="https://github.com/charlescoverdale/boe" class="external-link"><code>boe</code></a></td>
-<td>Bank of England data (Bank Rate, SONIA, gilt yields, exchange rates, mortgage rates)</td>
+<td>Bank of England</td>
 </tr>
 <tr class="odd">
 <td><a href="https://github.com/charlescoverdale/hmrc" class="external-link"><code>hmrc</code></a></td>
-<td>HMRC tax receipts, corporation tax, stamp duty, R&amp;D credits, and tax gap data</td>
+<td>HM Revenue &amp; Customs</td>
 </tr>
 <tr class="even">
 <td><a href="https://github.com/charlescoverdale/obr" class="external-link"><code>obr</code></a></td>
-<td>OBR fiscal forecasts and the Public Finances Databank</td>
+<td>Office for Budget Responsibility</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/charlescoverdale/ukhousing" class="external-link"><code>ukhousing</code></a></td>
+<td>UK Land Registry, EPC, Planning</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/charlescoverdale/fred" class="external-link"><code>fred</code></a></td>
+<td>US Federal Reserve (FRED)</td>
 </tr>
 <tr class="odd">
 <td><a href="https://github.com/charlescoverdale/readecb" class="external-link"><code>readecb</code></a></td>
-<td>European Central Bank data (policy rates, HICP, exchange rates, yield curves)</td>
+<td>European Central Bank</td>
 </tr>
 <tr class="even">
 <td><a href="https://github.com/charlescoverdale/readoecd" class="external-link"><code>readoecd</code></a></td>
-<td>OECD data (GDP, unemployment, inflation, trade across 38 member countries)</td>
+<td>OECD</td>
 </tr>
 <tr class="odd">
-<td><a href="https://github.com/charlescoverdale/fred" class="external-link"><code>fred</code></a></td>
-<td>US Federal Reserve (FRED) data (800,000+ economic time series)</td>
+<td><a href="https://github.com/charlescoverdale/readnoaa" class="external-link"><code>readnoaa</code></a></td>
+<td>NOAA Climate Data</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/charlescoverdale/readaec" class="external-link"><code>readaec</code></a></td>
+<td>Australian Electoral Commission</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/charlescoverdale/comtrade" class="external-link"><code>comtrade</code></a></td>
+<td>UN Comtrade</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/charlescoverdale/carbondata" class="external-link"><code>carbondata</code></a></td>
+<td>Carbon markets (EU ETS, UK ETS, voluntary registries)</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Analytical toolkits:</strong></p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th>Package</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/charlescoverdale/inflationkit" class="external-link"><code>inflationkit</code></a></td>
+<td>Inflation analysis (decomposition, persistence, Phillips curve)</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/charlescoverdale/yieldcurves" class="external-link"><code>yieldcurves</code></a></td>
+<td>Yield curve fitting (Nelson-Siegel, Svensson)</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/charlescoverdale/debtkit" class="external-link"><code>debtkit</code></a></td>
+<td>Debt sustainability analysis</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/charlescoverdale/nowcast" class="external-link"><code>nowcast</code></a></td>
+<td>Economic nowcasting</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/charlescoverdale/predictset" class="external-link"><code>predictset</code></a></td>
+<td>Conformal prediction</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/charlescoverdale/climatekit" class="external-link"><code>climatekit</code></a></td>
+<td>Climate indices</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/charlescoverdale/inequality" class="external-link"><code>inequality</code></a></td>
+<td>Inequality and poverty measurement</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section level2">
 <h2 id="issues">Issues<a class="anchor" aria-label="anchor" href="#issues"></a>
@@ -434,7 +552,7 @@
 <div class="section level2">
 <h2 id="keywords">Keywords<a class="anchor" aria-label="anchor" href="#keywords"></a>
 </h2>
-<p>inflation adjustment, CPI, consumer price index, purchasing power, real prices, nominal to real, price deflator, international inflation, currency adjustment, R package</p>
+<p>inflation adjustment, CPI, consumer price index, GDP deflator, purchasing power, real prices, nominal to real, price index, cost of living, World Bank, historical prices, inflation rate, deflation, currency adjustment, international inflation, R package, macroeconomics, economics data</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
