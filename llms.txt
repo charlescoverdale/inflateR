@@ -1,0 +1,21 @@
+# inflateR
+
+> Convert historical monetary values into their present-day equivalents using bundled CPI (Consumer Price Index) and GDP deflator data sourced from the World Bank Development Indicators. Install with `install.packages("inflateR")`.
+
+Version: 0.2.0. License: MIT.
+
+## Functions
+
+- [`adjust_inflation()`](https://charlescoverdale.github.io/inflateR/reference/adjust_inflation.html): Adjust a historical monetary value for inflation
+- [`adjust_real()`](https://charlescoverdale.github.io/inflateR/reference/adjust_real.html): Adjust a monetary value using a GDP deflator
+- [`historical_real()`](https://charlescoverdale.github.io/inflateR/reference/historical_real.html): Convert a value to its historical equivalent using a GDP deflator
+- [`historical_value()`](https://charlescoverdale.github.io/inflateR/reference/historical_value.html): Convert a present-day value to its historical equivalent
+- [`inflation_rate()`](https://charlescoverdale.github.io/inflateR/reference/inflation_rate.html): Calculate the inflation rate between two years
+- [`list_currencies()`](https://charlescoverdale.github.io/inflateR/reference/list_currencies.html): List supported currencies and data coverage
+
+## Documentation
+
+- [Full reference](https://charlescoverdale.github.io/inflateR/reference/)
+- [GitHub](https://github.com/charlescoverdale/inflateR)
+- [CRAN](https://CRAN.R-project.org/package=inflateR)
+
