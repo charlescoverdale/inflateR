@@ -230,36 +230,14 @@ Inflation adjustment requires converting 12 monthly CPI observations into a sing
 - **Index level vs percentage change.** inflateR uses the World Bank's CPI index level (`FP.CPI.TOTL`), published rounded to 2 decimal places. Other tools may use the annual percentage change series (`FP.CPI.TOTL.ZG`), which retains more decimal places and is compounded year by year. Both come from the same underlying national CPI data. The rounding difference is tiny: $100,000 from 2020 to 2024 gives $121,200 with inflateR vs $121,204 with a compounding approach, a gap of $4 (0.003%).
 ## Related packages
 
-The **inflateR** package is part of a suite of R packages for economic, financial, and policy data. They share a consistent interface (named functions, tidy data frames, local caching) and are designed to work together.
-
-**Data access:**
-
-| Package | Source |
-|---|---|
-| [`ons`](https://github.com/charlescoverdale/ons) | UK Office for National Statistics |
-| [`boe`](https://github.com/charlescoverdale/boe) | Bank of England |
-| [`hmrc`](https://github.com/charlescoverdale/hmrc) | HM Revenue & Customs |
-| [`obr`](https://github.com/charlescoverdale/obr) | Office for Budget Responsibility |
-| [`ukhousing`](https://github.com/charlescoverdale/ukhousing) | UK Land Registry, EPC, Planning |
-| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) |
-| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank |
-| [`readoecd`](https://github.com/charlescoverdale/readoecd) | OECD |
-| [`readnoaa`](https://github.com/charlescoverdale/readnoaa) | NOAA Climate Data |
-| [`readaec`](https://github.com/charlescoverdale/readaec) | Australian Electoral Commission |
-| [`comtrade`](https://github.com/charlescoverdale/comtrade) | UN Comtrade |
-| [`carbondata`](https://github.com/charlescoverdale/carbondata) | Carbon markets (EU ETS, UK ETS, voluntary registries) |
-
-**Analytical toolkits:**
-
-| Package | Purpose |
+| Package | Description |
 |---|---|
 | [`inflationkit`](https://github.com/charlescoverdale/inflationkit) | Inflation analysis (decomposition, persistence, Phillips curve) |
-| [`yieldcurves`](https://github.com/charlescoverdale/yieldcurves) | Yield curve fitting (Nelson-Siegel, Svensson) |
-| [`debtkit`](https://github.com/charlescoverdale/debtkit) | Debt sustainability analysis |
-| [`nowcast`](https://github.com/charlescoverdale/nowcast) | Economic nowcasting |
-| [`predictset`](https://github.com/charlescoverdale/predictset) | Conformal prediction |
-| [`climatekit`](https://github.com/charlescoverdale/climatekit) | Climate indices |
-| [`inequality`](https://github.com/charlescoverdale/inequality) | Inequality and poverty measurement |
+| [`ons`](https://github.com/charlescoverdale/ons) | UK Office for National Statistics data (CPI source) |
+| [`boe`](https://github.com/charlescoverdale/boe) | Bank of England data |
+| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) data |
+| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank data |
+| [`ukhousing`](https://github.com/charlescoverdale/ukhousing) | UK Land Registry data (real-terms house prices) |
 
 ## Issues
 
