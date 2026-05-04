@@ -78,18 +78,18 @@
 </h2>
 <p>inflateR provides six functions: four adjustment functions in two symmetric pairs, plus <code><a href="reference/inflation_rate.html">inflation_rate()</a></code> and <code><a href="reference/list_currencies.html">list_currencies()</a></code>:</p>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th>Direction</th>
 <th>CPI</th>
 <th>GDP deflator</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Historical → present</td>
 <td><code><a href="reference/adjust_inflation.html">adjust_inflation()</a></code></td>
 <td><code><a href="reference/adjust_real.html">adjust_real()</a></code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Present → historical</td>
 <td><code><a href="reference/historical_value.html">historical_value()</a></code></td>
 <td><code><a href="reference/historical_real.html">historical_real()</a></code></td>
@@ -125,36 +125,36 @@
 <col width="50%">
 <col width="50%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Argument</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>amount</code></td>
 <td>Numeric (scalar or vector). The monetary amount(s) to convert</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>from_year</code></td>
 <td>Integer. The year the amount is from</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>to_year</code></td>
 <td>Integer. The target year (forward functions default to latest available; inverse functions require this)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>currency</code></td>
 <td>Character. Currency code (<code>"GBP"</code>, <code>"AUD"</code>, <code>"USD"</code>, <code>"EUR"</code>, <code>"CAD"</code>, <code>"JPY"</code>, <code>"CNY"</code>, <code>"CHF"</code>, <code>"NZD"</code>, <code>"INR"</code>, <code>"KRW"</code>, <code>"BRL"</code>, <code>"NOK"</code>) or country name (<code>"Australia"</code>, <code>"United States"</code>, <code>"New Zealand"</code>, <code>"India"</code>, <code>"Norway"</code>, etc.) - case-insensitive</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>from_year</code></td>
 <td>Integer. For inverse functions: the year the amount is from (defaults to latest available)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>round</code></td>
 <td>Integer or <code>NULL</code>. Decimal places (default 2). Use <code>NULL</code> for full precision</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>annualise</code></td>
 <td>Logical. If <code>TRUE</code>, <code><a href="reference/inflation_rate.html">inflation_rate()</a></code> returns the compound annual rate</td>
 </tr>
@@ -261,73 +261,73 @@
 <h3 id="cpi-datasets-indicator-fpcpitotl">CPI datasets (indicator: <code>FP.CPI.TOTL</code>)<a class="anchor" aria-label="anchor" href="#cpi-datasets-indicator-fpcpitotl"></a>
 </h3>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th>Dataset</th>
 <th>Currency</th>
 <th>Coverage</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>uk_cpi</code></td>
 <td>GBP</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>aud_cpi</code></td>
 <td>AUD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>usd_cpi</code></td>
 <td>USD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>eur_cpi</code></td>
 <td>EUR</td>
 <td>1960–2024 (Germany proxy)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>cad_cpi</code></td>
 <td>CAD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>jpy_cpi</code></td>
 <td>JPY</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>cny_cpi</code></td>
 <td>CNY</td>
 <td>1986–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>chf_cpi</code></td>
 <td>CHF</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>nzd_cpi</code></td>
 <td>NZD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>inr_cpi</code></td>
 <td>INR</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>krw_cpi</code></td>
 <td>KRW</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>brl_cpi</code></td>
 <td>BRL</td>
 <td>1980–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>nok_cpi</code></td>
 <td>NOK</td>
 <td>1960–2024</td>
@@ -339,73 +339,73 @@
 <h3 id="gdp-deflator-datasets-indicator-nygdpdeflzs">GDP deflator datasets (indicator: <code>NY.GDP.DEFL.ZS</code>)<a class="anchor" aria-label="anchor" href="#gdp-deflator-datasets-indicator-nygdpdeflzs"></a>
 </h3>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th>Dataset</th>
 <th>Currency</th>
 <th>Coverage</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>uk_gdp_def</code></td>
 <td>GBP</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>aud_gdp_def</code></td>
 <td>AUD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>usd_gdp_def</code></td>
 <td>USD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>eur_gdp_def</code></td>
 <td>EUR</td>
 <td>1960–2024 (Germany proxy)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>cad_gdp_def</code></td>
 <td>CAD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>jpy_gdp_def</code></td>
 <td>JPY</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>cny_gdp_def</code></td>
 <td>CNY</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>chf_gdp_def</code></td>
 <td>CHF</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>nzd_gdp_def</code></td>
 <td>NZD</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>inr_gdp_def</code></td>
 <td>INR</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>krw_gdp_def</code></td>
 <td>KRW</td>
 <td>1960–2024</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>brl_gdp_def</code></td>
 <td>BRL</td>
 <td>1960–2024</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>nok_gdp_def</code></td>
 <td>NOK</td>
 <td>1960–2024</td>
@@ -439,106 +439,39 @@
 <li>
 <strong>Index level vs percentage change.</strong> inflateR uses the World Bank’s CPI index level (<code>FP.CPI.TOTL</code>), published rounded to 2 decimal places. Other tools may use the annual percentage change series (<code>FP.CPI.TOTL.ZG</code>), which retains more decimal places and is compounded year by year. Both come from the same underlying national CPI data. The rounding difference is tiny: $100,000 from 2020 to 2024 gives $121,200 with inflateR vs $121,204 with a compounding approach, a gap of $4 (0.003%). ## Related packages</li>
 </ul>
-<p>The <strong>inflateR</strong> package is part of a suite of R packages for economic, financial, and policy data. They share a consistent interface (named functions, tidy data frames, local caching) and are designed to work together.</p>
-<p><strong>Data access:</strong></p>
 <table class="table">
 <colgroup>
 <col width="50%">
 <col width="50%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Package</th>
-<th>Source</th>
+<th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/ons" class="external-link"><code>ons</code></a></td>
-<td>UK Office for National Statistics</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/boe" class="external-link"><code>boe</code></a></td>
-<td>Bank of England</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/hmrc" class="external-link"><code>hmrc</code></a></td>
-<td>HM Revenue &amp; Customs</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/obr" class="external-link"><code>obr</code></a></td>
-<td>Office for Budget Responsibility</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/ukhousing" class="external-link"><code>ukhousing</code></a></td>
-<td>UK Land Registry, EPC, Planning</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/fred" class="external-link"><code>fred</code></a></td>
-<td>US Federal Reserve (FRED)</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/readecb" class="external-link"><code>readecb</code></a></td>
-<td>European Central Bank</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/readoecd" class="external-link"><code>readoecd</code></a></td>
-<td>OECD</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/readnoaa" class="external-link"><code>readnoaa</code></a></td>
-<td>NOAA Climate Data</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/readaec" class="external-link"><code>readaec</code></a></td>
-<td>Australian Electoral Commission</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/comtrade" class="external-link"><code>comtrade</code></a></td>
-<td>UN Comtrade</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/carbondata" class="external-link"><code>carbondata</code></a></td>
-<td>Carbon markets (EU ETS, UK ETS, voluntary registries)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Analytical toolkits:</strong></p>
-<table class="table">
-<colgroup>
-<col width="50%">
-<col width="50%">
-</colgroup>
-<thead><tr class="header">
-<th>Package</th>
-<th>Purpose</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
+<tr>
 <td><a href="https://github.com/charlescoverdale/inflationkit" class="external-link"><code>inflationkit</code></a></td>
 <td>Inflation analysis (decomposition, persistence, Phillips curve)</td>
 </tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/yieldcurves" class="external-link"><code>yieldcurves</code></a></td>
-<td>Yield curve fitting (Nelson-Siegel, Svensson)</td>
+<tr>
+<td><a href="https://github.com/charlescoverdale/ons" class="external-link"><code>ons</code></a></td>
+<td>UK Office for National Statistics data (CPI source)</td>
 </tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/debtkit" class="external-link"><code>debtkit</code></a></td>
-<td>Debt sustainability analysis</td>
+<tr>
+<td><a href="https://github.com/charlescoverdale/boe" class="external-link"><code>boe</code></a></td>
+<td>Bank of England data</td>
 </tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/nowcast" class="external-link"><code>nowcast</code></a></td>
-<td>Economic nowcasting</td>
+<tr>
+<td><a href="https://github.com/charlescoverdale/fred" class="external-link"><code>fred</code></a></td>
+<td>US Federal Reserve (FRED) data</td>
 </tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/predictset" class="external-link"><code>predictset</code></a></td>
-<td>Conformal prediction</td>
+<tr>
+<td><a href="https://github.com/charlescoverdale/readecb" class="external-link"><code>readecb</code></a></td>
+<td>European Central Bank data</td>
 </tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/climatekit" class="external-link"><code>climatekit</code></a></td>
-<td>Climate indices</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/inequality" class="external-link"><code>inequality</code></a></td>
-<td>Inequality and poverty measurement</td>
+<tr>
+<td><a href="https://github.com/charlescoverdale/ukhousing" class="external-link"><code>ukhousing</code></a></td>
+<td>UK Land Registry data (real-terms house prices)</td>
 </tr>
 </tbody>
 </table>
