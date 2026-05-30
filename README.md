@@ -2,6 +2,8 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/inflateR)](https://cran.r-project.org/package=inflateR) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/inflateR)](https://cran.r-project.org/package=inflateR) [![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/inflateR)](https://CRAN.R-project.org/package=inflateR) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+A technical working paper for this package can be found [here](https://charlescoverdale.github.io/files/coverdale_inflateR_2026.pdf).
+
 Adjust monetary values for inflation across 13 currencies and 60+ years. Convert historical prices to today's money, calculate inflation rates, or reverse the calculation to find what a modern amount would have been worth in the past. Uses both CPI and GDP deflator indices from the World Bank.
 
 Getting consistent, comparable inflation data across multiple countries and many decades is harder than it sounds. Each country has its own national statistics agency, its own methodology, and its own publication format. The [World Bank Development Indicators](https://data.worldbank.org/indicator/FP.CPI.TOTL) solve this by aggregating data from national sources into a single, consistently formatted dataset - with the World Bank handling source reconciliation. All series are rescaled to 2020 = 100 for consistency across currencies.
