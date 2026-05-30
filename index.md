@@ -11,6 +11,9 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+A technical working paper for this package can be found
+[here](https://charlescoverdale.github.io/files/coverdale_inflateR_2026.pdf).
+
 Adjust monetary values for inflation across 13 currencies and 60+ years.
 Convert historical prices to today’s money, calculate inflation rates,
 or reverse the calculation to find what a modern amount would have been
