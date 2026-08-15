@@ -1,0 +1,64 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Blundell et~al.(2023)Blundell, Costa~Dias, Joyce, and Xu]{blundell2023real}
+R.~Blundell, M.~Costa~Dias, R.~Joyce, and X.~Xu.
+\newblock Real wage stagnation in the {UK}: Trends and mechanisms.
+\newblock Ifs deaton review background paper, Institute for Fiscal Studies, 2023.
+
+\bibitem[Broda and Weinstein(2006)]{broda2006globalization}
+C.~Broda and D.~E. Weinstein.
+\newblock Globalization and the gains from variety.
+\newblock \emph{Quarterly Journal of Economics}, 121\penalty0 (2):\penalty0 541--585, 2006.
+\newblock \doi{10.1162/qjec.2006.121.2.541}.
+
+\bibitem[Deaton(2010)]{deaton2010price}
+A.~Deaton.
+\newblock Price indexes, inequality, and the measurement of world poverty.
+\newblock \emph{American Economic Review}, 100\penalty0 (1):\penalty0 5--34, 2010.
+\newblock \doi{10.1257/aer.100.1.5}.
+
+\bibitem[Diewert(1998)]{diewert1998index}
+W.~E. Diewert.
+\newblock Index number issues in the consumer price index.
+\newblock \emph{Journal of Economic Perspectives}, 12\penalty0 (1):\penalty0 47--58, 1998.
+\newblock \doi{10.1257/jep.12.1.47}.
+
+\bibitem[Feenstra(1994)]{feenstra1994new}
+R.~C. Feenstra.
+\newblock New product varieties and the measurement of international prices.
+\newblock \emph{American Economic Review}, 84\penalty0 (1):\penalty0 157--177, 1994.
+
+\bibitem[Giupponi and Machin(2024)]{giupponi2024wage}
+G.~Giupponi and S.~Machin.
+\newblock Workers, jobs and employment spells over the lifecycle in the great british wage stagnation.
+\newblock \emph{Journal of the European Economic Association}, 2024.
+
+\bibitem[Hausman(2003)]{hausman2003sources}
+J.~Hausman.
+\newblock Sources of bias and solutions to bias in the consumer price index.
+\newblock \emph{Journal of Economic Perspectives}, 17\penalty0 (1):\penalty0 23--44, 2003.
+\newblock \doi{10.1257/089533003321164930}.
+
+\bibitem[{International Labour Office}(2004)]{ilo2004cpi}
+{International Labour Office}.
+\newblock \emph{Consumer Price Index Manual: Theory and Practice}.
+\newblock International Labour Office, Geneva, 2004.
+
+\bibitem[Moulton(2018)]{moulton2018measurement}
+B.~R. Moulton.
+\newblock The measurement of output, prices, and productivity: What's changed since the boskin commission?
+\newblock Hutchins Center Working Paper~40, Hutchins Center on Fiscal and Monetary Policy, Brookings Institution, 2018.
+
+\bibitem[Officer and Williamson(2024)]{officer2024measuringworth}
+L.~H. Officer and S.~H. Williamson.
+\newblock {MeasuringWorth}: Measures of worth, values, and historical data.
+\newblock MeasuringWorth.com, 2024.
+\newblock URL \url{https://www.measuringworth.com}.
+\newblock Online historical price and value series covering the UK and US from the thirteenth and eighteenth centuries respectively.
+
+\end{thebibliography}

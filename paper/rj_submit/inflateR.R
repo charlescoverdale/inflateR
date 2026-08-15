@@ -3,7 +3,8 @@
 
 ## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
-                      fig.align = "center", out.width = "100%")
+                      fig.align = "center", out.width = "100%",
+                      fig.pos = "H", out.extra = "")
 
 
 ## ----directions---------------------------------------------------------------
