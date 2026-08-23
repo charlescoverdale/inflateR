@@ -1,8 +1,8 @@
-# Brazilian CPI Data (1980-2024)
+# Brazilian CPI Data (1990-2025)
 
 Annual Consumer Price Index for Brazil, sourced from the World Bank
 Development Indicators (indicator: FP.CPI.TOTL). Rescaled so that 2020 =
-100. Data availability begins in 1980.
+100. Data availability begins in 1990.
 
 ## Usage
 
@@ -12,7 +12,7 @@ brl_cpi
 
 ## Format
 
-A data frame with 45 rows and 2 columns:
+A data frame with 36 rows and 2 columns:
 
 - year:
 

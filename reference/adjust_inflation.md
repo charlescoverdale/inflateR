@@ -53,13 +53,13 @@ Other CPI adjustment:
 ``` r
 # What is £12 from 1963 worth today?
 adjust_inflation(12, 1963, "GBP")
-#> [1] 256.43
+#> [1] 266.38
 
 # What is AUD 50 from 1980 worth in 2000?
 adjust_inflation(50, 1980, "AUD", to_year = 2000)
-#> [1] 135.59
+#> [1] 135.63
 
 # Full precision
 adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
-#> [1] 150.3081
+#> [1] 150.2968
 ```

@@ -42,9 +42,9 @@ A numeric value representing the inflation rate as a proportion (e.g.
 ``` r
 # Cumulative US inflation from 2000 to 2020
 inflation_rate(2000, 2020, "USD")
-#> [1] 0.5030813
+#> [1] 0.5029684
 
 # Annualised UK inflation from 1990 to 2020
 inflation_rate(1990, 2020, "GBP", annualise = TRUE)
-#> [1] 0.02298728
+#> [1] 0.02298452
 ```

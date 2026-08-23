@@ -1,4 +1,4 @@
-# Chinese CPI Data (1986-2024)
+# Chinese CPI Data (1986-2025)
 
 Annual Consumer Price Index for China, sourced from the World Bank
 Development Indicators (indicator: FP.CPI.TOTL). Rescaled so that 2020 =
@@ -12,7 +12,7 @@ cny_cpi
 
 ## Format
 
-A data frame with 39 rows and 2 columns:
+A data frame with 40 rows and 2 columns:
 
 - year:
 

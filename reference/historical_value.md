@@ -54,9 +54,9 @@ Other CPI adjustment:
 ``` r
 # What would £100 today have been worth in 1963?
 historical_value(100, 1963, "GBP")
-#> [1] 4.68
+#> [1] 4.5
 
 # What would USD 500 in 2020 have been worth in 1980?
 historical_value(500, 1980, "USD", from_year = 2020)
-#> [1] 159.2
+#> [1] 159.21
 ```

@@ -75,9 +75,9 @@ Other GDP deflator adjustment:
 ``` r
 # Adjust UK GDP from 1990 to today using GDP deflator
 adjust_real(500000, 1990, "GBP")
-#> [1] 1214416
+#> [1] 1263092
 
 # Compare US government spending in 2000 vs 2020 terms
 adjust_real(1000000, 2000, "USD", to_year = 2020)
-#> [1] 1428890
+#> [1] 1449040
 ```

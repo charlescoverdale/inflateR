@@ -95,15 +95,15 @@ latest available year in the data.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># What is £12 from 1963 worth today?</span></span></span>
 <span class="r-in"><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"GBP"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 256.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 266.38</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># What is AUD 50 from 1980 worth in 2000?</span></span></span>
 <span class="r-in"><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="fl">50</span>, <span class="fl">1980</span>, <span class="st">"AUD"</span>, to_year <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 135.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 135.63</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Full precision</span></span></span>
 <span class="r-in"><span><span class="fu">adjust_inflation</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2000</span>, <span class="st">"USD"</span>, to_year <span class="op">=</span> <span class="fl">2020</span>, round <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 150.3081</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 150.2968</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

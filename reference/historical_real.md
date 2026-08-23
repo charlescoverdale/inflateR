@@ -61,9 +61,9 @@ Other GDP deflator adjustment:
 ``` r
 # What would UK GDP of £2 trillion today have been in 1990 terms?
 historical_real(2e12, 1990, "GBP")
-#> [1] 823440738647
+#> [1] 791708201624
 
 # What would USD 1 trillion in 2020 have been worth in 2000?
 historical_real(1e12, 2000, "USD", from_year = 2020)
-#> [1] 6.99844e+11
+#> [1] 6.90112e+11
 ```

@@ -241,23 +241,24 @@
 <code class="sourceCode R"><span><span class="co"># See all supported currencies</span></span>
 <span><span class="fu"><a href="reference/list_currencies.html">list_currencies</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    currency                      country cpi_start cpi_end deflator_start deflator_end</span></span>
-<span><span class="co">#&gt; 1       GBP               United Kingdom      1960    2024           1960         2024</span></span>
-<span><span class="co">#&gt; 2       AUD                    Australia      1960    2024           1960         2024</span></span>
+<span><span class="co">#&gt; 1       GBP               United Kingdom      1960    2025           1960         2025</span></span>
+<span><span class="co">#&gt; 2       AUD                    Australia      1960    2025           1960         2025</span></span>
 <span><span class="co">#&gt; ...</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="country-names-work-too-case-insensitive">Country names work too (case-insensitive)<a class="anchor" aria-label="anchor" href="#country-names-work-too-case-insensitive"></a>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"Australia"</span><span class="op">)</span>   <span class="co">#&gt; 212.02</span></span>
-<span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"switzerland"</span><span class="op">)</span> <span class="co">#&gt; 47.93</span></span>
-<span><span class="fu"><a href="reference/adjust_real.html">adjust_real</a></span><span class="op">(</span><span class="fl">500e9</span>, <span class="fl">1990</span>, <span class="st">"United Kingdom"</span><span class="op">)</span> <span class="co">#&gt; 1214415929203</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"Australia"</span><span class="op">)</span>   <span class="co">#&gt; 218.09</span></span>
+<span><span class="fu"><a href="reference/adjust_inflation.html">adjust_inflation</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1963</span>, <span class="st">"switzerland"</span><span class="op">)</span> <span class="co">#&gt; 48</span></span>
+<span><span class="fu"><a href="reference/adjust_real.html">adjust_real</a></span><span class="op">(</span><span class="fl">500e9</span>, <span class="fl">1990</span>, <span class="st">"United Kingdom"</span><span class="op">)</span> <span class="co">#&gt; 1263091626371</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
 <p>All data is sourced from the <a href="https://data.worldbank.org/" class="external-link">World Bank Development Indicators</a> and bundled inside the package. All indices are rescaled so that 2020 = 100.</p>
+<p>Coverage is not uniform at the recent end. Every series runs to 2025 except US CPI, which the World Bank has not yet published beyond 2024, so <code><a href="reference/adjust_inflation.html">adjust_inflation()</a></code> with <code>currency = "USD"</code> rejects a 2025 target year and names 2024 as the limit. The US GDP deflator does reach 2025, so <code><a href="reference/adjust_real.html">adjust_real()</a></code> is unaffected. Brazil starts at 1990: rebasing to 2020 = 100 pushes the hyperinflation years before that below the resolution of the stored index, and those years are dropped rather than shipped as zeros.</p>
 <div class="section level3">
 <h3 id="cpi-datasets-indicator-fpcpitotl">CPI datasets (indicator: <code>FP.CPI.TOTL</code>)<a class="anchor" aria-label="anchor" href="#cpi-datasets-indicator-fpcpitotl"></a>
 </h3>
@@ -271,12 +272,12 @@
 <tr>
 <td><code>uk_cpi</code></td>
 <td>GBP</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>aud_cpi</code></td>
 <td>AUD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>usd_cpi</code></td>
@@ -286,52 +287,52 @@
 <tr>
 <td><code>eur_cpi</code></td>
 <td>EUR</td>
-<td>1960–2024 (Germany proxy)</td>
+<td>1960–2025 (Germany proxy)</td>
 </tr>
 <tr>
 <td><code>cad_cpi</code></td>
 <td>CAD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>jpy_cpi</code></td>
 <td>JPY</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>cny_cpi</code></td>
 <td>CNY</td>
-<td>1986–2024</td>
+<td>1986–2025</td>
 </tr>
 <tr>
 <td><code>chf_cpi</code></td>
 <td>CHF</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>nzd_cpi</code></td>
 <td>NZD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>inr_cpi</code></td>
 <td>INR</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>krw_cpi</code></td>
 <td>KRW</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>brl_cpi</code></td>
 <td>BRL</td>
-<td>1980–2024</td>
+<td>1990–2025</td>
 </tr>
 <tr>
 <td><code>nok_cpi</code></td>
 <td>NOK</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 </tbody>
 </table>
@@ -349,67 +350,67 @@
 <tr>
 <td><code>uk_gdp_def</code></td>
 <td>GBP</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>aud_gdp_def</code></td>
 <td>AUD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>usd_gdp_def</code></td>
 <td>USD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>eur_gdp_def</code></td>
 <td>EUR</td>
-<td>1960–2024 (Germany proxy)</td>
+<td>1960–2025 (Germany proxy)</td>
 </tr>
 <tr>
 <td><code>cad_gdp_def</code></td>
 <td>CAD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>jpy_gdp_def</code></td>
 <td>JPY</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>cny_gdp_def</code></td>
 <td>CNY</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>chf_gdp_def</code></td>
 <td>CHF</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>nzd_gdp_def</code></td>
 <td>NZD</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>inr_gdp_def</code></td>
 <td>INR</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>krw_gdp_def</code></td>
 <td>KRW</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 <tr>
 <td><code>brl_gdp_def</code></td>
 <td>BRL</td>
-<td>1960–2024</td>
+<td>1990–2025</td>
 </tr>
 <tr>
 <td><code>nok_gdp_def</code></td>
 <td>NOK</td>
-<td>1960–2024</td>
+<td>1960–2025</td>
 </tr>
 </tbody>
 </table>

@@ -1,4 +1,4 @@
-# Euro Area GDP Deflator Data (1960-2024)
+# Euro Area GDP Deflator Data (1960-2025)
 
 Annual GDP deflator for Germany, used as a proxy for the Euro (EUR).
 Sourced from the World Bank Development Indicators (indicator:
@@ -12,7 +12,7 @@ eur_gdp_def
 
 ## Format
 
-A data frame with 65 rows and 2 columns:
+A data frame with 66 rows and 2 columns:
 
 - year:
 

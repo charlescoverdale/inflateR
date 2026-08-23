@@ -1,4 +1,4 @@
-# UK CPI Data (1960-2024)
+# UK CPI Data (1960-2025)
 
 Annual Consumer Price Index for the United Kingdom, sourced from the
 World Bank Development Indicators (indicator: FP.CPI.TOTL). Rescaled so
@@ -12,7 +12,7 @@ uk_cpi
 
 ## Format
 
-A data frame with 65 rows and 2 columns:
+A data frame with 66 rows and 2 columns:
 
 - year:
 

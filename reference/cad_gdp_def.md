@@ -1,4 +1,4 @@
-# Canadian GDP Deflator Data (1960-2024)
+# Canadian GDP Deflator Data (1960-2025)
 
 Annual GDP deflator for Canada, sourced from the World Bank Development
 Indicators (indicator: NY.GDP.DEFL.ZS). Rescaled so that 2020 = 100.
@@ -11,7 +11,7 @@ cad_gdp_def
 
 ## Format
 
-A data frame with 65 rows and 2 columns:
+A data frame with 66 rows and 2 columns:
 
 - year:
 

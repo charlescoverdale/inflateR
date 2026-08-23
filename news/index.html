@@ -34,6 +34,29 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="inflater-020">inflateR 0.2.0<a class="anchor" aria-label="anchor" href="#inflater-020"></a></h2>
+<div class="section level3">
+<h3 id="bundled-data-now-runs-to-0-2-0">Bundled data now runs to 2025<a class="anchor" aria-label="anchor" href="#bundled-data-now-runs-to-0-2-0"></a></h3>
+<p>Refreshed from the World Bank Development Indicators. Every series gains 2025 except US CPI, which the World Bank has not yet published beyond 2024. The US GDP deflator does reach 2025.</p>
+<p><strong>Results will change.</strong> Two separate reasons:</p>
+<ul><li>Any call that does not name a <code>to_year</code> defaults to the latest year available, which has moved from 2024 to 2025. For example <code>adjust_inflation(12, 1963, "Australia")</code> returned 212.02 and now returns 218.09. Pass an explicit <code>to_year</code> if you need the old answer.</li>
+<li>The World Bank revised history for several GDP deflator series. The largest is CHF, where 42 years move by a median of 2.4% and up to 13.8%. USD moves by about 1.4% across 60 years, and JPY, NOK, NZD and INR move by smaller amounts. CPI series are essentially unrevised.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="brazil-now-starts-at-not-0-2-0">Brazil now starts at 1990, not 1980<a class="anchor" aria-label="anchor" href="#brazil-now-starts-at-not-0-2-0"></a></h3>
+<p>Rebasing to 2020 = 100 pushes Brazil’s hyperinflation years so far below the base that four decimal places cannot represent them, and they were being stored as exactly zero. A zero index divides, so <code>adjust_inflation(100, 1985, 2020, currency = "BRL")</code> returned <code>Inf</code> rather than refusing the request. Those years are now dropped, so the ordinary coverage check rejects them with a message naming the real range. 40 stored values were affected across <code>brl_cpi</code> and <code>brl_gdp_def</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="fixes-to-data-rawcpi_datar-0-2-0">Fixes to data-raw/cpi_data.R<a class="anchor" aria-label="anchor" href="#fixes-to-data-rawcpi_datar-0-2-0"></a></h3>
+<ul><li>The script rounded the rebased index to 2 decimal places, but the shipped data carries 4: 1078 of 1644 values had more precision than re-running the script would have produced. Anyone refreshing the data would have silently degraded it, and flattened Brazil’s early years to zero. Now rounds to 4.</li>
+<li>The end year was hardcoded to 2024 in two places. It now derives from the system date, so the script does not need editing at each World Bank release.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="test-fixes-surfaced-by-the-refresh-0-2-0">Test fixes surfaced by the refresh<a class="anchor" aria-label="anchor" href="#test-fixes-surfaced-by-the-refresh-0-2-0"></a></h3>
+<ul><li><p>Three “known value” tests hardcoded index constants (5.71, 66.53, 69.9844) and so failed the moment the World Bank revised history. They now read the index from the bundled data, which tests the arithmetic without turning every refresh into a failure that says nothing about the code.</p></li>
+<li><p>Three vectorisation tests asserted <code>result[2] == result[1] * 2</code> on rounded output. With per-element rounding <code>round(2x, 2)</code> need not equal <code>2 * round(x, 2)</code>, so the assertion was unsound and happened to hold only for the old data. They now pass <code>round = NULL</code>; the <code>round</code> argument keeps its own separate tests.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-functionality-0-2-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-0-2-0"></a></h3>
 <ul><li>Added <code><a href="../reference/inflation_rate.html">inflation_rate()</a></code> for calculating cumulative or annualised inflation rates between any two years</li>
 <li>Added <code><a href="../reference/list_currencies.html">list_currencies()</a></code> to show all supported currencies and their data coverage</li>
 <li>Added <code>round</code> parameter to all four adjustment functions (<code>round = 2</code> default preserves backward compatibility; use <code>round = NULL</code> for full precision)</li>
@@ -42,6 +65,7 @@
 <li>Added comprehensive test suite (80+ tests covering all functions, all 13 currencies, error handling, inverse properties, and vectorisation)</li>
 <li>Updated <code>data-raw/cpi_data.R</code> to cover all 13 currencies and both CPI and GDP deflator series in a single script</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.3" id="inflater-013">inflateR 0.1.3<a class="anchor" aria-label="anchor" href="#inflater-013"></a></h2><p class="text-muted">CRAN release: 2026-03-04</p>
 <ul><li>Added 5 new currencies: NZD (New Zealand), INR (India), KRW (South Korea), BRL (Brazil), NOK (Norway)</li>
