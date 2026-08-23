@@ -1,0 +1,384 @@
+---
+title: "inflateR"
+subtitle: "Historical currency adjustment in R"
+author: "Charles Coverdale"
+institute: "London, United Kingdom"
+date: "2026-04-01"
+date-format: "MMMM YYYY"
+format:
+  beamer:
+    aspectratio: 169
+    fontsize: 11pt
+    navigation: empty
+    theme: default
+    colortheme: default
+    fonttheme: default
+    pdf-engine: xelatex
+    include-in-header: header.tex
+    slide-level: 2
+    keep-tex: false
+    fig-align: center
+    classoption:
+      - t
+---
+
+
+## The question
+
+\vspace{1.5em}
+
+\begin{center}
+\Large\bfseries\color{econblue}
+What is an amount in one year's money\\[0.1em]
+worth in another year's money?
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+\normalsize\itshape
+Thirteen currencies, two inflation measures, one tidy interface.
+\end{center}
+
+::: notes
+Open with the core user question, not the package. Historical price
+adjustment is a routine operation across journalism, economic history,
+accounting, and everyday writing. The R ecosystem has delivered it
+piecemeal. 60 seconds.
+:::
+
+
+## Why it matters
+
+- **Journalism**: what is that 1970 salary worth in today's money?
+- **Economic history**: deflating nineteenth- and twentieth-century wages to a common unit
+- **Accounting and compliance**: revaluing historical assets, legacy contracts, and long-dated liabilities
+- **Public policy**: comparing government spending, wages, and benefits across decades
+
+::: notes
+Four distinct stakeholder groups, four live use cases. Journalism and
+accounting dominate volume; economic history dominates depth. Flag
+the 2021 to 2023 inflation spike as fresh demand for all four. 60 seconds.
+:::
+
+
+
+## What is already out there
+
+- **`priceR`**: pricing-related toolkit with some inflation helpers, broader scope\footnote{\scriptsize Condamin (2022), \textit{priceR: Economics and Pricing Tools}, R package on CRAN.}
+- **`quantmod`**: pulls CPI series from FRED but leaves adjustment to the user
+- **`WDI`**: fetches World Bank series but does not adjust values directly
+- **Bespoke spreadsheets**: ad hoc, single-currency, hard to audit
+
+\vspace{0.5em}
+
+The gap: **no purpose-built tool that bundles the canonical indices and exposes a symmetric pair of adjustment functions**.
+
+::: notes
+Respect existing packages. priceR is the closest neighbour but has a
+different primary focus. quantmod and WDI are data pipes, not
+adjusters. inflateR is the purpose-built tool. 45 seconds.
+:::
+
+
+
+## What inflateR offers
+
+1. **Coverage**: thirteen currencies (GBP, USD, AUD, EUR, CAD, JPY, CNY, CHF, NZD, INR, KRW, BRL, NOK), 1960 to 2024
+2. **Interface**: four adjustment functions in two symmetric pairs, one cumulative/annualised rate helper, one metadata helper
+3. **Provenance**: zero runtime dependencies, no API key, no network access, World Bank WDI data bundled
+
+\vspace{0.5em}
+
+On CRAN since March 2026. CPI and GDP deflator both exposed\footnote{\scriptsize World Bank Development Indicators, series \texttt{FP.CPI.TOTL} and \texttt{NY.GDP.DEFL.ZS}, rescaled to 2020 = 100.}.
+
+::: notes
+Three bullets, three selling points. The zero-runtime-dependency claim
+is the distinguishing feature: it means the package works in airgapped
+environments, in CI pipelines, and in courses where students cannot
+hit external APIs. 45 seconds.
+:::
+
+
+
+## Multipliers: GBP, USD, AUD, EUR, JPY to 2024
+
+```{=latex}
+\begin{center}
+\includegraphics[height=0.65\textheight]{figures/fig1_multipliers.pdf}
+\end{center}
+
+\vspace{-0.4em}
+
+{\footnotesize\itshape Multiplier to convert one unit of historical currency into 2024 money, five currencies, 1960 to 2024.}
+```
+
+::: notes
+First view. Five currencies, one function call. Point at the 1970s
+spike across GBP/AUD and JPY's flat post-1990 line. 25 seconds.
+:::
+
+
+## Rolling 10-year annualised inflation
+
+```{=latex}
+\begin{center}
+\includegraphics[height=0.65\textheight]{figures/fig2_rolling.pdf}
+\end{center}
+
+\vspace{-0.4em}
+
+{\footnotesize\itshape Rolling 10-year annualised CPI inflation, five currencies, 1970 to 2024.}
+```
+
+::: notes
+Second view. Rolling annualised rates. Call out the Great Moderation
+(1990 to 2020) and the 2021 to 2023 re-acceleration. 25 seconds.
+:::
+
+
+## CPI versus GDP deflator for GBP
+
+```{=latex}
+\begin{center}
+\includegraphics[height=0.65\textheight]{figures/fig3_cpi_gdp.pdf}
+\end{center}
+
+\vspace{-0.4em}
+
+{\footnotesize\itshape Two measures of GBP inflation, 1970 to 2024, rebased to 2020 = 100.}
+```
+
+::: notes
+Third view. Two measures, one chart. The CPI vs deflator wedge is
+biggest in energy-shock years. That is why the package exposes both
+rather than picking one. 25 seconds.
+:::
+
+
+## Coverage: thirteen currencies, six decades
+
+```{=latex}
+\begin{center}
+\includegraphics[height=0.65\textheight]{figures/fig4_coverage.pdf}
+\end{center}
+
+\vspace{-0.4em}
+
+{\footnotesize\itshape Data availability heatmap, thirteen currencies, 1960s to 2020s.}
+```
+
+::: notes
+Fourth view. Coverage map. Flag the EUR pre-1999 synthesis via ECU
+and the thin pre-1970 coverage for emerging currencies. The variety
+across four views is the pitch. 25 seconds.
+:::
+
+
+## Central formulas
+
+\vspace{0.3em}
+
+\textbf{Forward adjustment} (historical to present):
+\begin{equation}
+\mathrm{adjust\_inflation}(a,\ s \to t) = a \cdot \frac{I_t}{I_s}
+\end{equation}
+
+\textbf{Cumulative inflation rate} between years $s$ and $t$:
+\begin{equation}
+\pi_{s \to t} = \frac{I_t}{I_s} - 1
+\end{equation}
+
+\textbf{Annualised inflation rate} for $n = t - s$ years:
+\begin{equation}
+\pi_{\mathrm{ann}} = \left(\frac{I_t}{I_s}\right)^{1/n} - 1
+\end{equation}
+
+::: notes
+Three equations. Do not read them aloud. Point at the simple ratio in
+the forward adjustment and the geometric root in the annualised rate.
+The reverse adjustment is the multiplicative inverse: that symmetry is
+why the package exposes two explicit function pairs rather than one.
+60 seconds.
+:::
+
+
+
+## Package at a glance
+
+::: columns
+::: {.column width="58%"}
+
+Function families:
+
+- **CPI adjustment**: `adjust_inflation()`, `historical_value()`
+- **GDP deflator adjustment**: `adjust_real()`, `historical_real()`
+- **Rates**: `inflation_rate()` (cumulative or annualised)
+- **Metadata**: `list_currencies()`
+
+Deps: base R only. R $\geq$ 3.5.0. No API key, no network.
+
+:::
+::: {.column width="40%"}
+
+\begin{block}{Direction-measure matrix}
+Two directions (forward and reverse) times two measures (CPI and deflator) = four core functions.
+
+Every function accepts ISO code or country name.
+\end{block}
+
+:::
+:::
+
+::: notes
+Two columns. Left lists the function families. Right highlights the
+two-by-two matrix in the blue block. Zero-dependency claim sits in the
+deps line, understated but load-bearing. 45 seconds.
+:::
+
+
+
+## Minimal working example
+
+```r
+library(inflateR)
+
+# Forward: 1990 GBP 30,000 salary in today's money
+adjust_inflation(30000, from_year = 1990, currency = "GBP")
+
+# Reverse: today's GBP 50,000 in 1990 equivalent
+historical_value(50000, to_year = 1990, currency = "GBP")
+
+# Rate: annualised CPI inflation for GBP, 1970 to 2024
+inflation_rate("GBP", from_year = 1970, to_year = 2024,
+               annualised = TRUE)
+```
+
+\footnotesize
+Every function is vectorised over `amount`, so bulk conversion of a
+column of historical prices requires no loop.
+
+::: notes
+Live-read the code. Three calls, three numeric returns, no
+data-wrangling. That is the entire user experience. Point at the
+symmetry between lines two and three: same pair, opposite direction.
+60 seconds.
+:::
+
+
+
+## UK real median weekly earnings, 1980 to 2024
+
+**Data.** ONS Annual Survey of Hours and Earnings (ASHE). Median gross weekly pay for full-time employees, 1980 to 2024 as published.
+
+**Question.** *Have UK real wages stagnated since the 2010 peak?*
+
+**Why this case.** Canonical UK applied-labour question over the past fifteen years\footnote{\scriptsize Blundell, Joyce, Keiller \& Ziliak (2023), \textit{The dynamics of real wages in the UK}, and Giupponi \& Machin (2023) on wage stagnation.}. Nominal series hides the phenomenon entirely; CPI deflation via a single function call reveals it. Reproducible with one line of `adjust_inflation()`.
+
+::: notes
+Setup only. No results on this slide. Point forward: the hero figure
+is next. Name the data source, the period, the canonical question, and
+the role of the package. The headline number comes on the next slide.
+45 seconds.
+:::
+
+
+
+## UK real wages peaked in 2010, down 5.6 per cent since
+
+```{=latex}
+\begin{center}
+\includegraphics[height=0.68\textheight]{figures/hero_figure.pdf}
+\end{center}
+
+\vspace{-0.4em}
+
+{\footnotesize\itshape UK median weekly earnings, nominal (grey dashed) and real 2024 GBP (blue solid), 1980 to 2024. Source: ONS ASHE, deflated via \texttt{adjust\_inflation()}.}
+```
+
+::: notes
+The money slide. Ninety seconds. Walk the audience through each
+series: nominal wages grew twelve per cent between 2010 and 2024, but
+real wages fell by nearly six per cent. The nominal view hides the
+stagnation entirely. The package flips between the two with a single
+function call. Pause before moving on.
+:::
+
+
+
+## Purchasing power has collapsed for GBP, USD, and JPY
+
+```{=latex}
+\begin{center}
+\includegraphics[height=0.68\textheight]{figures/fig5_power.pdf}
+\end{center}
+
+\vspace{-0.5em}
+
+{\footnotesize\itshape Purchasing power of 1 unit of currency relative to 1970, 1970 to 2024. GBP 7 per cent, USD 13 per cent, JPY 30 per cent. Computed via inverse \texttt{adjust\_inflation()}.}
+```
+
+::: notes
+One operational example of the inverse call. Purchasing-power erosion
+is a more intuitive framing for lay audiences than a multiplier.
+Point at the GBP endpoint: seven per cent means GBP 1 in 1970 buys
+what seven pence does today. JPY's flatter path is the Japan
+deflation story. 60 seconds.
+:::
+
+
+## What inflateR does not yet do
+
+- **World Bank WDI only**: native methodologies (ONS RPI, BLS chained CPI) differ modestly
+- **No PPP conversion**: cross-country comparisons at a point in time need a separate step
+- **Annual data only**: no monthly or quarterly adjustment out of the box
+- **1960 start**: pre-1960 history requires users to supply an alternative series
+
+\vspace{0.5em}
+
+**v0.2.0 roadmap**: expanded currency coverage, optional PPP-adjusted cross-country conversion, higher-frequency data, and an `inflation_chart()` helper for plot output.
+
+::: notes
+Honest limitations. Name each one. The WDI choice is deliberate (it
+buys cross-country comparability) but the trade-off is methodology
+purity against a native calculator. Frame v0.2.0 as a commitment. 45
+seconds.
+:::
+
+
+
+## Contact, code, paper
+
+::: columns
+::: {.column width="62%"}
+
+```{=latex}
+{\large\bfseries Charles Coverdale\par}
+\vspace{0.5em}
+\texttt{charles.f.coverdale@gmail.com}\\
+\texttt{github.com/charlescoverdale/inflateR}\\
+\texttt{charlescoverdale.github.io/publications}
+\vspace{0.9em}
+
+\textbf{Acknowledgements.} Data: World Bank Development Indicators (open-data license). Thanks to CRAN maintainers and reviewers of \emph{inflateR} v0.1.0 through v0.1.3.
+```
+
+:::
+::: {.column width="35%"}
+
+\begin{center}
+\includegraphics[width=0.85\linewidth]{figures/qrcode_paper.png}
+
+\vspace{0.3em}
+
+{\footnotesize\itshape Scan for paper PDF}
+\end{center}
+
+:::
+:::
+
+::: notes
+Close cleanly. Name, email, GitHub, publications. Point at the QR
+code. Acknowledge the World Bank and CRAN maintainers. Open for
+questions.
+:::
