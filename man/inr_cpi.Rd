@@ -3,9 +3,9 @@
 \docType{data}
 \name{inr_cpi}
 \alias{inr_cpi}
-\title{Indian CPI Data (1960-2024)}
+\title{Indian CPI Data (1960-2025)}
 \format{
-A data frame with 65 rows and 2 columns:
+A data frame with 66 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{CPI index value (numeric, base 2020 = 100)}

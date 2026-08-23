@@ -9,15 +9,19 @@ test_that("adjust_inflation works for all currencies", {
   }
 })
 
+# The index values are read from the bundled data rather than hardcoded. The
+# World Bank revises history at each release, so a literal constant here turns
+# every data refresh into a test failure that says nothing about the code.
 test_that("adjust_inflation gives known value for GBP", {
-  # £12 in 1963 → 2020: 12 * (100 / 5.71)
+  idx <- uk_cpi$index[uk_cpi$year == 1963]
   result <- adjust_inflation(12, 1963, "GBP", to_year = 2020)
-  expect_equal(result, round(12 * (100 / 5.71), 2))
+  expect_equal(result, round(12 * (100 / idx), 2))
 })
 
 test_that("adjust_inflation gives known value for USD", {
+  idx <- usd_cpi$index[usd_cpi$year == 2000]
   result <- adjust_inflation(100, 2000, "USD", to_year = 2020)
-  expect_equal(result, round(100 * (100 / 66.53), 2))
+  expect_equal(result, round(100 * (100 / idx), 2))
 })
 
 test_that("adjust_inflation accepts country names (case-insensitive)", {
@@ -83,7 +87,11 @@ test_that("from_year == to_year returns original amount", {
 })
 
 test_that("adjust_inflation is vectorised over amount", {
-  result <- adjust_inflation(c(100, 200), 2000, "GBP", to_year = 2020)
+  # round = NULL: with per-element rounding, round(2x, 2) need not equal
+  # 2 * round(x, 2), so the proportionality check is about vectorisation,
+  # not about rounding. The round argument has its own test below.
+  result <- adjust_inflation(c(100, 200), 2000, "GBP", to_year = 2020,
+                             round = NULL)
   expect_length(result, 2)
   expect_equal(result[2], result[1] * 2)
 })

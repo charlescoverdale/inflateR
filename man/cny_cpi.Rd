@@ -3,9 +3,9 @@
 \docType{data}
 \name{cny_cpi}
 \alias{cny_cpi}
-\title{Chinese CPI Data (1986-2024)}
+\title{Chinese CPI Data (1986-2025)}
 \format{
-A data frame with 39 rows and 2 columns:
+A data frame with 40 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{CPI index value (numeric, base 2020 = 100)}

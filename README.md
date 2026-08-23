@@ -163,58 +163,60 @@ adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
 # See all supported currencies
 list_currencies()
 #>    currency                      country cpi_start cpi_end deflator_start deflator_end
-#> 1       GBP               United Kingdom      1960    2024           1960         2024
-#> 2       AUD                    Australia      1960    2024           1960         2024
+#> 1       GBP               United Kingdom      1960    2025           1960         2025
+#> 2       AUD                    Australia      1960    2025           1960         2025
 #> ...
 ```
 
 ### Country names work too (case-insensitive)
 
 ```r
-adjust_inflation(12, 1963, "Australia")   #> 212.02
-adjust_inflation(12, 1963, "switzerland") #> 47.93
-adjust_real(500e9, 1990, "United Kingdom") #> 1214415929203
+adjust_inflation(12, 1963, "Australia")   #> 218.09
+adjust_inflation(12, 1963, "switzerland") #> 48
+adjust_real(500e9, 1990, "United Kingdom") #> 1263091626371
 ```
 
 ## Data
 
 All data is sourced from the [World Bank Development Indicators](https://data.worldbank.org/) and bundled inside the package. All indices are rescaled so that 2020 = 100.
 
+Coverage is not uniform at the recent end. Every series runs to 2025 except US CPI, which the World Bank has not yet published beyond 2024, so `adjust_inflation()` with `currency = "USD"` rejects a 2025 target year and names 2024 as the limit. The US GDP deflator does reach 2025, so `adjust_real()` is unaffected. Brazil starts at 1990: rebasing to 2020 = 100 pushes the hyperinflation years before that below the resolution of the stored index, and those years are dropped rather than shipped as zeros.
+
 ### CPI datasets (indicator: `FP.CPI.TOTL`)
 
 | Dataset | Currency | Coverage |
 |---|---|---|
-| `uk_cpi` | GBP | 1960–2024 |
-| `aud_cpi` | AUD | 1960–2024 |
+| `uk_cpi` | GBP | 1960–2025 |
+| `aud_cpi` | AUD | 1960–2025 |
 | `usd_cpi` | USD | 1960–2024 |
-| `eur_cpi` | EUR | 1960–2024 (Germany proxy) |
-| `cad_cpi` | CAD | 1960–2024 |
-| `jpy_cpi` | JPY | 1960–2024 |
-| `cny_cpi` | CNY | 1986–2024 |
-| `chf_cpi` | CHF | 1960–2024 |
-| `nzd_cpi` | NZD | 1960–2024 |
-| `inr_cpi` | INR | 1960–2024 |
-| `krw_cpi` | KRW | 1960–2024 |
-| `brl_cpi` | BRL | 1980–2024 |
-| `nok_cpi` | NOK | 1960–2024 |
+| `eur_cpi` | EUR | 1960–2025 (Germany proxy) |
+| `cad_cpi` | CAD | 1960–2025 |
+| `jpy_cpi` | JPY | 1960–2025 |
+| `cny_cpi` | CNY | 1986–2025 |
+| `chf_cpi` | CHF | 1960–2025 |
+| `nzd_cpi` | NZD | 1960–2025 |
+| `inr_cpi` | INR | 1960–2025 |
+| `krw_cpi` | KRW | 1960–2025 |
+| `brl_cpi` | BRL | 1990–2025 |
+| `nok_cpi` | NOK | 1960–2025 |
 
 ### GDP deflator datasets (indicator: `NY.GDP.DEFL.ZS`)
 
 | Dataset | Currency | Coverage |
 |---|---|---|
-| `uk_gdp_def` | GBP | 1960–2024 |
-| `aud_gdp_def` | AUD | 1960–2024 |
-| `usd_gdp_def` | USD | 1960–2024 |
-| `eur_gdp_def` | EUR | 1960–2024 (Germany proxy) |
-| `cad_gdp_def` | CAD | 1960–2024 |
-| `jpy_gdp_def` | JPY | 1960–2024 |
-| `cny_gdp_def` | CNY | 1960–2024 |
-| `chf_gdp_def` | CHF | 1960–2024 |
-| `nzd_gdp_def` | NZD | 1960–2024 |
-| `inr_gdp_def` | INR | 1960–2024 |
-| `krw_gdp_def` | KRW | 1960–2024 |
-| `brl_gdp_def` | BRL | 1960–2024 |
-| `nok_gdp_def` | NOK | 1960–2024 |
+| `uk_gdp_def` | GBP | 1960–2025 |
+| `aud_gdp_def` | AUD | 1960–2025 |
+| `usd_gdp_def` | USD | 1960–2025 |
+| `eur_gdp_def` | EUR | 1960–2025 (Germany proxy) |
+| `cad_gdp_def` | CAD | 1960–2025 |
+| `jpy_gdp_def` | JPY | 1960–2025 |
+| `cny_gdp_def` | CNY | 1960–2025 |
+| `chf_gdp_def` | CHF | 1960–2025 |
+| `nzd_gdp_def` | NZD | 1960–2025 |
+| `inr_gdp_def` | INR | 1960–2025 |
+| `krw_gdp_def` | KRW | 1960–2025 |
+| `brl_gdp_def` | BRL | 1990–2025 |
+| `nok_gdp_def` | NOK | 1960–2025 |
 
 ### Macroeconomic quirks
 

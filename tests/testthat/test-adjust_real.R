@@ -9,9 +9,11 @@ test_that("adjust_real works for all currencies", {
   }
 })
 
+# Index read from the bundled data, not hardcoded; see test-adjust.R.
 test_that("adjust_real gives known value for USD", {
+  idx <- usd_gdp_def$index[usd_gdp_def$year == 2000]
   result <- adjust_real(100, 2000, "USD", to_year = 2020)
-  expect_equal(result, round(100 * (100 / 69.9844), 2))
+  expect_equal(result, round(100 * (100 / idx), 2))
 })
 
 test_that("adjust_real accepts country names", {
@@ -35,7 +37,9 @@ test_that("from_year == to_year returns original amount", {
 })
 
 test_that("adjust_real is vectorised over amount", {
-  result <- adjust_real(c(100, 200, 300), 2000, "USD", to_year = 2020)
+  # round = NULL, see the note in test-adjust.R
+  result <- adjust_real(c(100, 200, 300), 2000, "USD", to_year = 2020,
+                        round = NULL)
   expect_length(result, 3)
   expect_equal(result[2], result[1] * 2)
 })

@@ -37,7 +37,9 @@ test_that("historical_value is the inverse of adjust_inflation", {
 })
 
 test_that("historical_value is vectorised over amount", {
-  result <- historical_value(c(100, 200), 2000, "GBP", from_year = 2020)
+  # round = NULL, see the note in test-adjust.R
+  result <- historical_value(c(100, 200), 2000, "GBP", from_year = 2020,
+                             round = NULL)
   expect_length(result, 2)
   expect_equal(result[2], result[1] * 2)
 })

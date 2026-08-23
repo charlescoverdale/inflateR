@@ -3,9 +3,9 @@
 \docType{data}
 \name{brl_gdp_def}
 \alias{brl_gdp_def}
-\title{Brazilian GDP Deflator Data (1960-2024)}
+\title{Brazilian GDP Deflator Data (1990-2025)}
 \format{
-A data frame with 65 rows and 2 columns:
+A data frame with 36 rows and 2 columns:
 \describe{
 \item{year}{Calendar year (integer)}
 \item{index}{GDP deflator index value (numeric, base 2020 = 100)}

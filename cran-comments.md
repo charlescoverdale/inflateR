@@ -36,11 +36,38 @@ The local run emits "checking for future file timestamps: unable to
 verify current time", which is the checking machine being unable to
 reach worldclockapi.com rather than a package fault.
 
-## Notes on bundled data
+## Bundled data refreshed, and results change
 
-The package bundles World Bank CPI (FP.CPI.TOTL) and GDP deflator
-(NY.GDP.DEFL.ZS) series. The current vintage runs from 1960 to 2024,
-except BRL CPI which begins in 1980.
+The bundled World Bank CPI (FP.CPI.TOTL) and GDP deflator
+(NY.GDP.DEFL.ZS) series have been refreshed. Every series now runs to
+2025 except US CPI, which the World Bank has not published beyond 2024.
+
+Numbers users get back will change, for two reasons, both documented in
+NEWS.md:
+
+* A call that does not name a `to_year` targets the latest year
+  available, which has moved from 2024 to 2025.
+* The World Bank revised history for several GDP deflator series. CHF is
+  the largest, 42 years moving by a median of 2.4% and up to 13.8%. USD
+  moves about 1.4% across 60 years. CPI series are essentially
+  unrevised.
+
+## A bug fixed by the refresh
+
+Brazil's CPI and deflator series previously began in 1980 and 1960. Once
+rebased to 2020 = 100, the hyperinflation years fall below the
+resolution of the stored index and were held as exactly zero: 40 values
+across the two datasets. A zero index divides, so
+`adjust_inflation(100, 1985, 2020, currency = "BRL")` returned `Inf`
+rather than refusing the request. Those years are now dropped, both
+series begin in 1990, and the ordinary coverage check rejects an
+out-of-range year with a message naming the real range.
+
+The script that builds the data was rounding the rebased index to two
+decimal places while the shipped data carried four, so re-running it
+would have degraded 1078 of 1644 values and flattened Brazil's early
+years to zero. That is fixed, and its hardcoded end year now derives
+from the system date.
 
 ## Downstream dependencies
 
