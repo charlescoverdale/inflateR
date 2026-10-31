@@ -1,3 +1,24 @@
+# inflateR 0.2.1
+
+## US CPI now reaches 2025
+
+`adjust_inflation(..., "USD", to_year = 2025)` failed, and USD calls
+without a `to_year` stopped at 2024 while every other currency reached
+2025. The World Bank has not published a 2025 US CPI because the Bureau
+of Labor Statistics collected no October 2025 prices during the lapse in
+appropriations. BLS did publish the 2025 CPI-U annual average (from the
+eleven months collected), and the World Bank's US series is that same
+measure, so 2025 is chained on from it: 2025 = 2024 x 321.943 / 313.689.
+Years up to 2024 are unchanged.
+
+**Results change** for USD CPI calls without a `to_year`, which now
+default to 2025.
+
+## Data refresh
+
+Re-fetched from the World Bank (WDI updated 8 October 2026). The only
+revision is to Norwegian CPI before 2003, by at most 0.05%.
+
 # inflateR 0.2.0
 
 ## Bundled data now runs to 2025

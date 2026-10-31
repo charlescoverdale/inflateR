@@ -10,3 +10,5 @@
 ^\.github$
 ^llms.*\.txt$
 ^paper$
+^.*\.Rcheck$
+^.*\.tar\.gz$

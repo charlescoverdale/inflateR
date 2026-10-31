@@ -2,7 +2,7 @@
 
 > Convert historical monetary values into their present-day equivalents using bundled CPI (Consumer Price Index) and GDP deflator data sourced from the World Bank Development Indicators.
 
-- Version: 0.2.0
+- Version: 0.2.1
 - Install: `install.packages("inflateR")`
 - CRAN: https://CRAN.R-project.org/package=inflateR
 - GitHub: https://github.com/charlescoverdale/inflateR

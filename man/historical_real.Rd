@@ -46,7 +46,7 @@ historical_real(1e12, 2000, "USD", from_year = 2020)
 
 }
 \seealso{
-Other GDP deflator adjustment: 
-\code{\link{adjust_real}()}
+Other GDP deflator adjustment:
+\code{\link[=adjust_real]{adjust_real()}}
 }
 \concept{GDP deflator adjustment}

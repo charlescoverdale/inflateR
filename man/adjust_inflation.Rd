@@ -44,7 +44,7 @@ adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
 
 }
 \seealso{
-Other CPI adjustment: 
-\code{\link{historical_value}()}
+Other CPI adjustment:
+\code{\link[=historical_value]{historical_value()}}
 }
 \concept{CPI adjustment}

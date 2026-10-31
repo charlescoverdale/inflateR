@@ -84,9 +84,50 @@ process_country <- function(raw, iso, currency, col = "index_2010") {
   df
 }
 
+# The World Bank has no 2025 US CPI: BLS collected no October 2025 prices
+# during the lapse in appropriations, and the WDI series has not been
+# extended. BLS did publish the 2025 annual average of CPI-U (from the
+# eleven months collected), and the WDI US series is the CPI-U annual
+# average, so missing complete years are chained on from BLS. Each
+# appended year carries the BLS year-on-year change, so the WDI history is
+# untouched.
+extend_usd_from_bls <- function(df) {
+  last_complete <- as.integer(format(Sys.Date(), "%Y")) - 1L
+  if (max(df$year) >= last_complete) return(df)
+  body <- jsonlite::toJSON(list(
+    # An array, even for one series: BLS answers a scalar with HTTP 503.
+    seriesid = list("CUUR0000SA0"),
+    startyear = as.character(max(df$year)),
+    endyear = as.character(last_complete),
+    annualaverage = TRUE
+  ), auto_unbox = TRUE)
+  resp <- httr2::request("https://api.bls.gov/publicAPI/v1/timeseries/data/") |>
+    httr2::req_user_agent("inflateR data-raw (https://github.com/charlescoverdale/inflateR)") |>
+    httr2::req_body_raw(body, type = "application/json") |>
+    httr2::req_perform()
+  obs <- httr2::resp_body_json(resp)$Results$series[[1]]$data
+  ann <- Filter(function(o) o$period == "M13", obs)
+  avg <- stats::setNames(vapply(ann, function(o) as.numeric(o$value), numeric(1)),
+                         vapply(ann, function(o) o$year, character(1)))
+  for (yr in seq.int(max(df$year) + 1L, last_complete)) {
+    prev <- as.character(yr - 1L)
+    cur <- as.character(yr)
+    if (!all(c(prev, cur) %in% names(avg))) break
+    df <- rbind(df, data.frame(
+      year = yr,
+      index = round(df$index[df$year == yr - 1L] * avg[[cur]] / avg[[prev]], 4)
+    ))
+    message(sprintf("  USD: %d chained from BLS CPI-U annual average (%.3f / %.3f)",
+                    yr, avg[[cur]], avg[[prev]]))
+  }
+  rownames(df) <- NULL
+  df
+}
+
 for (i in seq_len(nrow(country_map))) {
   obj_name <- paste0(country_map$prefix[i], "_cpi")
   df <- process_country(raw_cpi, country_map$iso2c[i], country_map$currency[i])
+  if (country_map$currency[i] == "USD") df <- extend_usd_from_bls(df)
   assign(obj_name, df)
   save(list = obj_name, file = paste0("data/", obj_name, ".rda"))
 }
