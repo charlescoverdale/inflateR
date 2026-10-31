@@ -1,4 +1,4 @@
-# inflateR — full API reference
+# inflateR: full API reference
 
 > Convert historical monetary values into their present-day equivalents using bundled CPI (Consumer Price Index) and GDP deflator data sourced from the World Bank Development Indicators.
 
@@ -27,11 +27,11 @@ adjust_inflation(amount, from_year, currency, to_year = NULL, round = 2)
 
 **Arguments**
 
-- `amount` — Numeric (scalar or vector). The original monetary amount(s).
-- `from_year` — Integer. The year the amount is from.
-- `currency` — Character. A currency code or country name. Accepted codes: `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`, `"New Zealand"`, `"India"`, `"Norway"` (case-insensitive).
-- `to_year` — Integer. The target year to adjust to. Defaults to the latest available year in the data.
-- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+- `amount`: Numeric (scalar or vector). The original monetary amount(s).
+- `from_year`: Integer. The year the amount is from.
+- `currency`: Character. A currency code or country name. Accepted codes: `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`, `"New Zealand"`, `"India"`, `"Norway"` (case-insensitive).
+- `to_year`: Integer. The target year to adjust to. Defaults to the latest available year in the data.
+- `round`: Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
 
 **Returns**
 
@@ -66,11 +66,11 @@ adjust_real(amount, from_year, currency, to_year = NULL, round = 2)
 
 **Arguments**
 
-- `amount` — Numeric (scalar or vector). The original monetary amount(s).
-- `from_year` — Integer. The year the amount is from.
-- `currency` — Character. A currency code or country name. Accepted codes: `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`, `"Switzerland"` (case-insensitive).
-- `to_year` — Integer. The target year to adjust to. Defaults to the latest available year in the deflator series.
-- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+- `amount`: Numeric (scalar or vector). The original monetary amount(s).
+- `from_year`: Integer. The year the amount is from.
+- `currency`: Character. A currency code or country name. Accepted codes: `"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`. Country names are also accepted, e.g. `"Australia"`, `"United States"`, `"Japan"`, `"Switzerland"` (case-insensitive).
+- `to_year`: Integer. The target year to adjust to. Defaults to the latest available year in the deflator series.
+- `round`: Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
 
 **Returns**
 
@@ -102,11 +102,11 @@ historical_real(amount, to_year, currency, from_year = NULL, round = 2)
 
 **Arguments**
 
-- `amount` — Numeric (scalar or vector). The monetary amount(s) in the reference year.
-- `to_year` — Integer. The historical year to convert back to.
-- `currency` — Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive.
-- `from_year` — Integer. The year the amount is from. Defaults to the latest year available in the deflator series.
-- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+- `amount`: Numeric (scalar or vector). The monetary amount(s) in the reference year.
+- `to_year`: Integer. The historical year to convert back to.
+- `currency`: Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive.
+- `from_year`: Integer. The year the amount is from. Defaults to the latest year available in the deflator series.
+- `round`: Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
 
 **Returns**
 
@@ -138,11 +138,11 @@ historical_value(amount, to_year, currency, from_year = NULL, round = 2)
 
 **Arguments**
 
-- `amount` — Numeric (scalar or vector). The monetary amount(s) in the reference year.
-- `to_year` — Integer. The historical year to convert back to.
-- `currency` — Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive.
-- `from_year` — Integer. The year the amount is from. Defaults to the latest year available in the data.
-- `round` — Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
+- `amount`: Numeric (scalar or vector). The monetary amount(s) in the reference year.
+- `to_year`: Integer. The historical year to convert back to.
+- `currency`: Character. Currency code (`"GBP"`, `"AUD"`, `"USD"`, `"EUR"`, `"CAD"`, `"JPY"`, `"CNY"`, `"CHF"`, `"NZD"`, `"INR"`, `"KRW"`, `"BRL"`, `"NOK"`) or country name (`"Australia"`, `"United States"`, etc.) — case-insensitive.
+- `from_year`: Integer. The year the amount is from. Defaults to the latest year available in the data.
+- `round`: Integer or `NULL`. Number of decimal places to round to (default 2). Use `NULL` for full precision.
 
 **Returns**
 
@@ -174,10 +174,10 @@ inflation_rate(from_year, to_year = NULL, currency, annualise = FALSE)
 
 **Arguments**
 
-- `from_year` — Integer. The starting year.
-- `to_year` — Integer. The ending year. Defaults to the latest available year in the data.
-- `currency` — Character. A currency code or country name (case-insensitive). See `adjust_inflation` for accepted values.
-- `annualise` — Logical. If `TRUE`, returns the annualised (compound annual) rate. If `FALSE` (default), returns the cumulative rate.
+- `from_year`: Integer. The starting year.
+- `to_year`: Integer. The ending year. Defaults to the latest available year in the data.
+- `currency`: Character. A currency code or country name (case-insensitive). See `adjust_inflation` for accepted values.
+- `annualise`: Logical. If `TRUE`, returns the annualised (compound annual) rate. If `FALSE` (default), returns the cumulative rate.
 
 **Returns**
 
