@@ -132,27 +132,27 @@ names and are exact inverses within each pair.
 
 # What is £12 from 1963 worth today?
 adjust_inflation(12, 1963, "GBP")
-#> [1] 256.43
+#> [1] 266.38
 
 # What is $50 USD from 1980 worth today?
 adjust_inflation(50, 1980, "USD")
-#> [1] 190.33
+#> [1] 195.33
 
 # What is AUD 100 from 1990 worth today?
 adjust_inflation(100, 1990, "AUD")
-#> [1] 241.39
+#> [1] 248.33
 
 # Adjust to a specific year rather than today
 adjust_inflation(100, 1970, "GBP", to_year = 2000)
-#> [1] 872.45
+#> [1] 872.75
 
 # What would £100 today have been worth in 1963?
 historical_value(100, 1963, "GBP")
-#> [1] 4.68
+#> [1] 4.5
 
 # What would USD 1000 in 2020 have been worth in 1990?
 historical_value(1000, 1990, "USD", from_year = 2020)
-#> [1] 504.80
+#> [1] 504.84
 ```
 
 ### GDP deflator: adjusting macroeconomic values
@@ -161,15 +161,15 @@ historical_value(1000, 1990, "USD", from_year = 2020)
 
 # UK GDP was roughly £500bn in 1990 - what is that in today's terms?
 adjust_real(500e9, 1990, "GBP")
-#> [1] 1214415929203
+#> [1] 1.263092e+12
 
 # What would $1 trillion of US government spending in 2000 be worth in 2020?
 adjust_real(1e12, 2000, "USD", to_year = 2020)
-#> [1] 1428890000000
+#> [1] 1.44904e+12
 
 # Reverse: what would today's UK GDP of £2.5 trillion have been in 1990 terms?
 historical_real(2.5e12, 1990, "GBP")
-#> [1] 1028928849648
+#> [1] 989635252030
 ```
 
 ### Inflation rates
@@ -178,11 +178,11 @@ historical_real(2.5e12, 1990, "GBP")
 
 # Cumulative US inflation from 2000 to 2020
 inflation_rate(2000, 2020, "USD")
-#> [1] 0.5030
+#> [1] 0.5029684
 
 # Annualised UK inflation from 1990 to 2020
 inflation_rate(1990, 2020, "GBP", annualise = TRUE)
-#> [1] 0.0248
+#> [1] 0.02298452
 ```
 
 ### Vectorised amounts
@@ -191,11 +191,11 @@ inflation_rate(1990, 2020, "GBP", annualise = TRUE)
 
 # Adjust multiple amounts at once
 adjust_inflation(c(100, 500, 1000), 2000, "GBP", to_year = 2020)
-#> [1]  161.56  807.80 1615.61
+#> [1]  148.29  741.43 1482.86
 
 # Full precision (no rounding)
 adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
-#> [1] 150.303...
+#> [1] 150.2968
 ```
 
 ### Metadata
@@ -204,9 +204,9 @@ adjust_inflation(100, 2000, "USD", to_year = 2020, round = NULL)
 
 # See all supported currencies
 list_currencies()
-#>    currency                      country cpi_start cpi_end deflator_start deflator_end
-#> 1       GBP               United Kingdom      1960    2025           1960         2025
-#> 2       AUD                    Australia      1960    2025           1960         2025
+#>  currency                   country cpi_start cpi_end deflator_start
+#>       GBP            United Kingdom      1960    2025           1960
+#>       AUD                 Australia      1960    2025           1960
 #> ...
 ```
 
@@ -225,14 +225,11 @@ All data is sourced from the [World Bank Development
 Indicators](https://data.worldbank.org/) and bundled inside the package.
 All indices are rescaled so that 2020 = 100.
 
-Coverage is not uniform at the recent end. Every series runs to 2025
-except US CPI, which the World Bank has not yet published beyond 2024,
-so
-[`adjust_inflation()`](https://charlescoverdale.github.io/inflateR/reference/adjust_inflation.md)
-with `currency = "USD"` rejects a 2025 target year and names 2024 as the
-limit. The US GDP deflator does reach 2025, so
-[`adjust_real()`](https://charlescoverdale.github.io/inflateR/reference/adjust_real.md)
-is unaffected. Brazil starts at 1990: rebasing to 2020 = 100 pushes the
+Every series runs to 2025. The World Bank has not published a 2025 US
+CPI, because the Bureau of Labor Statistics collected no October 2025
+prices during the lapse in appropriations, so US CPI for 2025 is chained
+from the BLS CPI-U annual average, the measure the World Bank series is
+built on. Brazil starts at 1990: rebasing to 2020 = 100 pushes the
 hyperinflation years before that below the resolution of the stored
 index, and those years are dropped rather than shipped as zeros.
 
@@ -242,7 +239,7 @@ index, and those years are dropped rather than shipped as zeros.
 |-----------|----------|---------------------------|
 | `uk_cpi`  | GBP      | 1960–2025                 |
 | `aud_cpi` | AUD      | 1960–2025                 |
-| `usd_cpi` | USD      | 1960–2024                 |
+| `usd_cpi` | USD      | 1960–2025                 |
 | `eur_cpi` | EUR      | 1960–2025 (Germany proxy) |
 | `cad_cpi` | CAD      | 1960–2025                 |
 | `jpy_cpi` | JPY      | 1960–2025                 |

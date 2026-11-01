@@ -45,7 +45,7 @@ list_currencies()
 #>    currency                   country cpi_start cpi_end deflator_start
 #> 1       GBP            United Kingdom      1960    2025           1960
 #> 2       AUD                 Australia      1960    2025           1960
-#> 3       USD             United States      1960    2024           1960
+#> 3       USD             United States      1960    2025           1960
 #> 4       EUR Euro area (Germany proxy)      1960    2025           1960
 #> 5       CAD                    Canada      1960    2025           1960
 #> 6       JPY                     Japan      1960    2025           1960
