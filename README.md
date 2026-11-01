@@ -180,7 +180,7 @@ adjust_real(500e9, 1990, "United Kingdom") #> 1263091626371
 
 All data is sourced from the [World Bank Development Indicators](https://data.worldbank.org/) and bundled inside the package. All indices are rescaled so that 2020 = 100.
 
-Coverage is not uniform at the recent end. Every series runs to 2025 except US CPI, which the World Bank has not yet published beyond 2024, so `adjust_inflation()` with `currency = "USD"` rejects a 2025 target year and names 2024 as the limit. The US GDP deflator does reach 2025, so `adjust_real()` is unaffected. Brazil starts at 1990: rebasing to 2020 = 100 pushes the hyperinflation years before that below the resolution of the stored index, and those years are dropped rather than shipped as zeros.
+Every series runs to 2025. The World Bank has not published a 2025 US CPI, because the Bureau of Labor Statistics collected no October 2025 prices during the lapse in appropriations, so US CPI for 2025 is chained from the BLS CPI-U annual average, the measure the World Bank series is built on. Brazil starts at 1990: rebasing to 2020 = 100 pushes the hyperinflation years before that below the resolution of the stored index, and those years are dropped rather than shipped as zeros.
 
 ### CPI datasets (indicator: `FP.CPI.TOTL`)
 
@@ -188,7 +188,7 @@ Coverage is not uniform at the recent end. Every series runs to 2025 except US C
 |---|---|---|
 | `uk_cpi` | GBP | 1960–2025 |
 | `aud_cpi` | AUD | 1960–2025 |
-| `usd_cpi` | USD | 1960–2024 |
+| `usd_cpi` | USD | 1960–2025 |
 | `eur_cpi` | EUR | 1960–2025 (Germany proxy) |
 | `cad_cpi` | CAD | 1960–2025 |
 | `jpy_cpi` | JPY | 1960–2025 |
